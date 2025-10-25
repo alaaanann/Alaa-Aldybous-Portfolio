@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaa Aldybous | Project: Solar Cell I-V Analysis</title>
+    
+    <!-- Google Fonts (Same as main page) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
+    
+    <!-- Link to your external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Header / Navigation (Same as index.html) -->
+    <header class="site-header">
+        <nav class="main-nav container">
+            <!-- Hamburger Button (Visible on Mobile) -->
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Links Container -->
+            <div id="main-nav-links" class="main-nav-links">
+                <ul>
+                    <!-- Update hrefs to point back to index.html sections -->
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#papers">Papers</a></li>
+                    <li><a href="index.html#contact">Contact me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main>
+
+        <!-- Project Detail Section -->
+        <section class="project-detail site-section">
+            
+
+            <!-- Project Header -->
+            <div class="container project-detail-header">
+                <h1 class="section-title">I-V Performance Analysis of Solar Cells Using Numerical Method</h1>
+                <div class="project-card-tags">
+                    <span class="tag tag-maroon">2023</span>
+                    <span class="tag tag-maroon">C++</span>
+                    <span class="tag tag-dark-pink">Numerical Methods</span>
+                     <span class="tag tag-light-pink">Python</span>
+                     <span class="tag tag-light-pink">Flask</span>
+                     <span class="tag tag-light-pink">pybind11</span>
+                </div>
+            </div>
+
+            <!-- Main Project Image Wrapper - Choose one of the key visuals for the main image -->
+             <div class="container">
+                 <!-- 
+                   Replace with your primary project image (e.g., Varying Irradiance I-V Curve)
+                 -->
+                 <img src="images/IV constatn temp.png" alt="Solar Cell Performance Curve" class="project-detail-main-image">
+            </div>
+
+            <!-- Project Content -->
+            <div class="container project-detail-content">
+                
+                <div class="project-detail-block">
+                    <h2>The Challenge</h2>
+                    <p>Accurately predicting the power output of photovoltaic (PV) systems is critical for their design and optimization. The performance of a solar panel, described by its I-V (Current-Voltage) and P-V (Power-Voltage) characteristic curves, changes significantly with environmental conditions like solar irradiance and temperature. The challenge was to develop a tool that could precisely calculate and visualize this performance using real-world data and robust numerical methods.</p>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Our Solution</h2>
+                    <p>We developed a web application using a C++ backend, a Python Flask web framework, and pybind11 to bridge the two. The application determines the power output of an MSX-60 solar panel by prompting the user to enter a specific time. Using data from a CSV file and the single-diode mathematical model, the program calculates the panel's I-V and P-V curves using the Newton-Raphson method. The tool also allows users to input new temperature or irradiance values to compare performance curves and understand their impact.</p>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Key Visuals</h2>
+                    <p>These are the primary outputs of your application and should be featured prominently.</p>
+                    
+                    <h3>1. Performance Curves for Varying Irradiance</h3>
+                     <p>These two graphs (I-V and P-V) show the solar panel's performance at two different irradiance levels while the temperature is held constant. They clearly demonstrate that as solar irradiance increases, both the current and the maximum power output rise significantly.</p>
+                    <div class="project-detail-grid">
+                        <!-- 
+                          Replace these with your varying irradiance graphs 
+                        -->
+                        <img src="images/IV constatn temp.png" alt="I-V Curve for Varying Irradiance">
+                        <img src="images/PV constant temp.png" alt="P-V Curve for Varying Irradiance">
+                    </div>
+                </div>
+
+                 <div class="project-detail-block">
+                    <h3>2. Performance Curves for Varying Temperature</h3>
+                     <p>These I-V and P-V graphs illustrate the panel's performance at two different temperatures while irradiance is held constant. They effectively show that while an increase in temperature slightly decreases the maximum voltage, it has a less pronounced effect on the overall power output compared to irradiance.</p>
+                    <div class="project-detail-grid">
+                        <!-- 
+                          Replace these with your varying temperature graphs 
+                        -->
+                        <img src="images/IV constant irradiance.png" alt="I-V Curve for Varying Temperature">
+                        <img src="images/PV constant irraidance.png" alt="P-V Curve for Varying Temperature">
+                    </div>
+                </div>
+
+                 <div class="project-detail-block">
+                    <h2>Methodology</h2>
+                    <p>The application's methodology is divided into several key functions that handle data processing, numerical calculation, and user interaction.</p>
+                    
+                    <h3 style="padding-bottom:0.4rem; padding-top:1rem;">1. Data Handling and Interpolation (TempIrraVal function)</h3>
+                    <ul style="padding-left: 1rem; padding-bottom:1rem;">
+                         <li>- The application first reads environmental data (time, temperature, irradiance) from a CSV file into a 2D vector.</li>
+                         <li>- When a user inputs a time, the system checks for an exact match in the data.</li>
+                         <li>- If no exact match is found, linear interpolation is used to accurately estimate the temperature and irradiance values for the user's specified time based on the nearest data points.</li>
+                    </ul>
+
+                    <h3 style="padding-bottom:0.4rem; padding-top:1rem;">2. Core Calculation Engine (MaxVoltage and Max_power functions)</h3>
+                    <ul style="padding-left: 1rem; padding-bottom:1rem;">
+                         <li>- The core of the application utilizes the <strong>Newton-Raphson method</strong> to solve the complex, non-linear single-diode model equation for the solar cell.</li>
+                         <li>- First, it iteratively calculates the maximum voltage (V_oc) where the current is zero.</li>
+                         <li>- Then, for a range of voltage steps from 0 to the maximum, it uses the Newton-Raphson method again to calculate the corresponding current for each step, generating the full I-V curve. The P-V curve is then derived from these values.</li>
+                    </ul>
+
+                     <h3 tyle="padding-bottom:0.4rem; padding-top:1rem;">3. Interactive Analysis (SetIrra and SetTemp functions)</h3>
+                     <ul style="padding-left: 1rem; padding-bottom:1rem;">
+                         <li>- The application allows users to go beyond the initial dataset by inputting a new temperature or a new irradiance value.</li>
+                         <li>- The system then recalculates the I-V and P-V curves based on this new input and plots them on the same graph as the original curves. This provides a direct visual comparison, making it an excellent interactive educational tool.</li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Conclusion & Impact</h2>
+                    <p>This project successfully created a program to aid in the design and optimization of PV systems. By implementing the Newton-Raphson method in C++ and integrating it with a user-friendly web interface, the tool provides accurate calculations and clear visualizations of a solar panel's performance. This work contributes to the pursuit of sustainable energy by providing a practical tool for understanding and improving the efficiency of photovoltaic technology.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+    
+    <!-- Footer (Same as main page) -->
+    <footer class="site-footer">
+        <p>Designed & Built by Alaa Aldybous</p>
+        <p class="footer-credit">Robot mascot art by [Your Artist's Name Here]</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const menuLinks = document.getElementById('main-nav-links');
+
+        // Check if elements exist before adding listener
+        if (menuButton && menuLinks) {
+            menuButton.addEventListener('click', () => {
+                menuLinks.classList.toggle('is-open');
+            });
+        } else {
+            console.error("Mobile menu button or links not found on this page!"); 
+        }
+
+        
+    </script>
+
+</body>
+</html>

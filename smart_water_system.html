@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaa Aldybous | Project: Water Leakage Detector</title>
+    
+    <!-- Google Fonts (Same as main page) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
+    
+    <!-- Link to your external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Header / Navigation (Same as index.html) -->
+    <header class="site-header">
+        <nav class="main-nav container">
+            <!-- Hamburger Button (Visible on Mobile) -->
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Links Container -->
+            <div id="main-nav-links" class="main-nav-links">
+                <ul>
+                    <!-- Update hrefs to point back to index.html sections -->
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#papers">Papers</a></li>
+                    <li><a href="index.html#contact">Contact me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main>
+
+        <!-- Project Detail Section -->
+        <section class="project-detail site-section">
+            
+
+            <!-- Project Header -->
+            <div class="container project-detail-header">
+                <h1 class="section-title">Smart Water Leakage Detection & Prevention System</h1>
+                <div class="project-card-tags">
+                    <!-- Add relevant tags -->
+                    <span class="tag tag-maroon">MicroPython</span>
+                    <span class="tag tag-dark-pink">Raspberry Pi Pico</span>
+                    <span class="tag tag-dark-pink">Control Systems</span>
+                    <span class="tag tag-light-pink">Sensors</span>
+                    <span class="tag tag-light-pink">Relays</span>
+                    <span class="tag tag-light-pink">Solenoid Valve</span>
+                    <span class="tag tag-light-pink">OLED</span>
+                </div>
+            </div>
+
+            <!-- Main Project Image Wrapper - Choose one of the key visuals -->
+             <div class="container">
+                 <!-- 
+                   Replace with your primary project image (e.g., Hardware Prototype)
+                 -->
+                 <img src="images/smartwater.png" alt="Water Leakage Detector Hardware Prototype" class="project-detail-main-image">
+            </div>
+
+            <!-- Project Content -->
+            <div class="container project-detail-content">
+                
+                <div class="project-detail-block">
+                    <h2>The Challenge</h2>
+                    <p>Water leakage, whether from burst pipes, faulty joints, or unnoticed drips, is a primary cause of significant property damage and water waste. Traditional detection methods often rely on manual inspection or user awareness, which can lead to delayed responses and escalate the damage. This project addressed the need for a cost-effective, automated, and responsive system that can detect and take immediate corrective action in real-time.</p>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Our  Solution</h2>
+                    <p>We designed and built a "Smart Water Leakage Detection and Prevention System" based on a closed-loop control approach. The system is controlled by a Raspberry Pi Pico microcontroller programmed in MicroPython.</p>
+                     <p>The system's workflow is as follows:</p>
+                    <ol style="padding-left:1rem;">
+                        <li><strong>Monitor:</strong> A water sensor continuously monitors for the presence of water in a protected area.</li>
+                        <li><strong>Detect:</strong> If a leak is detected, the sensor sends a HIGH signal to the Raspberry Pi Pico.</li>
+                        <li><strong>Act:</strong> The Pico processes this signal and immediately triggers three actions:
+                            <ul style="padding-left:1rem; padding-bottom: 1rem; padding-top: 0.7rem;">
+                                <li><strong>- Valve Control:</strong> It sends a signal to a 5V relay module, which cuts power to a solenoid valve, instantly shutting off the water supply.</li>
+                                <li><strong>- Audible Alert:</strong> It activates a buzzer to provide an immediate audio alarm.</li>
+                                <li><strong>- Visual Alert:</strong> It updates an OLED display to show a "Leak Detected!" message.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Reset:</strong> As a closed-loop system, it continues to monitor the sensor. Once the leak is resolved (sensor is dry), the system automatically resets, deactivating the buzzer and reopening the solenoid valve.</li>
+                    </ol>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Key Visuals</h2>
+                    <p>The system was fully assembled and tested, successfully demonstrating reliable, real-time detection and response.</p>
+                    
+                    <h3>1. System Architecture</h3>
+                     <p>A block diagram illustrating the closed-loop feedback mechanism from the water sensor to the Raspberry Pi Pico controller and back to the actuators.</p>
+                    <!-- 
+                      Replace with your Block Diagram image
+                    -->
+                    <img style="margin-bottom: 1rem;" src="images/block diagram smart water.png" alt="System Architecture Block Diagram" class="project-detail-sub-image">
+
+                    <h3>2. Hardware Prototype</h3>
+                     <p>The final hardware prototype, showing the integration of the Raspberry Pi Pico, water sensor, relay, solenoid valve, buzzer, and OLED display on a breadboard.</p>
+                     <!-- 
+                       Replace with your Hardware Prototype photo (same as main image perhaps?)
+                     -->
+                     <img style="margin-bottom: 1rem;" src="images/smartwater.png" alt="Hardware Prototype" class="project-detail-sub-image">
+                     
+                     <h3>3. Test Results Summary</h3>
+                     <p>Confirms that the system correctly actuated the valve and alerts. When no water was present, the valve remained open; upon leak detection, the valve closed and alerts activated.</p>
+                     <!-- Optional: Add an image/table summarizing results -->
+                      
+                     <img src="images/smart water testing.png" alt="Test Results Summary" class="project-detail-sub-image">
+                     
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Conclusion</h2>
+                    <p>This project successfully demonstrated the design and implementation of a Smart Water Leakage Detection and Prevention System using a closed-loop control approach. By combining the Raspberry Pi Pico with a water sensor, relay, solenoid valve, buzzer, and OLED display, the system autonomously detects leakage, alerts the user, and shuts off the water supply to prevent damage. The use of feedback in this control system ensures real-time monitoring and immediate corrective action. This project not only improves safety and resource conservation but also lays the groundwork for future smart home applications.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+    
+    <!-- Footer (Same as main page) -->
+    <footer class="site-footer">
+        <p>Designed & Built by Alaa Aldybous</p>
+        <p class="footer-credit">Robot mascot art by [Your Artist's Name Here]</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const menuLinks = document.getElementById('main-nav-links');
+
+        // Check if elements exist before adding listener
+        if (menuButton && menuLinks) {
+            menuButton.addEventListener('click', () => {
+                menuLinks.classList.toggle('is-open');
+            });
+        } else {
+            console.error("Mobile menu button or links not found on this page!"); 
+        }
+
+
+    </script>
+
+</body>
+</html>

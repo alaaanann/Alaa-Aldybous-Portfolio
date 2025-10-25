@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaa Aldybous | Project: Weather Classification</title>
+    
+    <!-- Google Fonts (Same as main page) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
+    
+    <!-- Link to your external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Header / Navigation (Same as index.html) -->
+    <header class="site-header">
+        <nav class="main-nav container">
+            <!-- Hamburger Button (Visible on Mobile) -->
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Links Container -->
+            <div id="main-nav-links" class="main-nav-links">
+                <ul>
+                    <!-- Update hrefs to point back to index.html sections -->
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#papers">Papers</a></li>
+                    <li><a href="index.html#contact">Contact me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main>
+
+        <!-- Project Detail Section -->
+        <section class="project-detail site-section">
+            
+
+            <!-- Project Header -->
+            <div class="container project-detail-header">
+                <h1 class="section-title">Weather Summary Classification</h1>
+                <div class="project-card-tags">
+                    <!-- Add relevant tags -->
+                    <span class="tag tag-maroon">Python</span>
+                    <span class="tag tag-dark-pink">Data Science</span>
+                    <span class="tag tag-dark-pink">Machine Learning</span>
+                    <span class="tag tag-light-pink">Pandas</span>
+                    <span class="tag tag-light-pink">Scikit-learn</span>
+                    <span class="tag tag-light-pink">XGBoost</span>
+                    <span class="tag tag-light-pink">Classification</span>
+                </div>
+            </div>
+
+            <!-- Main Project Image Wrapper - Choose one of the key visuals -->
+             <div class="container">
+                 <!-- 
+                   Replace with your primary project image (e.g., Model Accuracy Comparison)
+                 -->
+                 <img src="https://placehold.co/1000x600/FFFFFF/450920?text=Model+Accuracy+Scores" alt="Weather Classification Model Performance" class="project-detail-main-image">
+            </div>
+
+            <!-- Project Content -->
+            <div class="container project-detail-content">
+                
+                <div class="project-detail-block">
+                    <h2>The Challenge</h2>
+                    <p>Accurately predicting weather conditions is crucial for daily planning, resource management (e.g., agriculture, energy), and ensuring safety. This project tackled the challenge of building a classification model to predict the descriptive weather summary (like "Partly Cloudy", "Foggy") based on various measured meteorological features like temperature, humidity, wind speed, and precipitation type.</p>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Our Solution / Methodology</h2>
+                    <p>This project followed a structured data science process using Python and common data science libraries:</p>
+                    <ul style="padding-left:1rem;">
+                        <li style="padding-bottom:0.5rem;"><strong>- Data Collection:</strong> Loaded the "weatherHistory.csv" dataset using Pandas.</li>
+                        <li style="padding-bottom:0.5rem;"><strong>- Data Preprocessing & Exploration (EDA):</strong> Checked data structure, types <b>(<code>info</code>, <code>shape</code>, <code>dtypes</code>)</b>, and identified missing values (only in <b><code>Precip Type</code></b> ). Handled missing data by filling null <b><code>Precip Type</code></b> values with 'none'. Performed feature encoding using Scikit-learn's <b><code>LabelEncoder</code></b> to convert categorical features (<b><code>Precip Type</code>, <code>Summary</code></b>) into numerical representations suitable for modeling. Dropped irrelevant columns (<b><code>Formatted Date</code>, <code>Daily Summary</code></b>). Applied feature scaling using Scikit-learn's<b><code>StandardScaler</code></b> to normalize the range of numerical input features, preventing features with larger values from dominating the model.</li>
+                        <li style="padding-bottom:0.5rem;"><strong>- Modeling & Learning:</strong> Defined the features (X - scaled numerical data) and the target variable (y - encoded <b><code>Summary</code></b>). Split the dataset into an 80% training set and a 20% testing set using <b><code>train_test_split</code></b>. Trained and evaluated three different ensemble classification models: Random Forest Classifier (<b><code>RandomForestClassifier</code></b>), Gradient Boosting Classifier (<b><code>GradientBoostingClassifier</code></b>), XGBoost Classifier (<b><code>XGBClassifier</code></b>). Model performance was evaluated using the accuracy score.</li>
+                        <li style="padding-bottom:0.5rem;"><strong>- Reflection:</strong> Compared the underlying techniques (bagging vs. boosting) of the ensemble methods.</li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Key Visuals</h2>
+                    <p>The primary outputs demonstrating the project's success are the performance metrics of the trained classifiers.</p>
+                    
+                    <h3>Model Accuracy Comparison</h3>
+                     <p>Comparison of accuracy scores for the three ensemble models trained to predict weather summary conditions.</p>
+                    <!-- 
+                      Replace with your Model Accuracy Comparison chart/image/table
+                    -->
+                    <img src="images/weather comparision.png" alt="Model Accuracy Comparison" class="project-detail-sub-image">
+                     <!-- You could also list the scores here -->
+                     
+                     <p><strong>Accuracy Scores:</strong></p>
+                     <ul>
+                         <li>Random Forest: 59.3</li>
+                         <li>Gradient Boosting: 55.4%</li>
+                         <li>XGBoost: 53.2%</li>
+                     </ul> 
+                    
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Conclusion</h2>
+                    <p>This project successfully applied the end-to-end data science process to classify weather conditions. Data preprocessing, including handling missing values, encoding categorical features, and scaling numerical data, proved essential for preparing the data for machine learning. By comparing different ensemble methods (Random Forest, Gradient Boosting, XGBoost), the project demonstrated how different algorithms can be evaluated for a classification task. Based on the reflection, XGBoost was identified as potentially the most suitable for real-world application due to its typically high accuracy and efficiency on complex datasets.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+    
+    <!-- Footer (Same as main page) -->
+    <footer class="site-footer">
+        <p>Designed & Built by Alaa Aldybous</p>
+        <p class="footer-credit">Robot mascot art by [Your Artist's Name Here]</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const menuLinks = document.getElementById('main-nav-links');
+
+        // Check if elements exist before adding listener
+        if (menuButton && menuLinks) {
+            menuButton.addEventListener('click', () => {
+                menuLinks.classList.toggle('is-open');
+            });
+        } else {
+            console.error("Mobile menu button or links not found on this page!"); 
+        }
+
+     
+    </script>
+
+</body>
+</html>

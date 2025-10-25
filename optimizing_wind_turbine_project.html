@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<!-- Header / Navigation -->
+    <!-- Header / Navigation (Same as index.html) -->
     <header class="site-header">
         <nav class="main-nav container">
             <!-- Hamburger Button (Visible on Mobile) -->
@@ -37,6 +37,7 @@
             <!-- Navigation Links Container -->
             <div id="main-nav-links" class="main-nav-links">
                 <ul>
+                    <!-- Update hrefs to point back to index.html sections -->
                     <li><a href="index.html#home">Home</a></li>
                     <li><a href="index.html#about">About me</a></li>
                     <li><a href="index.html#education">Education</a></li>
@@ -51,13 +52,13 @@
     </header>
 
     <!-- Main Content Wrapper -->
-    <main class="container">
+    <main>
 
         <!-- Project Detail Section -->
         <section class="project-detail site-section">
-            
+
             <!-- Project Header -->
-            <div class="project-detail-header">
+            <div class="container project-detail-header">
                 <h1 class="section-title">Optimizing Wind Turbines for Maximum Power Generation</h1>
                 <div class="project-card-tags">
                     <span class="tag tag-maroon">2023</span>
@@ -67,14 +68,14 @@
                 </div>
             </div>
 
-            <!-- 
-              Main project image
-              Replace with your main MATLAB GUI screenshot
-            -->
-            <img src="https://placehold.co/800x500/E5E7EB/3D3535?text=Main+MATLAB+GUI+Screenshot" alt="Wind Turbine Project Screenshot" class="project-detail-main-image">
+            <!-- Main Project Image Wrapper -->
+            <div class="container">
+                 
+                 <img src="images/calulationandVosualization.png" alt="Core Application Screenshot" class="project-detail-main-image">
+            </div>
 
             <!-- Project Content -->
-            <div class="project-detail-content">
+            <div class="container project-detail-content">
                 
                 <div class="project-detail-block">
                     <h2>The Challenge</h2>
@@ -88,20 +89,100 @@
 
                 <div class="project-detail-block">
                     <h2>1. Application Home Page</h2>
-                    <p>Here you can see the main interface of the application, where users can input data and see the key performance visualizations.</p>
+                    <p>This image shows the main interface of your application, including the navigation and the option to import an Excel file. It's a great opening visual.</p>
                     <div class="project-detail-grid">
-                        <!-- 
-                          Replace these with your app screenshots 
-                        -->
-                        <img src="https://placehold.co/400x300/E5E7EB/3D3535?text=App+Screenshot+1" alt="Application Home Page 1">
-                        <img src="https://placehold.co/400x300/E5E7EB/3D3535?text=App+Screenshot+2" alt="Application Home Page 2">
+                        
+                        <img src="images/homepage1.png" alt="Application Home Page 1">
+                        <img src="images/homepage2.png" alt="Application Home Page 2">
                     </div>
+                </div>
+
+                 <div class="project-detail-block">
+                    <h2>2. Integrated ChatGPT Feature</h2>
+                    <p>This screenshot shows the educational component of the application, where users can ask ChatGPT for information about wind energy. It highlights the interactive learning aspect of the project.</p>
+                     
+                     <img src="images/chatgptfeature.png" alt="ChatGPT Feature" class="project-detail-sub-image">
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>3.Calculations & Visualizationsn</h2>
+                    <p>This single, powerful screenshot captures the core functionality of the app. It displays the user input panel, the calculated output (Power, CP), and both the 2D (Cp vs TSR) and 3D (Cp vs TSR vs Theta) performance graphs in one comprehensive view. This is your primary project image.</p>
+                     
+                     <img src="images/calulationandVosualization.png" alt="Pitch Angle Visualization" class="project-detail-sub-image">
+                </div>
+
+                 <div class="project-detail-block">
+                    <h2>4. Interactive Pitch Angle Visualization</h2>
+                    <p>This interactive visualization allows users to manipulate the blade's pitch angle with a slider and instantly see the effect on the Power Coefficient vs. Lambda curve. It provides a hands-on demonstration of how pitch control is critical for optimizing turbine performance.</p>
+                     
+                     <img src="images/pitchangle.png" alt="Pitch Angle Visualization" class="project-detail-sub-image">
+                </div>
+
+                 <div class="project-detail-block">
+                    <h2>5. NACA Airfoil Profiles</h2>
+                    <p>This view demonstrates the app's capability to visualize different NACA airfoil shapes based on user selection, allowing for a deeper understanding of how blade design impacts a turbine's profile.</p>
+                     
+                     <img src="images/naca.png" alt="NACA Airfoil Profiles" class="project-detail-sub-image">
                 </div>
                 
                 <div class="project-detail-block">
-                    <h2>2. Key Features</h2>
-                    <p>More details about what the app can do, perhaps showing other tabs or features.</p>
-                    <!-- You can add more text and images here! -->
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li><strong>Data Input:</strong> Users can import an Excel sheet containing wind data or manually input specific wind speeds or times.</li>
+                        <li style="padding-top:1rem;"><strong>Core Calculation:</strong> The application uses the Newton-Raphson method to find the optimal tip-speed ratio that maximizes the power coefficient.</li>
+                        <li style="padding-top:1rem;"><strong>Interactive Visualizations:</strong>
+                            <ul style="padding-left:1rem;">
+                                <li>- Generates 2D graphs of the Power Coefficient (Cp) vs. Tip Speed Ratio (λ) for various blade pitch angles (θ).</li>
+                                <li>- Produces interactive 3D surface plots showing the relationship between Cp, lambda, and theta.</li>
+                                <li>- Users can select a specific blade pitch angle to see its corresponding performance curve and maximum power coefficient.</li>
+                            </ul>
+                        </li>
+                        <li style="padding-top:1rem;" ><strong>Educational Components:</strong>
+                            <ul style="padding-left:1rem;">
+                                <li>- An integrated ChatGPT section for users to ask questions about wind energy.</li>
+                                <li>- A section displaying different NACA airfoil shapes used in various wind turbine blades.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Application Flowchart</h2>
+                     <p>This flowchart outlines the application's logical journey from initialization to displaying results.</p>
+                     
+                     <img src="images/flowchart.png" alt="Application Flowchart" class="project-detail-sub-image">
+                    <h3 style="padding-top:1rem;">Step 1: Initialization</h3>
+                    <p>The application starts by initializing all necessary variables. It then reads the wind data from a user-provided Excel sheet to prepare for calculations.</p>
+                    <h3>Step 2: Main Menu</h3>
+                    <p>The user is presented with a menu of options to choose their desired action.</p>
+                    <h3>Step 3: User Input & Core Calculation</h3>
+                    <p>The user can select one of three main paths:</p>
+                    <ul style="padding-left:1rem;">
+                       <li><b>A) Input by Time:</b> The user provides a specific time, and the application retrieves the corresponding wind speed from the Excel data.</li>
+                       <li><b>B)Input by Speed:</b>  The user directly enters a specific wind speed.</li>
+                       <li><b>C)View Visualization:</b>  The user proceeds directly to the output graphs.</li><br>
+                       </ul>
+                    <p>For options A and B, the application uses the Newton-Raphson numerical method. This is the core of the program, used to calculate the optimal Tip Speed Ratio (TSR) that results in the maximum Power Coefficient (CP) for the given wind speed.</p>
+
+                    <h3>Step 4: Output & Visualization</h3>
+                    <p>The application displays the calculated results, including the maximum power and the optimal CP. The results are presented visually through a series of interactive 2D and 3D graphs, allowing the user to understand the relationships between different operational parameters.</p>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Technical Details</h2>
+                    <p>The core of the application's calculation engine is the <strong>Newton-Raphson method</strong>, an iterative numerical technique used to find the roots of a real-valued function. In our case, it's used to find the maximum of the power coefficient function by finding where its derivative is zero. The application's code journey involves:</p>
+                    <ul>
+                        <li>Initializing variables and reading data from an Excel sheet.</li>
+                        <li>Implementing the Newton-Raphson method to solve for the optimal tip-speed ratio.</li>
+                        <li>A user-friendly menu to navigate between entering wind speed, time, or viewing visualizations.</li>
+                        <li>Interpolation techniques for handling data points between measured values.</li>
+                        <li>Generating and displaying 2D and 3D graphs of the results.</li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Conclusion & Impact</h2>
+                    <p>This project successfully created a robust educational tool that bridges the gap between theoretical knowledge and practical application in wind turbine technology. The application provides users with accurate calculations and engaging visualizations, enhancing their understanding of how different parameters affect turbine efficiency. It stands as a valuable resource for students, researchers, and renewable energy enthusiasts looking to explore the dynamics of wind power generation.</p>
                 </div>
 
             </div>
@@ -116,24 +197,22 @@
         <p class="footer-credit">Robot mascot art by [Your Artist's Name Here]</p>
     </footer>
 
-            <!-- JavaScript for Mobile Menu Toggle -->
+    <!-- JavaScript for Mobile Menu Toggle -->
     <script>
         const menuButton = document.getElementById('mobile-menu-button');
-        const navLinks = document.getElementById('main-nav-links');
+        const menuLinks = document.getElementById('main-nav-links');
 
-        if (menuButton && navLinks) {
+        // Check if elements exist before adding listener
+        if (menuButton && menuLinks) {
             menuButton.addEventListener('click', () => {
-                navLinks.classList.toggle('is-open');
+                menuLinks.classList.toggle('is-open');
             });
-
-            // Optional: Close menu when a link is clicked (good for single-page sites)
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('is-open');
-                });
-            });
+        } else {
+            console.error("Mobile menu button or links not found on this page!"); 
         }
+
     </script>
 
 </body>
 </html>
+

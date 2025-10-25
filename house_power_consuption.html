@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaa Aldybous | Project: Household Power Forecasting</title>
+    
+    <!-- Google Fonts (Same as main page) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
+    
+    <!-- Link to your external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Header / Navigation (Same as index.html) -->
+    <header class="site-header">
+        <nav class="main-nav container">
+            <!-- Hamburger Button (Visible on Mobile) -->
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Links Container -->
+            <div id="main-nav-links" class="main-nav-links">
+                <ul>
+                    <!-- Update hrefs to point back to index.html sections -->
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#papers">Papers</a></li>
+                    <li><a href="index.html#contact">Contact me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main>
+
+        <!-- Project Detail Section -->
+        <section class="project-detail site-section">
+            
+
+            <!-- Project Header -->
+            <div class="container project-detail-header">
+                <h1 class="section-title">Household Power Consumption Forecasting</h1>
+                <div class="project-card-tags">
+                    <span class="tag tag-maroon">2025</span>
+                    <span class="tag tag-dark-pink">AI</span>
+                    <span class="tag tag-dark-pink">Data Science</span>
+                    <span class="tag tag-light-pink">Python</span>
+                    <span class="tag tag-light-pink">Pandas</span>
+                    <span class="tag tag-light-pink">Scikit-learn</span>
+                </div>
+            </div>
+
+            <!-- Main Project Image Wrapper - Choose one of the key visuals -->
+             <div class="container">
+                 <!-- 
+                   Replace with your primary project image (e.g., Daily Resampled Power Plot)
+                 -->
+                 <img src="images/household.png" alt="Global Active Power Over Time" class="project-detail-main-image">
+            </div>
+
+            <!-- Project Content -->
+            <div class="container project-detail-content">
+                
+                <div class="project-detail-block">
+                    <h2>The Challenge</h2>
+                    <p>Predicting household electricity consumption is vital for energy providers to manage grid load, for consumers to optimize usage and save costs, and for developing smart home energy systems. This project addressed the challenge of building a regression model to forecast the Global_active_power (in kilowatts) based on historical minute-by-minute measurements and time-related features.</p>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Our Solution / Methodology</h2>
+                    <p>This project implemented a complete data science workflow using Pandas, Matplotlib, Seaborn, and Scikit-learn:</p>
+                    <ul>
+                        <li style="padding-bottom: 0.4rem;"><strong style="font-size: 1.1rem;">Problem Scoping:</strong> Defined the objective as predicting Global_active_power (a regression task) using historical data and contextual features.</li>
+                        <li style="padding-bottom: 0.4rem;"><strong style="font-size: 1.1rem;">Data Collection & Initial Processing:</strong> Loaded the <code>household_power_consumption.txt</code> dataset. Parsed the Date and Time columns into a single DateTime index, transforming the data into a time series format. Identified and handled missing values (represented as '?') by replacing them with NaN. Converted relevant columns from object type to numeric (float) type.</li>
+                        <li style="padding-bottom: 0.4rem;" ><strong style="font-size: 1.1rem;">Data Cleaning & Imputation:</strong> Quantified missing data, finding a small percentage (approx 1.25%) across several columns. Applied time-based interpolation (<code>df.interpolate(method="time")</code>) to fill the missing numerical values, preserving the time series nature of the data.</li>
+                        <li style="padding-bottom: 0.4rem;"><strong style="font-size: 1.1rem;">Exploratory Data Analysis (EDA):</strong> Visualized the Global_active_power over time using line plots, observing trends and patterns. Used resampling (daily and monthly averages) to smooth the data and reveal longer-term seasonality and trends. Generated a correlation heatmap to understand relationships between different power metrics and voltage/intensity.</li>
+                        <li style="padding-bottom: 0.4rem;"><strong style="font-size: 1.1rem;">Feature Engineering:</strong> Extracted time-based features from the DateTime index: hour, dayofweek, month, year. Created a binary feature <code>is_weekend</code>.</li>
+                        <li style="padding-bottom: 0.4rem;"><strong style="font-size: 1.1rem;">Modeling & Evaluation:</strong> Defined the features (X - including original measurements and engineered time features) and the target (y - Global_active_power). Applied feature scaling using <code>StandardScaler</code>. Split the data chronologically into training (80%) and testing (20%) sets. Trained a baseline Linear Regression model. Trained a more complex Random Forest Regressor model (n_estimators=100). Evaluated model performance using Mean Squared Error (MSE) and R² Score. RMSE was also calculated for the Random Forest model.</li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Key Visuals</h2>
+                    <p>Key outputs highlight the data patterns and model performance:</p>
+                    
+                    <h3>1. Daily Resampled Global Active Power</h3>
+                     <p>Reveals seasonal trends and overall consumption patterns.</p>
+                    <!-- 
+                      Replace with your Daily Resampled Power plot
+                    -->
+                    <img src="images/global power over time.png" alt="Daily Resampled Global Active Power" class="project-detail-sub-image">
+
+                    <h3>2. Correlation Heatmap</h3>
+                     <p>Shows correlations between different measured variables in the dataset.</p>
+                     <!-- 
+                       Replace with your Correlation Heatmap
+                     -->
+                     <img src="images/household.png" alt="Correlation Heatmap" class="project-detail-sub-image">
+                     
+                     <h3>3. Model Performance Comparison</h3>
+                     <p>Performance comparison of Linear Regression and Random Forest Regressor models on the test set for predicting Global Active Power.</p>
+                     <p><strong>Results:</strong></p>
+                     <ul>
+                         <li>Linear Regression (MSE: 0.297, R²: 0.732)</li>
+                         <li>Random Forest (RMSE: 0.545, R²: 0.733)</li>
+                     </ul>
+                     <!-- Optional: Add a bar chart comparing MSE/R2 if you have one -->
+                     <!-- 
+                     <img src="https://placehold.co/800x400/FFFFFF/450920?text=Model+Performance+Comparison+Chart" alt="Model Performance Comparison" class="project-detail-sub-image">
+                     -->
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Conclusion</h2>
+                    <p>This project successfully executed an end-to-end data science pipeline for time series forecasting of household power consumption. Through careful data cleaning, time-based interpolation, exploratory visualization, and feature engineering, the dataset was prepared for regression modeling. Both a baseline Linear Regression and a more advanced Random Forest model were implemented and evaluated, achieving comparable R² scores (around 0.73), indicating that the features captured a significant portion of the variance in power consumption. This provides a strong foundation for further model tuning or exploring more complex time series models.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+    
+    <!-- Footer (Same as main page) -->
+    <footer class="site-footer">
+        <p>Designed & Built by Alaa Aldybous</p>
+        <p class="footer-credit">Robot mascot art by [Your Artist's Name Here]</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const menuLinks = document.getElementById('main-nav-links');
+
+        // Check if elements exist before adding listener
+        if (menuButton && menuLinks) {
+            menuButton.addEventListener('click', () => {
+                menuLinks.classList.toggle('is-open');
+            });
+        } else {
+            console.error("Mobile menu button or links not found on this page!"); 
+        }
+
+    </script>
+
+</body>
+</html>

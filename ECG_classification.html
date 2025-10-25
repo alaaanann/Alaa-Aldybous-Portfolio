@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaa Aldybous | Project: ECG Classification</title>
+    
+    <!-- Google Fonts (Same as main page) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
+    
+    <!-- Link to your external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Header / Navigation (Same as index.html) -->
+    <header class="site-header">
+        <nav class="main-nav container">
+            <!-- Hamburger Button (Visible on Mobile) -->
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Links Container -->
+            <div id="main-nav-links" class="main-nav-links">
+                <ul>
+                    <!-- Update hrefs to point back to index.html sections -->
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#papers">Papers</a></li>
+                    <li><a href="index.html#contact">Contact me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main>
+
+        <!-- Project Detail Section -->
+        <section class="project-detail site-section">
+   
+
+            <!-- Project Header -->
+            <div class="container project-detail-header">
+                <h1 class="section-title">ECG Heart Abnormality Classification</h1>
+                <div class="project-card-tags">
+                    <!-- Add relevant tags -->
+                    <span class="tag tag-maroon">MATLAB</span>
+                    <span class="tag tag-dark-pink">Machine Learning</span>
+                    <span class="tag tag-dark-pink">Signal Processing</span>
+                    <span class="tag tag-dark-pink">Deep Learning</span>
+                    <span class="tag tag-light-pink">CNN</span>
+                    <span class="tag tag-light-pink">Mathematical Modeling</span>
+                    <span class="tag tag-light-pink">Classification</span>
+                </div>
+            </div>
+
+            <!-- Main Project Image Wrapper - Choose one of the key visuals -->
+             <div class="container">
+                 <!-- 
+                   Replace with your primary project image (e.g., Normal vs Abnormal ECG Waveforms)
+                 -->
+                 <img src="images/ecg.jpeg" alt="ECG Classification Project Visual" class="project-detail-main-image">
+            </div>
+
+            <!-- Project Content -->
+            <div class="container project-detail-content">
+
+                <p class="tag tag-maroon" style="text-align: left; margin-top: 2rem; margin-bottom: 0.5rem; font-weight: bold; padding-left:1rem; font-size:0.85rem;">Status: Unpublished Manuscript/In Progress</p><br>
+                <p class="tag tag-maroon" style="text-align: left; margin-bottom: 2rem; font-weight: bold; padding-left:1rem; font-size:0.85rem;">Role: Lead Researcher/First Author</p>
+                
+                <div class="project-detail-block">
+                    <h2>Project Overview</h2>
+                    <p>This project combines signal processing and machine learning to explore the classification of heart abnormalities using Electrocardiogram (ECG) signals. The primary objective was to build and train a machine learning model capable of classifying ECG signals as either 'normal' or 'abnormal'.</p>
+                     <p>The project focused on mathematically modeling three specific abnormal conditions: Premature Ventricular Contraction (PVC), Atrial Fibrillation (AFib), and Ventricular Tachycardia (VTach). A custom dataset was constructed by generating synthetic signals for these conditions and combining them with experimental data from healthy individuals. This dataset was then used to train a classifier, which was ultimately tested on new, unseen ECG signals to predict for abnormalities.</p>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Key Contributions & Skills</h2>
+                    <p>As the lead researcher, I was responsible for all technical stages of the project, from modeling to final prediction.</p>
+                    <ul style="padding-left: 1rem;">
+                        <li style="padding-bottom: 0.5rem;"><strong>- Signal Processing & Mathematical Modeling:</strong> Researched and mathematically modeled a normal ECG signal by defining its core components: the P-wave, QRS complex, and T-wave. Developed distinct mathematical models to simulate the specific waveform changes associated with PVC (omitted P-wave, wide QRS), AFib (irregular R-R intervals, absent P-wave), and VTach (rapid, wide QRS complexes with no P or T-waves).</li>
+                         <!-- Optional: Add image comparing modeled signals -->
+                         <!-- <img src="https://placehold.co/800x300/FFFFFF/450920?text=Modeled+ECG+Signals+(Normal,+PVC,+AFib,+VTach)" alt="Modeled ECG Signals" class="project-detail-sub-image"> -->
+
+                        <li style="padding-bottom: 0.5rem;"><strong>Synthetic Data Generation & Curation:</strong> Wrote MATLAB scripts to generate a synthetic dataset of abnormal ECG signals based on the defined mathematical models. Integrated experimental ECG data from 10 healthy individuals with the generated abnormal signals to create a labeled dataset for training.</li>
+                        
+                        <li style="padding-bottom: 0.5rem;"><strong>Machine Learning (CNN):</strong> Processed and prepared the final dataset, splitting it into training and testing sets to validate model performance. Implemented and trained a Convolutional Neural Network (CNN) using MATLAB's Deep Learning Toolbox to learn the complex, time-series features distinguishing normal signals from the three types of abnormalities. Evaluated the trained model's performance on the unseen testing set. The model demonstrated a clear ability to learn from the data, with classification accuracy significantly exceeding the 25% random-chance baseline for this 4-class problem.</li>
+                         <!-- Optional: Add image of CNN architecture or accuracy results -->
+                         <!-- <img src="https://placehold.co/800x400/FFFFFF/450920?text=CNN+Model+Accuracy+Results" alt="CNN Model Results" class="project-detail-sub-image"> -->
+
+                        <li style="padding-bottom: 0.5rem;"><strong>Predictive Modeling:</strong> Applied the final trained model to a new dataset from 10 new individuals to predict and classify their heart status as healthy or abnormal.</li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Tools & Technologies</h2>
+                     <p><strong>MATLAB:</strong> Utilized for all project phases, including:</p>
+                     <ul style="padding-left: 1rem;">
+                        <li style="padding-bottom: 0.5rem;">- Signal Processing Toolbox: For modeling, generating, and preparing the ECG waveforms.</li>
+                        <li style="padding-bottom: 0.5rem;">- Deep Learning Toolbox: For designing, building, training, and testing the Convolutional Neural Network (CNN).</li>
+                        <li style="padding-bottom: 0.5rem;">- Core MATLAB functions for data management and analysis.</li>
+                     </ul>
+                </div>
+
+                <!-- Add a Conclusion section if desired -->
+                <!-- 
+                <div class="project-detail-block">
+                    <h2>Conclusion</h2>
+                    <p>[Your project conclusion text here]</p>
+                </div> 
+                -->
+
+            </div>
+
+        </section>
+
+    </main>
+    
+    <!-- Footer (Same as main page) -->
+    <footer class="site-footer">
+        <p>Designed & Built by Alaa Aldybous</p>
+        <p class="footer-credit">Robot mascot art by [Your Artist's Name Here]</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const menuLinks = document.getElementById('main-nav-links');
+
+        // Check if elements exist before adding listener
+        if (menuButton && menuLinks) {
+            menuButton.addEventListener('click', () => {
+                menuLinks.classList.toggle('is-open');
+            });
+        } else {
+            console.error("Mobile menu button or links not found on this page!"); 
+        }
+
+
+    </script>
+
+</body>
+</html>
