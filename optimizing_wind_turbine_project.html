@@ -22,19 +22,31 @@
 </head>
 <body>
 
-    <!-- Header / Navigation (Same as main page) -->
+<!-- Header / Navigation -->
     <header class="site-header">
         <nav class="main-nav container">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#about">About me</a></li>
-                <li><a href="index.html#education">Education</a></li>
-                <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="index.html">Projects</a></li>
-                <li><a href="index.html">Papers</a></li>
-                <li><a href="index.html">Contact me</a></li>
-            </ul>
+            <!-- Hamburger Button (Visible on Mobile) -->
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Links Container -->
+            <div id="main-nav-links" class="main-nav-links">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About me</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#papers">Papers</a></li>
+                    <li><a href="#contact">Contact me</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -46,7 +58,6 @@
             
             <!-- Project Header -->
             <div class="project-detail-header">
-                <a href="index.html#projects" class="project-back-link">&larr; Back to Projects</a>
                 <h1 class="section-title">Optimizing Wind Turbines for Maximum Power Generation</h1>
                 <div class="project-card-tags">
                     <span class="tag tag-maroon">2023</span>
@@ -104,6 +115,25 @@
         <p>Designed & Built by Alaa Aldybous</p>
         <p class="footer-credit">Robot mascot art by [Your Artist's Name Here]</p>
     </footer>
+
+            <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const navLinks = document.getElementById('main-nav-links');
+
+        if (menuButton && navLinks) {
+            menuButton.addEventListener('click', () => {
+                navLinks.classList.toggle('is-open');
+            });
+
+            // Optional: Close menu when a link is clicked (good for single-page sites)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('is-open');
+                });
+            });
+        }
+    </script>
 
 </body>
 </html>
