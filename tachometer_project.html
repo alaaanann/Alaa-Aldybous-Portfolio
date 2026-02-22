@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaa Aldybous | Project: Digital Tachometer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <nav class="main-nav container">
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <div id="main-nav-links" class="main-nav-links">
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#papers">Papers</a></li>
+                    <li><a href="index.html#contact">Contact me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-detail site-section">
+
+            <div class="container project-detail-header">
+                <h1 class="section-title">Digital Tachometer using Infrared Rotation Sensing</h1>
+                <div class="project-card-tags">
+                    <span class="tag tag-maroon">Fall 2023</span>
+                    <span class="tag tag-dark-pink">Digital Logic Design</span>
+                    <span class="tag tag-dark-pink">Hardware</span>
+                    <span class="tag tag-light-pink">Circuit Prototyping</span>
+                    <span class="tag tag-light-pink">Sensors</span>
+                </div>
+            </div>
+
+            <div class="container">
+                 <img src="images/tacometerfig1.jpg" alt="Digital Tachometer Hardware Prototype" class="project-detail-main-image">
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+                <a href="report files/ECE251L Project report F23 alaa mawa.pdf" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; width: 15rem; height: auto; gap: 0.5rem; background-color: #D95A8A; color: #ffffff; padding: 0.4rem 0.4rem; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download Full Report (PDF)
+                </a>
+            </div>
+
+            <div class="container project-detail-content">
+                
+                <div class="project-detail-block">
+                    <h2>The Challenge</h2>
+                    <p>Tachometers are critical tools in automation and mechanics, used to accurately measure the rotational speed (RPM) of machinery and motors. The primary objective of this project was to construct a purely hardware-based digital tachometer utilizing infrared (IR) technology. A secondary, real-world challenge was navigating severe local component shortages, requiring rapid on-the-fly architectural adaptations to maintain the logic pipeline based on reference schematics.</p>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Our Solution / Methodology</h2>
+                    <p>Rather than reinventing standard logic, we researched and evaluated multiple reference circuit diagrams to select the most robust multi-stage logic circuit. We then implemented this schematic to process analog inputs into digital pulses:</p>
+                    <ul>
+                        <li style="padding-bottom: 0.4rem;"><strong>Signal Acquisition:</strong> An IR LED emits a 36 kHz modulated light. As a motor shaft rotates, a contrasting stripe reflects the IR light back to a TSOP1736 IR receiver module, generating a low-output trigger signal.</li>
+                        <li style="padding-bottom: 0.4rem;"><strong>Pulse Generation:</strong> The low signal triggers a <strong>NE555 Monostable Multivibrator</strong>. The 555 timer is configured based on reference calculations to generate highly precise timing pulses, acting as the primary measurement window for the system.</li>
+                        <li style="padding-bottom: 0.4rem;"><strong>Logic Counting & Display:</strong> The timed pulses are fed into a <strong>74C926 4-Digit Counter IC</strong>. This IC processes the pulses and converts them into a Binary-Coded Decimal (BCD) format, directly driving a Common Anode 7-Segment Display to visually represent the rotation speed.</li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Engineering Resilience & Component Alternatives</h2>
+                    <p>During the prototyping phase, the primary 74C926 counter IC and the TSOP1736 module became locally unavailable, and software simulator libraries (like Multisim) lacked exact equivalents. To ensure project success, we demonstrated engineering adaptability by researching and theoretically validating alternative architectures.</p>
+                    
+                    <h3>Alternative Logic Implementation</h3>
+                     <p>We sourced a secondary schematic utilizing a <strong>CD4026</strong> (a 5-stage Johnson decade counter with 7-segment decoder) and a <strong>CD4511</strong> (BCD to 7-segment latch/decoder). This required re-evaluating the logic gates, specifically implementing a CD4081 AND gate to synchronize the IR optocoupler pulses with the 555 timer's 1-second window.</p>
+                     <img src="images/tacometerfig2.png" alt="Alternative Tachometer Circuit Diagram" class="project-detail-sub-image">
+
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Conclusion & Impact</h2>
+                    <p>This project provided profound, hands-on experience with schematic reading, low-level digital logic execution, signal processing, and sensor integration. More importantly, it highlighted the realities of hardware engineering—where adapting to component constraints, reading complex datasheets for alternative ICs, and executing existing circuit designs accurately are just as critical as the initial theoretical concepts.</p>
+                </div>
+
+            </div>
+
+
+
+        </section>
+    </main>
+    
+    <footer class="site-footer">
+        <p>Designed & Built by Alaa Aldybous</p>
+        <p class="footer-credit">Character visuals generated using Microsoft Copilot AI</p>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const menuLinks = document.getElementById('main-nav-links');
+        if (menuButton && menuLinks) {
+            menuButton.addEventListener('click', () => {
+                menuLinks.classList.toggle('is-open');
+            });
+        }
+    </script>
+</body>
+</html>

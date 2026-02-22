@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaa Aldybous | Project: Uhand Bionic Hand</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <nav class="main-nav container">
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <div id="main-nav-links" class="main-nav-links">
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About me</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#experience">Experience</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#papers">Papers</a></li>
+                    <li><a href="index.html#contact">Contact me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-detail site-section">
+
+            <div class="container project-detail-header">
+                <h1 class="section-title">'Uhand': Bionic Hand Control System Integration</h1>
+                <div class="project-card-tags">
+                    <span class="tag tag-maroon">Spring 2024</span>
+                    <span class="tag tag-dark-pink">Arduino / STM32</span>
+                    <span class="tag tag-dark-pink">Systems Integration</span>
+                    <span class="tag tag-dark-pink">Wireless Control</span>
+                    <span class="tag tag-light-pink">Robotics</span>
+                </div>
+            </div>
+
+            <div class="container">
+                 <img src="images/uhand.png" alt="Uhand Bionic Hand Prototype" class="project-detail-main-image">
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+                <a href="report files/Uhand-BionicHand-Mawa&Alaa.pdf" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; width: 15rem; height: auto; gap: 0.5rem; background-color: #D95A8A; color: #ffffff; padding: 0.4rem 0.4rem; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download Full Report (PDF)
+                </a>
+            </div>
+
+            <div class="container project-detail-content">
+                
+                <div class="project-detail-block">
+                    <h2>The Challenge</h2>
+                    <p>Bionic hands are rapidly evolving from utilitarian tools to complex bioengineering systems that restore natural movement and dexterity. Building and programming a multi-degree-of-freedom (DOF) robotic palm requires a highly flexible control system. The objective of this project was to successfully assemble the hardware and engineer the software algorithms required to translate human input commands—via remote controllers and mobile apps—into precise, real-time articulations of five independent servo-driven fingers.</p>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Our Solution / Methodology</h2>
+                    <p>We utilized the Uhand bionic robotic palm platform and focused heavily on systems integration and control logic. The methodology involved:</p>
+                    <ul>
+                        <li style="padding-bottom: 0.4rem;"><strong>Hardware Assembly & Wiring:</strong> Integrated five anti-blocking LFD-01 servos and a 180-degree LD-1501MG digital pan-tilt servo with an Arduino-based expansion board.</li>
+                        <li style="padding-bottom: 0.4rem;"><strong>Signal Mapping (RC Controller):</strong> Mapped a 6-channel FS-iA6B receiver to the Arduino. We programmed pulse-width modulation (PWM) logic to map incoming RC values (ranging from 1000 to 2000) directly to precise physical angles (30 to 120 degrees) for individual finger control.</li>
+                        <li style="padding-bottom: 0.4rem;"><strong>Action Group Programming:</strong> Coded predefined sequences ("action groups") allowing complex grasping motions and gestures to be executed with a single button press on the controller.</li>
+                        <li style="padding-bottom: 0.4rem;"><strong>Wireless Bluetooth Integration:</strong> Synced the control board with a mobile application via a 2.4 GHz Bluetooth module, establishing a dual-mode system where the hand could be controlled via an RC transmitter or a graphical mobile interface.</li>
+                    </ul>
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Key Integrations & Visuals</h2>
+                    
+                    <h3>1. 6-Channel Digital Servo Telemetry</h3>
+                     <p>We utilized an FS-iA6B receiver to translate stick movements into independent finger controls. For example, right and left movements on specific channels were mapped directly to the individual servo motors controlling the digits.</p>
+                     <img src="images/uhand_rc_mapping.png" alt="RC Controller Channel Mapping" class="project-detail-sub-image">
+
+                    <h3>2. Code Logic & Signal Processing</h3>
+                     <p>Developed software algorithms using the `<Servo.h>` library to ingest signal pulses and write the exact required angles to the servos, ensuring power efficiency and zero-blocking jitter during operation.</p>
+                     <img src="images/uhand_code_snippet.png" style="width: auto; height: 30rem; display: flex; justify-content: center; align-items: center;" alt="Arduino Code Mapping Logic" class="project-detail-sub-image">
+                     
+                     <h3>3. Mobile Application Control Interface</h3>
+                     <p>Configured Bluetooth data transfer to allow manual slider manipulation for each finger, alongside custom programmed action-group triggering.</p>
+                     <img src="images/uhand_app.png" alt="Mobile App Bluetooth Interface" class="project-detail-sub-image">
+                </div>
+
+                <div class="project-detail-block">
+                    <h2>Conclusion & Impact</h2>
+                    <p>This project successfully navigated the complexities of multi-servo system integration, power optimization, and real-time software debugging. By successfully translating analog/digital commands into complex mechanical movements, this prototype demonstrates the foundational control theory required for advanced biomedical robotics, laying the groundwork for future integrations with Brain-Computer Interfaces (BCI) and surface electromyography (sEMG) technology.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    
+    <footer class="site-footer">
+        <p>Designed & Built by Alaa Aldybous</p>
+        <p class="footer-credit">Character visuals generated using Microsoft Copilot AI</p>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const menuLinks = document.getElementById('main-nav-links');
+        if (menuButton && menuLinks) {
+            menuButton.addEventListener('click', () => {
+                menuLinks.classList.toggle('is-open');
+            });
+        }
+    </script>
+</body>
+</html>
