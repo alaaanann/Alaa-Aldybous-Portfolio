@@ -1,810 +1,1669 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alaa Aldybous | ECE Portfolio</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alaa Aldybous | ECE Portfolio</title>
+<meta name="description" content="Alaa Aldybous — Electrical & Computer Engineering student. Embedded systems, edge AI, signal processing. CERN Summer Student 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Hind+Vadodara:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fce1c5;          /* warm peach (kept) */
+  --bg-2:#f8d6b3;
+  --card:#fdebd8;
+  --maroon:#450920;      /* kept */
+  --maroon-2:#6b1a35;
+  --sage:#7a9e7e;        /* new green accent */
+  --forest:#2f5d50;      /* deep green */
+  --leaf:#a7c4a0;
+  --gold:#e0a458;
+  --ink:#450920;
+  --muted:#7a4a55;
+  --line:rgba(69,9,32,.14);
+  --radius:22px;
+  --shadow:0 18px 40px -18px rgba(69,9,32,.35);
+  --heading:"Homemade Apple",cursive;
+  --body:"Hind Vadodara",system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
-        
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
-    
-    <!-- Link to your external stylesheet -->
-    <link rel="stylesheet" href="style.css">
-    
+/* grain + glow background */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+   radial-gradient(900px 600px at 85% -10%, rgba(122,158,126,.28), transparent 60%),
+   radial-gradient(700px 500px at -10% 40%, rgba(224,164,88,.22), transparent 60%);
+}
+main,header,footer{position:relative;z-index:1}
+
+/* NAV */
+.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;gap:4px;padding:6px;border-radius:999px;
+  background:rgba(253,235,216,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line);box-shadow:var(--shadow)}
+.nav a{font-size:14px;font-weight:500;padding:8px 14px;border-radius:999px;transition:.25s}
+.nav a:hover,.nav a.active{background:var(--maroon);color:var(--bg)}
+@media(max-width:760px){.nav{display:none}}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:20px;padding-top:80px}
+.hero-text{position:relative;z-index:2}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--forest);display:inline-flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 4px rgba(122,158,126,.25);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(122,158,126,0)}}
+.hero h1{font-family:var(--heading);font-weight:400;font-size:clamp(44px,7vw,82px);line-height:1.25;margin:18px 0 10px;color:var(--maroon)}
+.hero .role{font-size:clamp(19px,2.2vw,24px);font-weight:600}
+.hero .focus{font-family:var(--mono);font-size:14px;color:var(--muted);margin-top:6px}
+.typed{color:var(--forest);border-right:2px solid var(--forest);padding-right:3px;animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{border-color:transparent}}
+.hero p.tag{font-family:var(--heading);font-size:20px;color:var(--maroon-2);margin:22px 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .25s,box-shadow .25s,background .25s}
+.btn.primary{background:var(--maroon);color:var(--bg);box-shadow:0 10px 24px -10px rgba(69,9,32,.6)}
+.btn.ghost{border:1.5px solid var(--maroon)}
+.btn:hover{transform:translateY(-3px)}
+.btn.ghost:hover{background:var(--maroon);color:var(--bg)}
+.hero-3d{position:relative;height:min(620px,78vh)}
+#pcb{position:absolute;inset:0;width:100%;height:100%;cursor:grab}
+#pcb:active{cursor:grabbing}
+.hint{position:absolute;bottom:6px;right:8px;font-family:var(--mono);font-size:11px;color:var(--muted);opacity:.8}
+.mascot{position:absolute;left:-6%;bottom:2%;width:34%;max-width:200px;pointer-events:none;filter:drop-shadow(0 18px 20px rgba(69,9,32,.25));animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-14px) rotate(-2deg)}}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:6px}
+.scroll-cue span{width:22px;height:34px;border:1.5px solid var(--muted);border-radius:12px;position:relative}
+.scroll-cue span::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;border-radius:2px;background:var(--muted);animation:wheel 1.6s infinite}
+@keyframes wheel{to{transform:translateY(10px);opacity:0}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center;padding-top:60px}.btns{justify-content:center}.hero-3d{height:420px}.mascot{display:none}.scroll-cue{display:none}}
+
+html{scroll-padding-top:90px}
+.eyebrow{flex-wrap:wrap;justify-content:inherit}
+.journey-btn{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);font-family:var(--body);font-weight:700;font-size:14px;
+  padding:10px 18px;border-radius:999px;border:0;background:var(--forest);color:#fff;cursor:pointer;box-shadow:0 10px 24px -10px rgba(47,93,80,.7);transition:.25s}
+.journey-btn:hover{transform:translateX(-50%) translateY(-3px)}
+.hint{bottom:auto;top:6px}
+
+/* JOURNEY MODE */
+.j-ui{display:none}
+body.journey{overflow:hidden}
+body.journey header.hero{z-index:300}
+body.journey main,body.journey footer{visibility:hidden}
+body.journey .nav,body.journey #glow{display:none}
+body.journey .hero-3d{position:fixed;inset:0;height:100vh;z-index:200;
+  background:radial-gradient(1200px 800px at 50% 30%,#fdebd8,#f2c9a3 70%,#e7b48a)}
+body.journey .journey-btn,body.journey .hint{display:none}
+body.journey .j-ui{display:block}
+.j-exit{position:absolute;top:18px;right:18px;z-index:3;font:600 14px var(--body);padding:9px 16px;border-radius:999px;border:1.5px solid var(--maroon);background:rgba(253,235,216,.85);color:var(--maroon);cursor:pointer}
+.j-top{position:absolute;top:22px;left:24px;display:flex;align-items:center;gap:14px}
+.j-step{font-family:var(--mono);font-size:13px;color:var(--maroon)}
+.j-dots{display:flex;gap:6px}
+.j-dots i{width:9px;height:9px;border-radius:50%;background:rgba(69,9,32,.2);transition:.3s}
+.j-dots i.on{background:var(--forest);transform:scale(1.3)}
+.j-card{text-align:left;position:absolute;left:24px;bottom:24px;max-width:470px;display:flex;gap:14px;align-items:flex-end;
+  background:rgba(253,235,216,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:22px;padding:18px 20px 18px 8px;box-shadow:var(--shadow);animation:pop .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(16px)}}
+.j-year{font-family:var(--mono);font-size:12px;color:var(--forest);font-weight:700}
+.j-part{margin:6px 0 8px;padding:8px 10px;border-radius:12px;background:rgba(47,93,80,.1);font-size:13px;line-height:1.4;color:var(--forest)}
+.j-part b{display:block;font-family:var(--mono);font-size:12px}
+.j-card h3{font-size:20px;line-height:1.25;margin:2px 0 6px;color:var(--maroon)}
+.j-card p{font-size:15px;color:var(--muted)}
+.j-nav{display:flex;gap:8px;margin-top:12px}
+.j-nav button{font:600 14px var(--body);padding:9px 16px;border-radius:999px;border:1.5px solid var(--maroon);background:transparent;color:var(--maroon);cursor:pointer}
+.j-nav button.primary{background:var(--maroon);color:var(--bg)}
+.j-nav button:disabled{opacity:.35;cursor:default}
+.j-bag{position:absolute;right:24px;bottom:24px;text-align:right}
+.j-bag span{font-family:var(--mono);font-size:11px;color:var(--muted);display:block;margin-bottom:6px}
+.j-bag div{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;max-width:260px}
+.j-bag b{font-size:20px;width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:rgba(253,235,216,.9);border:1px solid var(--line);animation:pop .4s}
+.j-keys{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:11px;color:var(--muted)}
+@media(max-width:1250px){.j-keys{display:none}}
+@media(max-width:700px){.j-card{left:12px;right:12px;bottom:12px;max-width:none}.j-guide{width:60px}.j-bag{bottom:auto;top:62px;right:12px}.j-keys{display:none}.j-top{left:14px}}
+
+
+/* PHONE: compact hero so the board is visible on first screen */
+@media(max-width:600px){
+  body{font-size:16px}
+  .hero{min-height:auto;padding-top:28px;gap:0}
+  .eyebrow{font-size:10.5px;letter-spacing:.08em;flex-wrap:nowrap;white-space:nowrap}
+  .eyebrow::before{width:6px;height:6px}
+  .hero h1{font-size:38px;margin:10px 0 2px;line-height:1.35}
+  .hero .role{font-size:16px}
+  .hero .focus{font-size:12.5px}
+  .hero p.tag{font-size:15px;margin:10px 0 16px}
+  .btns{gap:8px;flex-wrap:nowrap}
+  .btn{padding:10px 16px;font-size:14px}
+  .hero-3d{height:330px;margin-top:4px}
+  .hint{display:none}
+  .journey-btn{font-size:13px;padding:9px 16px;bottom:0}
+  section,section.container{padding-top:70px}
+  section + section{padding-top:60px}
+  .sec-head{margin-bottom:28px}
+  .stat{padding:16px}.stat b{font-size:26px}
+  .grid{grid-template-columns:1fr}
+  .card .media{height:160px}
+}
+
+.no3d #pcb,.no3d .journey-btn,.no3d .hint{display:none}
+.no3d::after{content:'';position:absolute;inset:10% 15%;background:url('images/front waving robot transparent bg.webp') center/contain no-repeat}
+.bubble{position:absolute;z-index:5;pointer-events:none;font:700 14px var(--body);color:var(--maroon);background:#fff7ec;border:1.5px solid var(--maroon);
+  padding:7px 12px;border-radius:16px;white-space:nowrap;transform:translate(-50%,-120%) scale(.6);opacity:0;transition:opacity .25s,transform .35s cubic-bezier(.2,1.6,.4,1)}
+.bubble::after{content:"";position:absolute;left:50%;bottom:-7px;width:12px;height:12px;background:#fff7ec;border-right:1.5px solid var(--maroon);border-bottom:1.5px solid var(--maroon);transform:translateX(-50%) rotate(45deg)}
+.bubble.on{opacity:1;transform:translate(-50%,-120%) scale(1)}
+.j-guide{width:86px;flex:none;margin-bottom:-6px;animation:float 4s ease-in-out infinite}
+[data-go]{cursor:pointer}
+[data-go]:focus-visible{outline:3px solid var(--forest);outline-offset:4px}
+.stat,.tl-item,.pub,.edu{transition:transform .25s,box-shadow .25s,border-color .25s}
+.stat:hover,.tl-item:hover,.edu:hover{transform:translateY(-4px);box-shadow:0 26px 50px -20px rgba(69,9,32,.45)}
+.honor:hover{border-color:var(--sage)}
+.modal{position:fixed;inset:0;z-index:400;display:grid;place-items:center;padding:20px;background:rgba(69,9,32,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.modal[hidden]{display:none}
+.modal-box{position:relative;max-width:520px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px 26px;box-shadow:var(--shadow);animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+.modal-box h3{font-size:22px;color:var(--maroon);margin:4px 0 10px;line-height:1.3}
+.modal-box p{color:var(--muted)}
+.modal-x{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--maroon);font-size:16px;cursor:pointer}
+.kpi{display:inline-block;margin:0 0 8px;padding:5px 11px;border-radius:10px;background:rgba(224,164,88,.2);color:var(--maroon);font-family:var(--mono);font-size:12px;font-weight:700;line-height:1.5}
+/* SECTIONS */
+section,section.container{padding-top:110px;padding-bottom:20px}
+section + section{padding-top:90px}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:46px}
+.sec-head .num{font-family:var(--mono);color:var(--sage);font-size:14px}
+.sec-head h2{font-family:var(--heading);font-weight:400;font-size:clamp(30px,4vw,44px);color:var(--maroon)}
+.sec-head .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(40px) rotateX(8deg);transform-origin:top;transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.stat b{display:block;font-family:var(--mono);font-size:34px;color:var(--forest);line-height:1.1}
+.stat span{font-size:14px;color:var(--muted)}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center}
+.about-img{position:relative}
+.about-img .blob{position:absolute;inset:8% 4%;background:radial-gradient(circle at 40% 40%,var(--leaf),var(--sage));border-radius:58% 42% 55% 45%/50% 60% 40% 50%;animation:morph 10s ease-in-out infinite}
+@keyframes morph{50%{border-radius:40% 60% 45% 55%/60% 40% 60% 40%}}
+.about-img img{position:relative;width:78%;margin:0 auto}
+.about p{margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font-size:13px;padding:6px 12px;border-radius:999px;background:rgba(122,158,126,.18);color:var(--forest);font-weight:600}
+.chip.m{background:rgba(69,9,32,.08);color:var(--maroon)}
+@media(max-width:800px){.about{grid-template-columns:1fr}.about-img{max-width:280px;margin:0 auto}}
+
+/* EXPERIENCE timeline */
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--sage),var(--maroon))}
+.tl-item{position:relative;margin-bottom:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow)}
+.tl-item::before{content:"";position:absolute;left:-31px;top:28px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--forest)}
+.tl-item .when{font-family:var(--mono);font-size:12px;color:var(--sage);letter-spacing:.06em}
+.tl-item h3{font-size:21px;margin:2px 0}
+.tl-item .org{font-weight:600;color:var(--maroon-2);font-size:15px}
+.tl-item ul{margin-top:10px}
+.tl-item li{position:relative;padding-left:18px;margin:5px 0;font-size:15.5px}
+.tl-item li::before{content:"▹";position:absolute;left:0;color:var(--sage)}
+
+.onboard{margin-top:12px;font:700 13px var(--body);padding:7px 14px;border-radius:999px;border:1.5px solid var(--forest);background:transparent;color:var(--forest);cursor:pointer;transition:.2s}
+.onboard:hover{background:var(--forest);color:#fff}
+
+/* PROJECTS */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.filters button{font-family:var(--body);font-size:14px;font-weight:600;padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;transition:.2s}
+.chip{transition:.2s}.chip:hover{background:var(--forest);color:#fff}#skillCloud span{cursor:pointer}.filters button.on,.filters button:hover{background:var(--forest);border-color:var(--forest);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px;perspective:1200px}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+  transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .3s;will-change:transform}
+.card:hover{box-shadow:0 30px 60px -20px rgba(69,9,32,.45)}
+.card .media{height:190px;overflow:hidden;background:var(--bg-2);transform:translateZ(30px)}
+.card .code-media{background:linear-gradient(135deg,#1b0a10,#2f5d50);display:flex;align-items:center;padding:20px}
+.card .code-media pre{font-family:var(--mono);font-size:13px;color:#a7c4a0;line-height:1.6;white-space:pre}
+.card .media img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card:hover .media img{transform:scale(1.07)}
+.card .body{padding:20px 22px 24px;transform:translateZ(45px)}
+.card .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.card .meta span{font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:999px;background:rgba(122,158,126,.18);color:var(--forest)}
+.card .meta span.y{background:rgba(69,9,32,.08);color:var(--maroon)}
+.card h3{font-size:19px;line-height:1.3;margin-bottom:8px}
+.card p{font-size:15px;color:var(--muted)}
+.card .go{display:inline-block;margin-top:12px;font-weight:700;font-size:14px;color:var(--forest)}
+.card .go:hover{text-decoration:underline}
+.card .shine{position:absolute;inset:0;pointer-events:none;background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.35),transparent 45%);opacity:0;transition:opacity .3s}
+.card:hover .shine{opacity:1}
+.card.hide{display:none}
+.badge{position:absolute;top:14px;left:14px;z-index:3;font-family:var(--mono);font-size:11px;background:var(--maroon);color:var(--bg);padding:4px 10px;border-radius:999px;transform:translateZ(60px)}
+
+/* PUBLICATIONS */
+.pubs{display:grid;gap:14px}
+.pub{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:start;padding:22px 24px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);transition:transform .3s,border-color .3s}
+.pub:hover{transform:translateX(8px);border-color:var(--sage)}
+.pub .venue{font-family:var(--mono);font-size:12px;color:var(--forest);font-weight:700}
+.pub .venue small{display:block;color:var(--muted);font-weight:400}
+.pub h3{font-size:17.5px;line-height:1.35}
+.pub p{font-size:14px;color:var(--muted);margin-top:4px}
+.pub a{color:var(--forest);font-weight:600}
+@media(max-width:640px){.pub{grid-template-columns:1fr;gap:6px}}
+
+/* HONORS */
+.honors{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;perspective:1000px}
+.honor{position:relative;padding:26px 22px;border-radius:var(--radius);background:linear-gradient(160deg,var(--card),var(--bg-2));border:1px solid var(--line);transition:transform .5s;transform-style:preserve-3d}
+.honor:hover{transform:rotateY(10deg) rotateX(4deg) translateY(-6px)}
+.honor .ico{font-size:30px}
+.honor h3{font-size:17px;margin:8px 0 4px;line-height:1.3}
+.honor p{font-size:14px;color:var(--muted)}
+.honor.gold{background:linear-gradient(160deg,#fbe3b5,#f2c47e);border-color:rgba(224,164,88,.6)}
+
+/* SKILLS orbit */
+.skills-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+#skillCloud{width:100%;height:420px;position:relative}
+#skillCloud span{position:absolute;left:50%;top:50%;font-weight:700;white-space:nowrap;transform:translate(-50%,-50%);cursor:default;transition:color .2s}
+#skillCloud span:hover{color:var(--forest)!important}
+.skill-groups h3{font-size:16px;font-family:var(--mono);color:var(--forest);margin:18px 0 8px;letter-spacing:.04em}
+.skill-groups h3:first-child{margin-top:0}
+@media(max-width:860px){.skills-wrap{grid-template-columns:1fr}#skillCloud{height:340px}}
+
+/* EDUCATION */
+.edu{display:flex;gap:26px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+.edu img{width:90px}
+.edu h3{font-size:22px}
+.edu p{color:var(--muted)}
+@media(max-width:640px){.edu{flex-direction:column;text-align:center}}
+
+/* CONTACT */
+.contact{text-align:center;padding:120px 0 80px}
+.contact h2{font-family:var(--heading);font-weight:400;font-size:clamp(34px,5vw,56px);color:var(--maroon);margin-bottom:12px}
+.contact p{color:var(--muted);max-width:560px;margin:0 auto 30px}
+.socials{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}
+.socials a{font-family:var(--mono);font-size:13px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--line);transition:.25s}
+.socials a:hover{background:var(--forest);color:#fff;border-color:var(--forest);transform:translateY(-3px)}
+footer{text-align:center;padding:30px 0 40px;font-size:13px;color:var(--muted)}
+
+/* cursor glow (desktop) */
+#glow{position:fixed;width:340px;height:340px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(122,158,126,.22),transparent 65%);transform:translate(-50%,-50%);transition:opacity .3s}
+@media(hover:none){#glow{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
 <body>
+<div id="glow"></div>
 
-<!-- Header / Navigation -->
-    <header class="site-header">
-        <nav class="main-nav container">
-            <!-- Hamburger Button (Visible on Mobile) -->
-            <button id="mobile-menu-button" class="mobile-menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </button>
+<nav class="nav" id="nav">
+  <a href="#home">Home</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#papers">Research</a><a href="#honors">Honors</a><a href="#contact">Contact</a>
+</nav>
 
-            <!-- Navigation Links Container -->
-            <div id="main-nav-links" class="main-nav-links">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About me</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#papers">Research & Publications</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#contact">Contact me</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Content Wrapper -->
-    <main class="container">
-
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">Alaa Aldybous</h1>
-                <div style="margin-bottom: 2rem;">
-        <p class="hero-subtitle" style="font-size: 1.3rem; font-weight: 600; color: #450920; margin-bottom: 0.4rem;">
-            Electrical & Computer Engineering Student
-        </p>
-        <p class="hero-subtitle" style="font-size: 1.1rem; opacity: 0.85; margin-top: 0;">
-            Machine Learning • Signal Processing • Embedded Systems
-        </p>
+<header class="container hero" id="home">
+  <div class="hero-text">
+    <span class="eyebrow">CERN Summer Student '26 · CMS HGCAL</span>
+    <h1>Alaa Aldybous</h1>
+    <div class="role">Electrical &amp; Computer Engineering Student</div>
+    <div class="focus">&gt; <span class="typed" id="typed"></span></div>
+    <p class="tag">Where engineering meets imagination</p>
+    <div class="btns">
+      <a class="btn primary" href="#projects">Explore my work →</a>
+      <a class="btn ghost" href="report files/Resume (1).pdf" target="_blank" rel="noopener">Download CV</a>
     </div>
-
-    <p style="font-size: 1rem; font-style: italic; opacity: 0.7; margin-bottom: 2.5rem;">
-        Where engineering meets imagination
-    </p>
-                <a href="#projects" class="hero-button">
-                    Explore my Portfolio
-                </a>
-            </div>
-            <div class="hero-image">
-                <!-- 
-                  PLACEHOLDER IMAGE: 
-                  Replace this with your main robot mascot image 
-                -->
-                <img style="filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.4)); filter: sepia(60%) hue-rotate(340deg) saturate(200%) brightness(85%); max-width: 80%;  height: auto;" src="images/front waving robot transparent bg.png" alt="Alaa's robot mascot">
-            </div>
-        </section>
-
-        <!-- About Me Section -->
-        <section id="about" class="site-section">
-            <h2 class="section-title">About me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <!-- 
-                      PLACEHOLDER IMAGE: 
-                      Replace this with your robot + cat mascot image 
-                    -->
-                    <img style="filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.4)); filter: sepia(60%) hue-rotate(340deg) saturate(200%) brightness(85%); max-width: 80%;  height: auto;" src="images/robot with cat on its head transparent background.png" alt="Mascot with cat">
-                </div>
-                <div class="about-text">
-                    <div class="about-description">
-                        <p>I'm an Electrical and Computer Engineering student merging analytical precision with creative design. I've engineered autonomous hardware, developed data-driven AI systems in Python and MATLAB, published multiple academic papers, and currently leads the IEEE Robotics and Automation Society chapter at my university.</p>
-                        <p>I love turning complex ideas into clear, practical solutions—whether in code, design, or leadership. Beyond tech, I draw, read fantasy and YA novels, watch K-dramas, and practice Taekwondo—keeping my balance between logic and imagination.</p>
-                        <p>I value clarity, purpose, and impact. To me, engineering is just another form of art.</p>
-                    </div>
-                    <div class="about-tags-container">
-                        <div class="about-tags-group">
-                            <span class="tags-label">Key Achievements:</span>
-                            <div class="tags-wrapper">
-                                <span ><b>1st Place — GCC Level Innovation Competition (AgriBird)</b></span>
-                                <span >3rd Place — National Level (Kingdom Competition)</span>
-                                <span >Selected by <b>Ministry of Education</b> to represent our university at <b>Geneva International Exhibition of Inventions</b></span>
-                                <span ><b>Published & Presented Researcher</b> — Papers at international (ICEEE 2026, ICECE 2025) and local (L&T 2024) conferences</span>
-                                <span >Project under patent preparation and commercialization planning</span>
-                            </div>
-                        </div>
-
-                        <div class="about-tags-group">
-                            <span class="tags-label">Research Interests:</span>
-                            <div class="tags-wrapper">
-                                <span >Applied Machine Learning in Physical Systems</span>
-                                <span >Intelligent Monitoring Systems</span>
-                                <span >Biomedical Signal Analysis</span>
-                                <span >Embedded AI</span>
-                            </div>
-                        </div>
-
-
-                        <div class="about-tags-group">
-                            <span class="tags-label">Soft Skills:</span>
-                            <div class="tags-wrapper">
-                                <span class="tag tag-dark-pink">Leadership</span>
-                                <span class="tag tag-dark-pink">Problem Solving</span>
-                                <span class="tag tag-dark-pink">Team Management & Collaboration</span>
-                                <span class="tag tag-dark-pink">Presentation</span>
-                                <span class="tag tag-dark-pink">Project Planning</span>
-                                <span class="tag tag-dark-pink">Project Management</span>
-                            </div>
-                        </div>
-
-                        <div class="about-tags-group">
-                            <span class="tags-label">Interests:</span>
-                            <div class="tags-wrapper">
-                                <span class="tag tag-light-pink">Fantasy Books</span>
-                                <span class="tag tag-light-pink">Mystery Books</span>
-                                <span class="tag tag-light-pink">KDrama</span>
-                                <span class="tag tag-light-pink">Anime</span>
-                                <span class="tag tag-light-pink">Digital Art</span>
-                                <span class="tag tag-light-pink">Water Coloring</span>
-                                <span class="tag tag-light-pink">Taekwondo</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-
-                <!-- Projects Section -->
-        <section id="projects" class="site-section">
-            <h2 class="section-title">Projects</h2>
-            
-            <div class="projects-grid">
-
-
-                                <!-- Project Card 1-->
-                <div class="project-card featured-project-card"  style="background-color: rgba(0, 0, 0, 0.02);">
-                    <div class="project-card-image-wrapper bg-white"style="background-color: rgba(0, 0, 0, 0.01);">
-                        
-                        <img src="images/agribird2.png"  alt="AgriBird Plant Disease Detector">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">AgriBird: A Lightweight Deep Learning for Autonomous Plant Health Management in Smart Hydroponic Farms</h3>
-                        <div class="project-card-tags">
-                        <span class="tag tag-maroon" style="font-weight: bold;">Senior Capstone</span>
-                        <span class="tag tag-maroon">Patent Pending</span>
-                        <span class="tag tag-dark-pink">Hardware Integration</span>
-                        <span class="tag tag-dark-pink">AI & Robotics</span>
-                    </div>
-                        <div class="project-card-description" style="color: rgba(69, 9, 32, 0.9); line-height: 1.6;">
-                            <p style="margin-bottom: 0.75rem;"><strong>The Challenge:</strong> Automating real-time crop disease detection in hydroponic greenhouses to prevent massive agricultural losses.</p>
-                            <p style="margin-bottom: 0.75rem;"><strong>The Engineering:</strong> Led the hardware-software integration of an autonomous robotic platform using NVIDIA Jetson and custom ML pipelines.</p>
-                            <p style="margin-bottom: 1rem;"><strong>The Result:</strong> Awarded <b>1st Place</b> at the international GCC Robotics Challenge (Final Round). Selected fo  the <b>Geneva International Exhibition of Inventions</b>, and currently undergoing active <b>patent preparation</b>.</p>
-                            <p style="font-size: 0.85rem; color: rgba(69, 9, 32, 0.7); font-style: italic;">*Note: Due to an active patent application, specific proprietary schematics are confidential.</p>
-                            </div>   
-                             <a href="https://alaaanann.github.io/Lettuce-Disease-Detector-App/" class="project-card-link" target="_blank">Try the AI Web Prototype &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-card-image-wrapper bg-white">
-                        <img src="images/103_singal denoising.png" alt="Adaptive ECG Denoising Framework">
-                        <p style="font-size: 0.75rem; color: rgba(69, 9, 32, 0.7); font-style: italic; padding: 0.5rem 1rem; margin: 0; border-top: 1px solid rgba(0,0,0,0.05);">
-                            Data validated on the MIT-BIH Database. Figure adapted from forthcoming 2026 ICEEE Conference proceedings (Antalya, Turkey).
-                        </p>
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Hybrid ECG Denoising: Algorithmic Adaptive System</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">Fall 2025</span>
-                            <span class="tag tag-maroon">DSP</span>
-                            <span class="tag tag-dark-pink">MATLAB</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Balancing high signal fidelity with low computational latency for real-time cardiac wearable devices. <br><br>
-                            <strong>The Engineering:</strong> Architected a mode-switching framework using DWT and VMD that optimizes adaptive signal cleaning.<br><br>
-                            <strong>The Result:</strong> Achieved a 1562x speedup and +7.35 dB SNR gain; accepted for publication at ICEEE 2026.
-                        </p>
-                
-
-                        <a href="#papers" class="project-card-link">View Acceptance Details &rarr;</a>
-                    </div>
-                </div>
-                
-
-               <div class="project-card">
-                    <div class="project-card-image-wrapper bg-white">
-                        <img src="images/wpt.png" alt="Class-E Rectifier Performance Comparison">
-                        <p style="font-size: 0.75rem; color: rgba(69, 9, 32, 0.7); font-style: italic; padding: 0.5rem 1rem; margin: 0; border-top: 1px solid rgba(0,0,0,0.05);">
-                            Figure adapted from 2025 ICECE Conference proceedings (China).
-                        </p>
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title" style="margin-top:1rem;">Wireless Power Transfer: High-Efficiency Class-E Rectifier Design</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">2025</span>
-                            <span class="tag tag-dark-pink">Electronics II Research</span>
-                            <span class="tag tag-dark-pink">Multisim</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Transitioning Electronics II research into a multi-disciplinary study on high-frequency energy delivery for IoT.<br><br>
-                            <strong>The Engineering:</strong> Managed the comparative analysis of PMOS-based Class-E rectifiers against traditional bridge topologies in Multisim.<br><br>
-                            <strong>The Result:</strong> Validated superior conversion efficiency and significantly reduced ripple in the MHz range.
-                        </p>
-                        <a href="#wpt-research" class="project-card-link">View Research Details &rarr;</a>
-                    </div>
-                </div>
-
-                                <!-- Project Card 3 -->
-                <div class="project-card">
-                    <div class="project-card-image-wrapper bg-gray">
-                        
-                        <img src="images/calulationandVosualization.png" alt="Wind Turbine Optimization GUI" class="shadow-md">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Optimizing Wind Turbines for Maximum Power Generation</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">2023</span>
-                            <span class="tag tag-maroon">MATLAB</span>
-                            <span class="tag tag-dark-pink">MATLAB App Designer</span>
-                            <span class="tag tag-dark-pink">Numerical Methods</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Visualizing complex, physics-based multi-variable relationships for renewable energy education.<br><br>
-                            <strong>The Engineering:</strong> Developed an interactive app using MATLAB App Designer and integrated ChatGPT interfaces for real-time technical support.<br><br>
-                            <strong>The Result:</strong> Functional learning module that identifies optimal parameters for maximum turbine power generation efficiency. 
-                        </p>
-                        <a href="optimizing_wind_turbine_project.html" class="project-card-link">View Project &rarr;</a>
-                    </div>
-                </div>
-                        
-
-                <!-- Project Card 2 -->
-                <div class="project-card">
-                    <div class="project-card-image-wrapper bg-white">
-                       
-                        <img src="images/IV constatn temp.png" alt="I-V Performance Analysis of Solar Cells">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">I-V Performance Analysis of Solar Cells Using Numerical Method</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">2023</span>
-                            <span class="tag tag-maroon">C++</span>
-                            <span class="tag tag-dark-pink">Numerical Methods</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Modeling the non-linear electrical behavior of MSX-60 solar panels under varying environmental conditions to predict power output.<br><br>
-                            <strong>The Engineering:</strong> Developed a web application using C++ and Flask that utilizes the Newton-Raphson numerical method to solve the transcendental diode equations.<br><br>
-                            <strong>The Result:</strong> Successfully modeled and visualized the I-V characteristics of solar cells under different conditions.Created a tool capable of accurately simulating I-V and P-V performance curves for renewable energy analysis under different temperature and irradiance levels.
-                        </p>
-                        <a href="IV_Performance.html" class="project-card-link">View Project &rarr;</a>
-                    </div>
-                </div>
-
-                <!-- Project Card 6 (Placeholder) -->
-                <div class="project-card">
-                    <div class="project-card-image-wrapper bg-dark-gray">
-                        <!-- 
-                          PLACEHOLDER IMAGE: 
-                          Replace this with your Data Science project image 
-                        -->
-                        <img src="images/smartwater.png" alt="Data Science Project">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Smart Water Leakage Detection & Prevention System</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">2025</span>
-                            <span class="tag tag-dark-pink">Analog Control</span>
-                            <span class="tag tag-maroon">Raspberry PI</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Developing an autonomous, low-latency solution to detect residential leaks and prevent water damage.<br><br>
-                            <strong>The Engineering:</strong> Built a closed-loop control system using a Raspberry Pi Pico and flow sensors to trigger emergency shut-off valves.<br><br>
-                            <strong>The Result:</strong> Successfully prototyped a fail-safe IoT solution for domestic resource conservation and damage prevention.
-                        </p>                        
-                        <a href="smart_water_system.html" class="project-card-link">View Project &rarr;</a>
-                    </div>
-                </div>
-
-                <!-- Project Card  (Placeholder) -->
-                <div class="project-card">
-                    <div class="project-card-image-wrapper bg-dark-gray">
-                        <!-- 
-                          PLACEHOLDER IMAGE: 
-                          Replace this with your Data Science project image 
-                        -->
-                        <img src="images/ecg.jpeg" alt="Data Science Project">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Classifying Heart Abnormalities Using ECG Signals and Machine Learning</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">2024</span>
-                            <span class="tag tag-dark-pink">AI</span>
-                            <span class="tag tag-dark-pink">Data Science</span>
-                            <span class="tag tag-dark-pink">Machine Learning</span>
-                            <span class="tag tag-maroon">MATLAB</span>
-                            <span class="tag tag-dark-pink">MATLAB App Designer</span>
-                            <span class="tag tag-dark-pink">Sginal & Systems</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Accurately identifying cardiac state abnormalities within noisy Electrocardiogram (ECG) data environments.<br><br>
-                            <strong>The Engineering:</strong> Implemented a signal processing and ML pipeline in MATLAB for automated feature extraction and classification.<br><br>
-                            <strong>The Result:</strong> Developed a high-accuracy model capable of reliably distinguishing between normal and abnormal cardiac cycles.
-                        </p>
-                        <a href="ECG_classification.html" class="project-card-link">View Project &rarr;</a>
-                    </div>
-                </div>
-
-
-
-                <!-- Project Card 4 (Placeholder) -->
-                <div class="project-card">
-                    <div class="project-card-image-wrapper bg-dark-gray" >
-                        <!-- 
-                          PLACEHOLDER IMAGE: 
-                          Replace this with your Data Science project image 
-                        -->
-                        <img src="images/weather card.png"  " alt="Data Science Project">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Weather Condition Prediction</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">2025</span>
-                            <span class="tag tag-dark-pink">AI</span>
-                            <span class="tag tag-dark-pink">Data Science</span>
-                            <span class="tag tag-maroon">Python</span>
-                            <span class="tag tag-dark-pink">Machine Learning</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Classifying diverse weather summary conditions using large-scale historical meteorological datasets.<br><br>
-                            <strong>The Engineering:</strong> Leveraged ensemble learning methods and robust data preprocessing in Python to optimize classification accuracy.<br><br>
-                            <strong>The Result:</strong> Built a reliable predictive model for data-driven meteorological analysis and forecasting.
-                        </p>
-                         <a href="weather_classification.html" class="project-card-link">View Project &rarr;</a>
-                    </div>
-                </div>
-
-                 <!-- Project Card 5 (Placeholder) -->
-                <div class="project-card">
-                    <div class="project-card-image-wrapper bg-dark-gray">
-                        <!-- 
-                          PLACEHOLDER IMAGE: 
-                          Replace this with your Data Science project image 
-                        -->
-                        <img src="images/household.png" alt="Data Science Project">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Household Power Consumption Prediction</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">2025</span>
-                            <span class="tag tag-dark-pink">AI</span>
-                            <span class="tag tag-dark-pink">Data Science</span>
-                            <span class="tag tag-dark-pink">Python</span>
-                            <span class="tag tag-dark-pink">Machine Learning</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Forecasting residential global active power consumption using high-resolution, non-linear time-series data.<br><br>
-                            <strong>The Engineering:</strong> Applied regression models and extensive feature engineering in Python to analyze and predict consumer energy patterns.<br><br>
-                            <strong>The Result:</strong> Created an end-to-end predictive model for efficient smart grid and household energy management.
-                        </p>                        
-                        <a href="house_power_consuption.html" class="project-card-link">View Project &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-card-image-wrapper bg-white">
-                        <img src="images/uhand.png" alt="Uhand Bionic Hand Prototype">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">'Uhand': Bionic Hand Control System Integration</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">Spring 2024</span>
-                            <span class="tag tag-dark-pink">Arduino</span>
-                            <span class="tag tag-dark-pink">Systems Integration</span>
-                            <span class="tag tag-light-pink">Wireless Control</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Adapting a commercial 5-DOF bionic hand platform to accept custom wireless remote-control telemetry for real-time gesture manipulation.<br><br>
-                            <strong>The Engineering:</strong> Mapped a 6-channel RC transmitter and Bluetooth app to an Arduino microcontroller; reprogrammed default servo logic to translate remote inputs into multi-degree-of-freedom finger articulations.<br><br>
-                            <strong>The Result:</strong> Successfully overrode the base platform to create a custom-controlled robotic palm, demonstrating strong skills in hardware integration and wireless signal mapping.
-                        </p>
-                        <a href="uhand_project.html" class="project-card-link">View Project &rarr;</a>
-                    </div>
-                </div>
-
-
-               <div class="project-card">
-                    <div class="project-card-image-wrapper bg-white">
-                        <img src="images/tacometerfig1.jpg" alt="Digital Tachometer Circuit Logic">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">Digital Tachometer with Infrared Rotation Sensing</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">Fall 2023</span>
-                            <span class="tag tag-dark-pink">Digital Logic Design</span>
-                            <span class="tag tag-dark-pink">Hardware</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Challenge:</strong> Implementing a purely hardware-based rotational speed measurement system under strict local component availability constraints.<br><br>
-                            <strong>The Engineering:</strong> Evaluated multiple reference schematics to build a logic pipeline using a TSOP1736 receiver and NE555 timer; adapted the design using BCD-to-7-segment alternatives (CD4511/CD4026) when primary parts were unavailable.<br><br>
-                            <strong>The Result:</strong> Successfully assembled and verified a functional logic circuit for real-time RPM monitoring, showcasing strong schematic-reading and component-level troubleshooting skills.
-                        </p>
-                        <a href="tachometer_project.html" class="project-card-link">View Project &rarr;</a>
-                    </div>
-                </div>
-
-                <!-- NEW: Project Card 8 (CSS Art) -->
-                <div class="project-card">
-                    <div class="project-card-image-wrapper bg-white">
-                        
-                        <img src="images/css art.png" alt="CSS Art Project">
-                    </div>
-                    <div class="project-card-content">
-                        <h3 class="project-card-title">CSS Art Challenges</h3>
-                        <div class="project-card-tags">
-                            <span class="tag tag-maroon">2024</span>
-                            <span class="tag tag-light-pink">HTML</span>
-                            <span class="tag tag-light-pink">CSS</span>
-                        </div>
-                        <p class="project-card-description">
-                            <strong>The Origin:</strong> Constructing complex visual illustrations and layouts using zero external image files or libraries.<br><br>
-                            <strong>The Engineering:</strong> Utilized advanced CSS properties and positioning to architect detailed visual art solely through code.<br><br>
-                            <strong>The Result:</strong> A technical gallery demonstrating front-end precision and creative problem-solving with core web standards.
-                        </p>
-                        <a href="https://codepen.io/alaaanann" target="_blank" rel="noopener noreferrer" class="project-card-link">View on CodePen &rarr;</a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-
-
-
-
-
-
-        
-                <!-- Research Paper Section -->
-        <section id="papers" class="site-section">
-            <h2 class="section-title">Research Paper</h2>
-
-            
-            <div class="paper-card-container">
-
-                <div id="iceee-research" class="paper-card" style="margin-bottom: 2rem;">
-                    <h3 class="paper-card-title">Signal-Quality-Driven Hybrid ECG Denoising Using Optimized Wavelet and Variational Mode Decomposition</h3>
-                    <div class="paper-card-tags">
-                        <span class="tag tag-maroon" style="font-weight: bold;">Accepted — ICEEE 2026</span>
-                        <span class="tag tag-maroon">Antalya, Turkey</span>
-                        <span class="tag tag-dark-pink">Algorithm Architect</span>
-                    </div>
-                    
-                    <div class="paper-card-description" style="margin-top: 1rem; line-height: 1.5;">
-                        <p><strong>The Engineering:</strong> Conceptualized and engineered the core mathematical framework for an adaptive mode-switching system between DWT and VMD.</p>
-                        
-                        <ul style="margin-top: 10px; list-style: inside; padding-left: 5px;">
-                            <li><b>Design:</b> Architected the decision logic for real-time fidelity-latency optimization.</li>
-                            <li><b>Validation:</b> Achieved a <b>7.35 dB SNR gain</b> and <b>1562x speedup</b> on the MIT-BIH database.</li>
-                        </ul>
-                    </div>
-
-                    <p style="margin-top: 1.2rem; font-size: 0.85rem; color: rgba(69, 9, 32, 0.6); font-style: italic;">
-                        *Status: Formally accepted for April 2026; final manuscript revisions in progress.
-                    </p>
-                </div>
-
-
-                <div id="wpt-research" class="paper-card" style="margin-bottom: 2rem;">
-                    <h3 class="paper-card-title">Comparative Analysis of Rectifier Designs for Wireless Power Transfer in Sustainable Smart Cities</h3>
-                    <div class="paper-card-tags">
-                        <span class="tag tag-maroon">2025</span>
-                        <span class="tag tag-maroon">ICECE (China)</span>
-                        <span class="tag tag-dark-pink">Collaborative Technical Writing</span>
-                    </div>
-                    
-                    <div class="paper-card-description" style="margin-top: 1rem; line-height: 1.5;">
-                        <p><strong>The Contribution:</strong> Contributed to the comparative analysis and technical documentation of high-frequency WPT receiver circuits as part of a multi-disciplinary research team.</p>
-                        
-                        <ul style="margin-top: 10px; list-style: inside; padding-left: 5px;">
-                            <li><b>Research Synthesis:</b> Collaborated on the evaluation of different rectifier topologies, focusing on the trade-offs between half-wave, full-wave, and Class-E designs.</li>
-                            <li><b>Manuscript Development:</b> Co-authored the comparative results and conclusion, detailing the efficiency benefits of Class-E configurations for MHz-range applications.</li>
-                        </ul>
-                    </div>
-
-                    <p style="margin-top: 1.2rem; font-size: 0.85rem; color: rgba(69, 9, 32, 0.6); font-style: italic;">
-                        *Status: Presented in 2025; currently undergoing final indexing for the IEEE Xplore digital library.
-                    </p>
-                </div>
-
-                <div id="wind-research" class="paper-card" style="margin-bottom: 2rem;">
-                    <h3 class="paper-card-title">'Fiction to Function': Shaping Renewable Energy Education with MATLAB and ChatGPT-Driven Environments</h3>
-                    <div class="paper-card-tags">
-                        <span class="tag tag-maroon">2024</span>
-                        <span class="tag tag-maroon">IEEE L&T</span>
-                        <span class="tag tag-dark-pink">Wind & AI Integration</span>
-                        <span class="tag tag-light-pink">Faculty-Guided Research</span>
-                    </div>
-                    
-                    <div class="paper-card-description" style="margin-top: 1rem; line-height: 1.5;">
-                        <p><strong>The Contribution:</strong> Collaborated on a group research project to build an interactive platform that bridges renewable energy theory with AI-assisted learning.</p>
-                        
-                        <ul style="margin-top: 10px; list-style: inside; padding-left: 5px;">
-                            <li><b>Physics Simulation:</b> Co-developed the mathematical logic to visualize how wind speed and pitch angles affect power generation.</li>
-                            <li><b>AI Implementation:</b> Integrated a ChatGPT-driven interface within MATLAB to provide users with real-time technical support and guidance.</li>
-                        </ul>
-                    </div>
-
-                    <p style="margin-top: 1.2rem; font-size: 0.85rem; color: rgba(69, 9, 32, 0.6); font-style: italic;">
-                        *Published: Archived in IEEE Xplore digital library [DOI: 10.1109/LT60867.2024.10469675].
-                    </p>
-                    <a href="https://ieeexplore.ieee.org/document/10469675" target="_blank" class="paper-card-link">View Published Paper &rarr;</a>
-                </div>
-
-
-            </div>
-        </section>
-
-        
-
-
-        <!-- Experience Section -->
-        <section id="experience" class="site-section">
-            <h2 class="section-title">Experience</h2>
-            <div class="info-card-container">
-                <div class="info-card">
-                    <div class="info-card-bar bar-dark-pink"></div>
-                    <div class="info-card-logo">
-                        <!-- 
-                          PLACEHOLDER IMAGE: 
-                          Replace this with the IEEE RAS logo 
-                        -->
-                        <img src="images/ieeeroboticslogog.png" alt="IEEE RAS Logo" class="logo-ieee" style="width:max-content; height:3rem; padding: 0; margin: 0;">
-                    </div>
-                    <div class="info-card-content">
-                        <div class="info-card-header">
-                            <div>
-                                <h3 class="info-card-title">Chair, IEEE Robotics & Automation Society</h3>
-                                <p class="info-card-subtitle">Effat University IEEE Student Branch</p>
-                            </div>
-                            <span class="info-card-date">2025 - Present</span>
-                        </div>
-                        <ul class="info-card-list">
-                            <li>Led and managed a team of 7 executive members to organize workshops and events.</li>
-                            <li>Organized a bristlebot activity for a university club fair.</li>
-                            <li>Coordinated with the engineering department for a robotics outreach event for a visiting school.</li>
-                            <li>Managed the club's budget and technical resources for projects.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="site-section">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-card">
-                <div class="skills-card-content">
-                    <div class="skills-image">
-                        <!-- 
-                          PLACEHOLDER IMAGE: 
-                          Replace this with your skills robot mascot image 
-                        -->
-                        <img style="filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.4)); filter: sepia(60%) hue-rotate(340deg) saturate(200%) brightness(85%); max-width: 80%;  height: auto;" src="images/working robot transparent bg.png" alt="Mascot">
-                    </div>
-                    <div class="skills-grid-container">
-
-                        <div class="skills-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; padding: 2.5rem;  border-radius: 12px; ">
-                
-                            <div class="skill-category">
-                                <h3 style="color: #450920; border-bottom: 2px solid #FADAD1; padding-bottom: 8px; margin-bottom: 1rem; font-size: 1.25rem;">Core Competencies</h3>
-                                <ul style="list-style-type: disc; padding-left: 20px; line-height: 2; color: rgba(69, 9, 32, 0.9);">
-                                    <li>Signal Processing & Denoising</li>
-                                    <li>Machine Learning Modeling</li>
-                                    <li>Control Systems & System Simulation</li>
-                                    <li>Embedded System Prototyping</li>
-                                </ul>
-                            </div>
-
-                            <div class="skill-category">
-                                <h3 style="color: #450920; border-bottom: 2px solid #FADAD1; padding-bottom: 8px; margin-bottom: 1rem; font-size: 1.25rem;">Software & Languages</h3>
-                                <ul style="list-style-type: disc; padding-left: 20px; line-height: 2; color: rgba(69, 9, 32, 0.9);">
-                                    <li><b>Languages:</b> Python, C++, MATLAB, HTML/CSS</li>
-                                    <li><b>Frameworks:</b> PyTorch, Scikit-learn</li>
-                                    <li><b>Engineering:</b> Simulink, App Designer, Multisim, CassyLab</li>
-                                    <li><b>Workflow:</b> Git, GitHub, Figma, MS Office</li>
-                                </ul>
-                            </div>
-
-                            <div class="skill-category">
-                                <h3 style="color: #450920; border-bottom: 2px solid #FADAD1; padding-bottom: 8px; margin-bottom: 1rem; font-size: 1.25rem;">Hardware & Lab</h3>
-                                <ul style="list-style-type: disc; padding-left: 20px; line-height: 2; color: rgba(69, 9, 32, 0.9);">
-                                    <li><b>Hardware:</b> Nvidia Jetson, Raspberry Pi, Arduino</li>
-                                    <li><b>Instrumentation:</b> Oscilloscope, Laboratory Equipment</li>
-                                    <li><b>Practical:</b> Circuit Prototyping, Soldering</li>
-                                </ul>
-                            </div>
-                            
-                        </div>
-                        
-                   <!--    <div class="skills-grid">
-                            <span class="skills-grid-label">Software & Frameworks:</span>
-                            <div class="skills-grid-tags">
-                                <span class="tag tag-dark-pink">Simulink</span>
-                                <span class="tag tag-dark-pink">CassyLab</span>
-                                <span class="tag tag-dark-pink">PyTorch</span>
-                                <span class="tag tag-dark-pink">Scikit-learn</span>
-                                <span class="tag tag-dark-pink">Git & GitHub</span>
-                                <span class="tag tag-dark-pink">Microsoft Office</span>
-                                <span class="tag tag-dark-pink">Figma</span>
-                            </div>
-                        </div>
-
-                        <div class="skills-grid">
-                            <span class="skills-grid-label">Hardware & Lab Skills:</span>
-                            <div class="skills-grid-tags">
-                                <span class="tag tag-maroon">Raspberry Pi</span>
-                                <span class="tag tag-maroon">Oscilloscope</span>
-                                <span class="tag tag-maroon">Arduino</span>
-                                <span class="tag tag-maroon">Soldering</span>
-                            </div>
-                        </div>
-                        
-                        <div class="skills-grid">
-                            <span class="skills-grid-label">Programming Languages:</span>
-                            <div class="skills-grid-tags">
-                                <span class="tag tag-light-pink">Python</span>
-                                <span class="tag tag-light-pink">C++</span>
-                                <span class="tag tag-light-pink">MATLAB</span>
-                                <span class="tag tag-light-pink">CSS</span>
-                                <span class="tag tag-light-pink">HTML</span>
-                            </div>
-                        </div> --> 
-                    </div>
-                </div>
-            </div>
-        </section>
-
-                <!-- Education Section -->
-        <section id="education" class="site-section">
-            <h2 class="section-title">Education</h2>
-            <div class="info-card-container">
-                <div class="info-card">
-                    <div class="info-card-bar bar-maroon"></div>
-                    <div class="info-card-logo">
-                        <!-- 
-                          PLACEHOLDER IMAGE: 
-                          Replace this with your university logo 
-                        -->
-                        <img src="images/effatlogo.png" alt="Effat University Logo">
-                    </div>
-                    <div class="info-card-content">
-                        <div class="info-card-header">
-                            <div>
-                                <h3 class="info-card-title">
-                                    <a href="https://www.effatuniversity.edu.sa/English/Pages/default.aspx" target="_blank" rel="noopener noreferrer">
-                                        Effat University
-                                    </a>
-                                </h3>
-                                <p class="info-card-subtitle">Bachelor's degree in Electrical & Computer Engineering</p>
-                            </div>
-                            <span class="info-card-date">2022 - 2027</span>
-                        </div>
-                        <ul class="info-card-list">
-                            <li>Achieved Effat College of Engineering's Dean's List for the academic years 2022-2023 & 2023-2024 & 2024-2025.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-
-        <!-- Contact Me Section -->
-        <section id="contact" class="site-section">
-            <h2 class="section-title">Contact me</h2>
-            <div class="contact-content">
-                <div class="contact-image">
-                    <!-- 
-                      PLACEHOLDER IMAGE: 
-                      Replace this with your contact robot mascot image 
-                    -->
-                    <img style="filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.4)); filter: sepia(60%) hue-rotate(340deg) saturate(200%) brightness(85%); max-width: 80%;  height: auto;" src="images/waving robot dark orange transparent background.png" alt="Mascot waving">
-                </div>
-                <div class="contact-grid-container">
-                    <div class="contact-grid">
-                        
-                        <!-- Email -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            </div>
-                            <div class="contact-details">
-                                <h4 class="contact-title">Email</h4>
-                                <a href="mailto:alnaldybous@effat.edu.sa" class="contact-link">alnaldybous@effat.edu.sa</a>
-                            </div>
-                        </div>
-
-                        <!-- LinkedIn -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                            </div>
-                            <div class="contact-details">
-                                <h4 class="contact-title">LinkedIn</h4>
-                                <a href="https://www.linkedin.com/in/alaa-aldybous-1a381a2b3/" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/in/alaa-aldybous...</a>
-                            </div>
-                        </div>
-
-                        <!-- CV -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                            </div>
-                            <div class="contact-details">
-                                <h4 class="contact-title">CV</h4>
-                                <a href="report files/Resume (1).pdf" target="_blank" rel="noopener noreferrer" class="contact-link">Download Resume here (PDF)</a>
-                            </div>
-
-                        </div>
-
-                        <!-- IEEE Profile -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path></svg>
-                            </div>
-                            <div class="contact-details">
-                                <h4 class="contact-title">IEEE Profile</h4>
-                                <a href="https://ieeexplore.ieee.org/author/996408430174439" target="_blank" rel="noopener noreferrer" class="contact-link">ieeexplore.ieee.org/author/...</a>
-                            </div>
-                        </div>
-
-                        <!-- NEW: GitHub Profile -->
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <!-- GitHub Octocat Icon SVG -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </div>
-                            <div class="contact-details">
-                                <h4 class="contact-title">GitHub</h4>
-                                <!-- IMPORTANT: Replace with your actual GitHub profile URL -->
-                                <a href="https://github.com/alaaanann" target="_blank" rel="noopener noreferrer" class="contact-link">github.com/alaaanann</a> 
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-    
-    <!-- Footer -->
-    <footer class="site-footer">
-        <p>Designed & Built by Alaa Aldybous</p>
-        <p class="footer-credit">Character visuals generated using Microsoft Copilot AI</p>
-    </footer>
-
-        <!-- JavaScript for Mobile Menu Toggle -->
-    <script>
-        const menuButton = document.getElementById('mobile-menu-button');
-        const navLinks = document.getElementById('main-nav-links');
-
-        if (menuButton && navLinks) {
-            menuButton.addEventListener('click', () => {
-                navLinks.classList.toggle('is-open');
-            });
-
-            // Optional: Close menu when a link is clicked (good for single-page sites)
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('is-open');
-                });
-            });
+  </div>
+  <div class="hero-3d" id="stage">
+    <canvas id="pcb" aria-label="Interactive 3D circuit board"></canvas>
+    <span class="hint">drag to rotate ⟲</span>
+    <button class="journey-btn" id="startJourney" type="button">▶ Take the journey</button>
+
+    <!-- Journey mode UI (hidden until started) -->
+    <div class="j-ui" aria-live="polite">
+      <span class="bubble j-bubble" id="jBubble">Hi! 👋</span>
+      <button class="j-exit" id="jExit" type="button" aria-label="Exit journey">✕ Exit</button>
+      <div class="j-top"><span class="j-step" id="jStep">01 / 09</span><div class="j-dots" id="jDots"></div></div>
+      <div class="j-card">
+        <img class="j-guide" src="images/front waving robot transparent bg.webp" alt="">
+        <div>
+          <span class="j-year" id="jYear"></span>
+          <div class="j-part"><b id="jPart"></b><span id="jWhy"></span></div>
+          <h3 id="jTitle"></h3>
+          <p id="jText"></p>
+          <div class="j-nav">
+            <button id="jPrev" type="button">← Back</button>
+            <button id="jNext" type="button" class="primary">Next →</button>
+          </div>
+        </div>
+      </div>
+      <div class="j-bag"><span>Collected</span><div id="jBag"></div></div>
+      <div class="j-keys">← → keys · click a glowing part · drag to look around</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="stats reveal">
+      <div data-go="scroll:#papers" tabindex="0" role="link" class="stat"><b data-count="5">0</b><span>IEEE &amp; Springer papers</span></div>
+      <div data-go="stop:4" tabindex="0" role="link" class="stat"><b>Gold</b><span>Geneva Inventions 2026</span></div>
+      <div data-go="stop:5" tabindex="0" role="link" class="stat"><b>CERN</b><span>Summer Student 2026</span></div>
+      <div data-go="stop:3" tabindex="0" role="link" class="stat"><b data-count="500" data-suffix="+">0</b><span>reached at IEEE Day as RAS Chair</span></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="container">
+    <div class="sec-head reveal"><span class="num">01</span><h2>About me</h2><span class="rule"></span></div>
+    <div class="about">
+      <div class="about-img reveal"><div class="blob"></div><img src="images/robot with cat on its head transparent background.webp" alt="Robot mascot with a cat on its head"></div>
+      <div class="reveal">
+        <p>I'm a senior Electrical &amp; Computer Engineering student at Effat University, working where hardware meets intelligence: embedded systems, edge AI, power electronics and signal processing.</p>
+        <p>This summer I joined the CMS HGCAL team at CERN, testing detector readout electronics and building the hardware catalogue the team now uses. Today I'm designing a time-domain reflectometry leak-detection system at Saudi Sustainability Technologies, and I chair the IEEE Robotics &amp; Automation Society chapter at my university.</p>
+        <p>Beyond tech, I draw, watercolor, read fantasy, watch K-dramas and practice Taekwondo. To me, engineering is just another form of art.</p>
+        <div class="chips">
+          <span class="chip">Edge AI</span><span class="chip">Embedded Systems</span><span class="chip">Signal Processing</span><span class="chip">Power Electronics</span><span class="chip">Biomedical Signals</span>
+          <span class="chip m">President's List</span><span class="chip m">Dean's List</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="container">
+    <div class="sec-head reveal"><span class="num">02</span><h2>Experience</h2><span class="rule"></span></div>
+    <div class="timeline">
+      <div data-go="stop:7" tabindex="0" role="link" class="tl-item reveal">
+        <span class="when">NOV 2026 — PRESENT</span>
+        <h3>Engineering Intern</h3><div class="org">Saudi Sustainability Technologies · Jeddah</div>
+        <ul><li>Designing a Time Domain Reflectometry (TDR) system for liquid leak detection along a coaxial sensing cable.</li>
+        <li>Working across hardware and software: signal generation, acquisition and reflection analysis.</li></ul>
+        <button class="onboard" data-stop="7" type="button">⚡ See it on the board</button>
+      </div>
+      <div data-go="stop:5" tabindex="0" role="link" class="tl-item reveal">
+        <span class="when">JUN — AUG 2026</span>
+        <h3>Summer Student</h3><div class="org">CERN · CMS HGCAL · Geneva</div>
+        <ul><li>Studied ECON-D eRx phase-scan reproducibility across re-initialisations and 18–38 °C, finding a small, consistent drift with temperature.</li>
+        <li>Built a Python pipeline that compares results across channels and trials automatically.</li>
+        <li>Designed and deployed a Plotly Dash hardware catalogue adopted by the team. <a href="https://repository.cern/records/dkfxp-q4r70" target="_blank" rel="noopener" style="color:var(--forest);font-weight:600">Read the report ↗</a></li></ul>
+        <button class="onboard" data-stop="5" type="button">⚡ See it on the board</button>
+      </div>
+      <div data-go="stop:3" tabindex="0" role="link" class="tl-item reveal">
+        <span class="when">SEP 2025 — PRESENT</span>
+        <h3>Chair, IEEE Robotics &amp; Automation Society</h3><div class="org">Effat University Student Branch</div>
+        <ul><li>Lead the chapter team, its budget and technical resources.</li>
+        <li>Ran the RAS booth at IEEE Day 2026 (500+ attendees) and the Pixel Pal ESP32 build workshop.</li>
+        <li>Organized a PCB-production site visit and hosted the Ministry of Industry's Chief Advisor on IIoT &amp; OT security.</li></ul>
+        <button class="onboard" data-stop="3" type="button">⚡ See it on the board</button>
+      </div>
+      <div data-go="stop:6" tabindex="0" role="link" class="tl-item reveal">
+        <span class="when">SEP — OCT 2026</span>
+        <h3>Sustainability Intern</h3><div class="org">BNZ Consulting Engineers · Jeddah</div>
+        <ul><li>Circular-economy projects: waste segregation, recycler and food-surplus partnerships, and client outreach.</li></ul>
+        <button class="onboard" data-stop="6" type="button">⚡ See it on the board</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="container">
+    <div class="sec-head reveal"><span class="num">03</span><h2>Projects</h2><span class="rule"></span></div>
+    <div class="filters reveal" id="filters">
+      <button class="on" data-f="all">All</button><button data-f="hw">Hardware</button><button data-f="ai">AI &amp; Data</button><button data-f="dsp">Signals</button><button data-f="energy">Energy</button>
+    </div>
+    <div class="grid" id="grid">
+      <article data-go="stop:4" tabindex="0" role="link" class="card reveal" data-cat="hw ai">
+        <span class="badge">Gold Medal · Geneva 2026</span>
+        <div class="media"><img src="images/agribird2.png" alt="AgriBird" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">Capstone</span><span>Edge AI</span><span>Robotics</span></div>
+        <h3>AgriBird: Autonomous Plant-Health Management</h3>
+        <div class="kpi">🥇 Geneva Gold &nbsp;·&nbsp; 🏆 GCC 1st</div>
+        <p>Edge-AI system for early plant-disease detection and automated treatment in hydroponic greenhouses. Also a SAIF 2026 finalist.</p>
+        <p style="font-size:13px;margin-top:8px"><em>Technical details are confidential while the patent is in preparation.</em></p><span class="go">See it on the board →</span></div><div class="shine"></div>
+      </article>
+      <article data-go="href:https://repository.cern/records/dkfxp-q4r70" tabindex="0" role="link" class="card reveal" data-cat="hw ai">
+        <div class="media code-media" aria-hidden="true"><pre>&gt;&gt; search "ECON-D"
+ rack B14 · crate 3 · slot 7
+ ✓ 12 boards found
+&gt;&gt; sync sheet
+ ✓ inventory up to date</pre></div>
+        <div class="body"><div class="meta"><span class="y">CERN 2026</span><span>Python</span><span>Plotly Dash</span></div>
+        <h3>CMS HGCAL Hardware Inventory Catalogue</h3>
+        <div class="kpi">✓ Adopted as the team's working tool</div>
+        <p>Web app tracking back-end boards across racks, lab and storage, synced from a shared sheet, with fuzzy search.</p>
+        <a class="go" href="https://repository.cern/records/dkfxp-q4r70" target="_blank" rel="noopener">CERN report →</a></div><div class="shine"></div>
+      </article>
+      <article data-go="href:https://ieeexplore.ieee.org/document/11598117/" tabindex="0" role="link" class="card reveal" data-cat="dsp ai">
+        <div class="media"><img src="images/103_singal denoising.png" alt="ECG denoising" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">2025</span><span>DSP</span><span>MATLAB</span></div>
+        <h3>Hybrid ECG Denoising</h3>
+        <div class="kpi">⚡ 1562× faster &nbsp;·&nbsp; +7.35 dB SNR</div>
+        <p>Signal-quality-driven switching between DWT and VMD, tested on MIT-BIH. Published at IEEE ICEEE 2026.</p>
+        <a class="go" href="https://ieeexplore.ieee.org/document/11598117/" target="_blank" rel="noopener">IEEE Xplore →</a></div><div class="shine"></div>
+      </article>
+      <article data-go="modal:wpt" tabindex="0" role="link" class="card reveal" data-cat="energy hw">
+        <div class="media"><img src="images/half wave rectifier vout filtered wpt.png" alt="Wireless power transfer rectifier" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">2025</span><span>Multisim</span><span>Power</span></div>
+        <h3>Wireless Power Transfer: Class-E Rectifiers</h3>
+        <div class="kpi">📄 Springer LNEE, vol. 1669 (2027)</div>
+        <p>Compared PMOS Class-E rectifiers against bridge topologies for high-frequency IoT power delivery.</p><span class="go">Read more →</span></div><div class="shine"></div>
+      </article>
+      <article data-go="href:uhand_project.html" tabindex="0" role="link" class="card reveal" data-cat="hw">
+        <div class="media"><img src="images/uhand.webp" alt="Uhand bionic hand" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">2024</span><span>Arduino</span><span>Wireless</span></div>
+        <h3>Uhand: Bionic Hand Control</h3>
+        <div class="kpi">6 servos &nbsp;·&nbsp; 6-ch RC + 2.4 GHz Bluetooth</div>
+        <p>Reprogrammed a 5-DOF bionic hand for wireless gesture control from an RC transmitter and a Bluetooth app.</p>
+        <a class="go" href="uhand_project.html">View project →</a></div><div class="shine"></div>
+      </article>
+      <article data-go="href:smart_water_system.html" tabindex="0" role="link" class="card reveal" data-cat="hw">
+        <div class="media"><img src="images/smartwater.webp" alt="Smart water leakage system" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">2025</span><span>Raspberry Pi Pico</span><span>Control</span></div>
+        <h3>Smart Water Leakage Detection</h3>
+        <div class="kpi">1 leak signal → 3 automatic responses</div>
+        <p>Closed-loop IoT prototype: flow sensors detect leaks and trigger emergency shut-off valves.</p>
+        <a class="go" href="smart_water_system.html">View project →</a></div><div class="shine"></div>
+      </article>
+      <article data-go="href:IV_Performance.html" tabindex="0" role="link" class="card reveal" data-cat="energy">
+        <div class="media"><img src="images/IV constatn temp.png" alt="Solar IV curves" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">2023</span><span>C++</span><span>Flask</span></div>
+        <h3>Solar Cell I-V Performance Tool</h3>
+        <div class="kpi">Real temperature &amp; irradiance data → full I-V/P-V curves</div>
+        <p>Newton-Raphson solver for MSX-60 I-V and P-V curves under varying temperature and irradiance.</p>
+        <a class="go" href="IV_Performance.html">View project →</a></div><div class="shine"></div>
+      </article>
+      <article data-go="href:optimizing_wind_turbine_project.html" tabindex="0" role="link" class="card reveal" data-cat="energy">
+        <div class="media"><img src="images/windoptimization.png" alt="Wind turbine optimization" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">2023</span><span>MATLAB App Designer</span></div>
+        <h3>Wind Turbine Power Optimization</h3>
+        <div class="kpi">📄 IEEE L&amp;T 2024 &nbsp;·&nbsp; cited 2×</div>
+        <p>Interactive educational app for finding parameters that maximize turbine power. </p>
+        <a class="go" href="optimizing_wind_turbine_project.html">View project →</a></div><div class="shine"></div>
+      </article>
+      <article data-go="href:ECG_classification.html" tabindex="0" role="link" class="card reveal" data-cat="ai dsp">
+        <div class="media"><img src="images/ecg.jpeg" alt="ECG classification" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">2024</span><span>MATLAB</span><span>ML</span></div>
+        <h3>ECG Heart Abnormality Classification</h3>
+        <div class="kpi">4-class model, tested on 10 new people</div>
+        <p>Signal processing and ML pipeline that separates normal from abnormal cardiac cycles in noisy ECG.</p>
+        <a class="go" href="ECG_classification.html">View project →</a></div><div class="shine"></div>
+      </article>
+      <article data-go="modal:ml" tabindex="0" role="link" class="card reveal" data-cat="ai energy">
+        <div class="media"><img src="images/weather card.png" alt="Machine learning coursework" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">2025</span><span>Python</span><span>ML</span></div>
+        <h3>Machine Learning Coursework</h3>
+        <div class="kpi">R² 0.73 power forecast &nbsp;·&nbsp; best of 3 models for weather</div>
+        <p>Two applied ML projects: ensemble classifiers for weather prediction, and time-series regression for household power forecasting.</p>
+        <span class="go">See both →</span></div><div class="shine"></div>
+      </article>
+      <article data-go="href:tachometer_project.html" tabindex="0" role="link" class="card reveal" data-cat="hw">
+        <div class="media"><img src="images/tacometerfig1.jpg" alt="Digital tachometer" loading="lazy"></div>
+        <div class="body"><div class="meta"><span class="y">2023</span><span>Digital Logic</span></div>
+        <h3>IR Digital Tachometer</h3>
+        <div class="kpi">36 kHz IR sensing &nbsp;·&nbsp; zero code, pure logic</div>
+        <p>Hardware-only RPM meter built from a TSOP1736, an NE555 and BCD decoders.</p>
+        <a class="go" href="tachometer_project.html">View project →</a></div><div class="shine"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="papers" class="container">
+    <div class="sec-head reveal"><span class="num">04</span><h2>Research &amp; Publications</h2><span class="rule"></span></div>
+    <div class="pubs">
+      <div data-go="href:https://repository.cern/records/dkfxp-q4r70" tabindex="0" role="link" class="pub reveal"><div class="venue">CERN<small>Oct 2026</small></div><div><h3>Reproducibility of ECON-D eRx Phase Scans and a Back-End Hardware Catalogue for CMS HGCAL</h3><p>CERN Summer Student Programme report · <a href="https://repository.cern/records/dkfxp-q4r70" target="_blank" rel="noopener">DOI 10.17181/dkfxp-q4r70</a></p></div></div>
+      <div data-go="href:https://ieeexplore.ieee.org/document/11598117/" tabindex="0" role="link" class="pub reveal"><div class="venue">IEEE<small>ICEEE 2026</small></div><div><h3>Signal-Quality-Driven Hybrid ECG Denoising Using Optimized Wavelet and Variational Mode Decomposition</h3><p>N. Salem, A. Aldybous, M. Hijji · <a href="https://ieeexplore.ieee.org/document/11598117/" target="_blank" rel="noopener">IEEE Xplore</a></p></div></div>
+      <div data-go="href:https://ieeexplore.ieee.org/document/11592530/" tabindex="0" role="link" class="pub reveal"><div class="venue">IEEE<small>L&amp;T 2026</small></div><div><h3>Model-Based Kalman Filtering for Vehicle Suspension State Estimation</h3><p>N. Salem, A. Aldybous, M. Hijji · <a href="https://ieeexplore.ieee.org/document/11592530/" target="_blank" rel="noopener">IEEE Xplore</a></p></div></div>
+      <div data-go="modal:sca" tabindex="0" role="link" class="pub reveal"><div class="venue">Springer<small>SCA'26</small></div><div><h3>Performance Evaluation of DC-DC Converter Topologies for Edge AI Transient Loads in Autonomous Agricultural Robotics</h3><p>Smart Cities &amp; Applications, Karabük · poster presentation</p></div></div>
+      <div data-go="modal:lnee" tabindex="0" role="link" class="pub reveal"><div class="venue">Springer<small>LNEE · in press</small></div><div><h3>Comparative Analysis of Rectifier Designs for Wireless Power Transfer in Sustainable Smart Cities</h3><p>ICECE 2025, Xi'an · Lecture Notes in Electrical Engineering vol. 1669 (Feb 2027)</p></div></div>
+      <div data-go="href:https://ieeexplore.ieee.org/document/10469675" tabindex="0" role="link" class="pub reveal"><div class="venue">IEEE<small>L&amp;T 2024</small></div><div><h3>"Fiction to Function": Shaping Renewable Energy Education with MATLAB and ChatGPT-Driven Environments</h3><p><a href="https://ieeexplore.ieee.org/document/10469675" target="_blank" rel="noopener">IEEE Xplore</a> · cited by 2</p></div></div>
+    </div>
+  </section>
+
+  <!-- HONORS -->
+  <section id="honors" class="container">
+    <div class="sec-head reveal"><span class="num">05</span><h2>Honors</h2><span class="rule"></span></div>
+    <div class="honors">
+      <div data-go="stop:4" tabindex="0" role="link" class="honor gold reveal"><div class="ico">🥇</div><h3>Gold Medal</h3><p>International Exhibition of Inventions Geneva, 2026</p></div>
+      <div data-go="stop:4" tabindex="0" role="link" class="honor reveal"><div class="ico">🏆</div><h3>1st Place, GCC Final</h3><p>9th IET Robotics Challenge, 2025. AgriBird placed 3rd in Saudi Arabia's first round, then won the GCC final.</p></div>
+      <div data-go="stop:4" tabindex="0" role="link" class="honor reveal"><div class="ico">🛡️</div><h3>Finalist</h3><p>Security &amp; Innovation Fair (SAIF), 2026</p></div>
+            <div data-go="stop:1" tabindex="0" role="link" class="honor reveal"><div class="ico">🎓</div><h3>President's List</h3><p>Effat University, 2025–2026</p></div>
+      <div data-go="stop:1" tabindex="0" role="link" class="honor reveal"><div class="ico">📜</div><h3>Dean's List</h3><p>Every year since my first year</p></div>
+      <div data-go="modal:kacst" tabindex="0" role="link" class="honor reveal"><div class="ico">💾</div><h3>KACST Chipathon</h3><p>Completed Stage 1 of the SRAM Design Challenge, 2026</p></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container">
+    <div class="sec-head reveal"><span class="num">06</span><h2>Skills</h2><span class="rule"></span></div>
+    <div class="skills-wrap">
+      <div id="skillCloud" class="reveal" aria-hidden="true"></div>
+      <div class="skill-groups reveal">
+        <h3>// LANGUAGES &amp; TOOLS</h3><div class="chips"><span class="chip m">MATLAB / Simulink</span><span class="chip m">Python</span><span class="chip m">C / C++</span><span class="chip m">Linux &amp; SSH</span><span class="chip m">Plotly Dash</span><span class="chip m">Git</span></div>
+        <h3>// HARDWARE</h3><div class="chips"><span class="chip">NVIDIA Jetson</span><span class="chip">ESP32</span><span class="chip">Arduino</span><span class="chip">Raspberry Pi Pico</span><span class="chip">LTspice</span><span class="chip">Multisim</span></div>
+        <h3>// DOMAINS</h3><div class="chips"><span class="chip">Edge AI</span><span class="chip">Signal Processing</span><span class="chip">Embedded Systems</span><span class="chip">Power Electronics</span><span class="chip">Machine Learning</span><span class="chip">TDR</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="container">
+    <div class="sec-head reveal"><span class="num">07</span><h2>Education</h2><span class="rule"></span></div>
+    <div data-go="stop:0" tabindex="0" role="link" class="edu reveal">
+      <img src="images/effatlogo.png" alt="Effat University logo">
+      <div><h3>B.Sc. Electrical &amp; Computer Engineering</h3><p>Effat University, Jeddah · 2022 – Present</p><p>President's List · Dean's List · Chair, IEEE RAS Chapter</p></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container contact">
+    <h2 class="reveal">Let's build something</h2>
+    <p class="reveal">Working on something in embedded systems, edge AI or hardware? I'd love to hear about it, whether that's a research idea, a project or just a question about my work.</p>
+    <a class="btn primary reveal" href="mailto:alaa.aldybous@gmail.com">alaa.aldybous@gmail.com</a>
+    <div class="socials reveal">
+      <a href="https://www.linkedin.com/in/alaa-aldybous-1a381a2b3/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/alaaanann" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://ieeexplore.ieee.org/author/996408430174439" target="_blank" rel="noopener">IEEE Xplore</a>
+      <a href="report files/Resume (1).pdf" target="_blank" rel="noopener">CV</a>
+    </div>
+  </section>
+</main>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" hidden>
+  <div class="modal-box"><button class="modal-x" id="mClose" type="button" aria-label="Close">✕</button>
+  <span class="j-year" id="mTag"></span><h3 id="mTitle"></h3><p id="mText"></p><div id="mLinks" class="btns" style="margin-top:16px"></div></div>
+</div>
+<footer>Designed &amp; built by Alaa Aldybous · Robot mascots generated with Microsoft Copilot AI</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
+<script>
+(function(){
+if(typeof THREE!=='undefined'){
+  /* ---- 3D vinyl robot guide (recolored to the site palette) ---- */
+  const ROBOT_COLORS={body:0xeb6923, stripe:0xf7b98e, joint:0x382e2a, screen:0x352b27};
+    /**
+     * Creates a smooth, watertight rounded cuboid geometry.
+     * Ideal for the stylized vinyl helmet, chest, and pelvis shapes.
+     */
+    function createRoundedBoxGeometry(width, height, depth, radius, segments = 12) {
+      const r = Math.min(radius, width * 0.49, height * 0.49, depth * 0.49);
+      const geo = new THREE.BoxGeometry(width, height, depth, segments, segments, segments);
+      const pos = geo.attributes.position;
+      const v = new THREE.Vector3();
+      const inner = new THREE.Vector3();
+
+      const hx = width * 0.5 - r;
+      const hy = height * 0.5 - r;
+      const hz = depth * 0.5 - r;
+
+      for (let i = 0; i < pos.count; i++) {
+        v.fromBufferAttribute(pos, i);
+        inner.set(
+          Math.max(-hx, Math.min(hx, v.x)),
+          Math.max(-hy, Math.min(hy, v.y)),
+          Math.max(-hz, Math.min(hz, v.z))
+        );
+        const delta = v.clone().sub(inner);
+        const len = delta.length();
+        if (len > 1e-6) {
+          delta.multiplyScalar(r / len);
+          v.copy(inner).add(delta);
+          pos.setXYZ(i, v.x, v.y, v.z);
         }
-    </script>
+      }
 
+      geo.computeVertexNormals();
+      return geo;
+    }
+
+    /**
+     * Creates a smooth tapered cylinder/frustum with rounded filleted ends
+     * using LatheGeometry — gives limbs a soft, molded vinyl toy silhouette.
+     * Geometry is centered vertically around y = 0.
+     */
+    function createVinylLimbGeometry(topRadius, bottomRadius, length, bevel = 0.06, radialSegs = 28) {
+      const halfL = length * 0.5;
+      const bTop = Math.min(bevel, topRadius * 0.85, halfL * 0.45);
+      const bBot = Math.min(bevel, bottomRadius * 0.85, halfL * 0.45);
+      const pts = [];
+
+      // Bottom center
+      pts.push(new THREE.Vector2(0, -halfL));
+      pts.push(new THREE.Vector2(Math.max(0.001, bottomRadius - bBot), -halfL));
+
+      // Bottom fillet arc
+      const arcSteps = 7;
+      for (let i = 1; i <= arcSteps; i++) {
+        const a = (i / arcSteps) * (Math.PI * 0.5);
+        const rx = (bottomRadius - bBot) + Math.sin(a) * bBot;
+        const ry = (-halfL + bBot) - Math.cos(a) * bBot;
+        pts.push(new THREE.Vector2(rx, ry));
+      }
+
+      // Slight organic outward belly curve along the middle
+      const midSteps = 4;
+      for (let i = 1; i < midSteps; i++) {
+        const t = i / midSteps;
+        const rInterp = THREE.MathUtils.lerp(bottomRadius, topRadius, t);
+        const bulge = Math.sin(t * Math.PI) * 0.015;
+        const yInterp = THREE.MathUtils.lerp(-halfL + bBot, halfL - bTop, t);
+        pts.push(new THREE.Vector2(rInterp + bulge, yInterp));
+      }
+
+      // Top fillet arc
+      for (let i = 0; i <= arcSteps; i++) {
+        const a = (i / arcSteps) * (Math.PI * 0.5);
+        const rx = (topRadius - bTop) + Math.cos(a) * bTop;
+        const ry = (halfL - bTop) + Math.sin(a) * bTop;
+        pts.push(new THREE.Vector2(rx, ry));
+      }
+
+      // Top center
+      pts.push(new THREE.Vector2(0, halfL));
+
+      const geo = new THREE.LatheGeometry(pts, radialSegs);
+      geo.computeVertexNormals();
+      return geo;
+    }
+
+    /**
+     * Creates a 2D rounded rectangle THREE.Shape centered at (0, 0).
+     */
+    function createRoundedRectShape(w, h, r) {
+      const shape = new THREE.Shape();
+      const x = -w * 0.5;
+      const y = -h * 0.5;
+      const cr = Math.min(r, w * 0.49, h * 0.49);
+
+      shape.moveTo(x + cr, y);
+      shape.lineTo(x + w - cr, y);
+      shape.quadraticCurveTo(x + w, y, x + w, y + cr);
+      shape.lineTo(x + w, y + h - cr);
+      shape.quadraticCurveTo(x + w, y + h, x + w - cr, y + h);
+      shape.lineTo(x + cr, y + h);
+      shape.quadraticCurveTo(x, y + h, x, y + h - cr);
+      shape.lineTo(x, y + cr);
+      shape.quadraticCurveTo(x, y, x + cr, y);
+      return shape;
+    }
+
+    /**
+     * Creates a 2D rounded rectangle THREE.Path (used as a hole in ExtrudeGeometry).
+     */
+    function createRoundedRectPath(w, h, r) {
+      const path = new THREE.Path();
+      const x = -w * 0.5;
+      const y = -h * 0.5;
+      const cr = Math.min(r, w * 0.49, h * 0.49);
+
+      path.moveTo(x + cr, y);
+      path.lineTo(x + w - cr, y);
+      path.quadraticCurveTo(x + w, y, x + w, y + cr);
+      path.lineTo(x + w, y + h - cr);
+      path.quadraticCurveTo(x + w, y + h, x + w - cr, y + h);
+      path.lineTo(x + cr, y + h);
+      path.quadraticCurveTo(x, y + h, x, y + h - cr);
+      path.lineTo(x, y + cr);
+      path.quadraticCurveTo(x, y, x + cr, y);
+      return path;
+    }
+
+    /**
+     * Builds a smooth curved ribbon geometry that hugs the top surface of our
+     * rounded-box helmet from front to back — used for the two peach-cream stripes.
+     */
+    function createHelmetStripeGeometry(xCenter, stripeWidth, headW, headH, headD, headR, zStart, zEnd, steps = 36) {
+      const ix = headW * 0.5 - headR;
+      const iy = headH * 0.5 - headR;
+      const iz = headD * 0.5 - headR;
+      const offset = 0.008; // Tiny lift above helmet surface to avoid z-fighting
+
+      const positions = [];
+      const indices = [];
+      const xLeft = xCenter - stripeWidth * 0.5;
+      const xRight = xCenter + stripeWidth * 0.5;
+
+      function projectTopPoint(x, z) {
+        const dx = Math.max(0, Math.abs(x) - ix);
+        const dz = Math.max(0, Math.abs(z) - iz);
+        const distSq = dx * dx + dz * dz;
+        const rEff = headR + offset;
+        const yLocal = Math.sqrt(Math.max(0.0001, rEff * rEff - distSq));
+        return new THREE.Vector3(x, iy + yLocal, z);
+      }
+
+      for (let i = 0; i <= steps; i++) {
+        const t = i / steps;
+        const z = THREE.MathUtils.lerp(zStart, zEnd, t);
+        const pL = projectTopPoint(xLeft, z);
+        const pR = projectTopPoint(xRight, z);
+        positions.push(pL.x, pL.y, pL.z, pR.x, pR.y, pR.z);
+
+        if (i < steps) {
+          const base = i * 2;
+          indices.push(base, base + 1, base + 2);
+          indices.push(base + 1, base + 3, base + 2);
+        }
+      }
+
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      geo.setIndex(indices);
+      geo.computeVertexNormals();
+      return geo;
+    }
+
+    /**
+     * Creates a rounded pill/capsule mesh (compatible with Three.js r128).
+     */
+    function createPillMesh(radius, length, material) {
+      const group = new THREE.Group();
+      const cylLen = Math.max(0.001, length - radius * 2);
+      const cyl = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, cylLen, 14), material);
+      const capTop = new THREE.Mesh(new THREE.SphereGeometry(radius, 14, 10), material);
+      const capBot = new THREE.Mesh(new THREE.SphereGeometry(radius, 14, 10), material);
+      capTop.position.y = cylLen * 0.5;
+      capBot.position.y = -cylLen * 0.5;
+      group.add(cyl, capTop, capBot);
+      return group;
+    }
+
+    /**
+     * Creates a smooth 3D rounded arc (for happy ^ ^ eyes and U smile).
+     */
+    function createRoundedArc(radius, tubeRadius, arcAngle, material) {
+      const group = new THREE.Group();
+      const torus = new THREE.Mesh(
+        new THREE.TorusGeometry(radius, tubeRadius, 14, 32, arcAngle),
+        material
+      );
+      const cap1 = new THREE.Mesh(new THREE.SphereGeometry(tubeRadius, 12, 12), material);
+      const cap2 = new THREE.Mesh(new THREE.SphereGeometry(tubeRadius, 12, 12), material);
+      cap1.position.set(radius, 0, 0);
+      cap2.position.set(Math.cos(arcAngle) * radius, Math.sin(arcAngle) * radius, 0);
+      group.add(torus, cap1, cap2);
+      return group;
+    }
+
+    // =========================================================================
+    // 2. BUILD THE STYLIZED ORANGE ROBOT
+    // =========================================================================
+
+    function buildOrangeRobot() {
+      // --- Vinyl Toy Material Palette ---
+      const matOrange = new THREE.MeshStandardMaterial({
+        color: ROBOT_COLORS.body,
+        roughness: 0.40,
+        metalness: 0.04,
+      });
+
+      const matStripe = new THREE.MeshStandardMaterial({
+        color: ROBOT_COLORS.stripe,
+        roughness: 0.44,
+        metalness: 0.02,
+      });
+
+      const matDark = new THREE.MeshStandardMaterial({
+        color: ROBOT_COLORS.joint,
+        roughness: 0.50,
+        metalness: 0.05,
+      });
+
+      const matScreen = new THREE.MeshStandardMaterial({
+        polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1,
+        color: ROBOT_COLORS.screen,
+        roughness: 0.34,
+        metalness: 0.06,
+      });
+
+      const matFaceCream = new THREE.MeshStandardMaterial({
+        color: 0xfae6cf,
+        emissive: 0xfae6cf,
+        emissiveIntensity: 0.22,
+        roughness: 0.35,
+        metalness: 0.0,
+      });
+
+      const matBlush = new THREE.MeshStandardMaterial({
+        color: 0xe67c6b,
+        emissive: 0xe67c6b,
+        emissiveIntensity: 0.16,
+        roughness: 0.4,
+        metalness: 0.0,
+      });
+
+      // Helper to enable shadows on all meshes in a subtree
+      function enableShadows(obj) {
+        obj.traverse((child) => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+          }
+        });
+      }
+
+      // Root container for overall positioning & bounce
+      const root = new THREE.Group();
+
+      // Pelvis / Hips pivot (the center of locomotion)
+      const pelvisPivot = new THREE.Group();
+      pelvisPivot.position.y = 1.62;
+      root.add(pelvisPivot);
+
+      // --- PELVIS ---
+      const pelvisMesh = new THREE.Mesh(
+        createVinylLimbGeometry(0.39, 0.31, 0.36, 0.10, 32),
+        matOrange
+      );
+      pelvisMesh.scale.set(1.06, 1.0, 0.90);
+      pelvisMesh.position.y = 0.02;
+      pelvisPivot.add(pelvisMesh);
+
+      // --- WAIST & TORSO PIVOT ---
+      const torsoPivot = new THREE.Group();
+      torsoPivot.position.y = 0.22;
+      pelvisPivot.add(torsoPivot);
+
+      // Dark brown waist band
+      const waistMesh = new THREE.Mesh(
+        createVinylLimbGeometry(0.34, 0.33, 0.24, 0.04, 28),
+        matDark
+      );
+      waistMesh.scale.set(1.04, 1.0, 0.88);
+      waistMesh.position.y = 0.05;
+      torsoPivot.add(waistMesh);
+
+      // Rounded orange chest
+      const chestGroup = new THREE.Group();
+      chestGroup.position.y = 0.46;
+      torsoPivot.add(chestGroup);
+
+      const chestGeo = createRoundedBoxGeometry(0.92, 0.68, 0.72, 0.26, 14);
+      const chestMesh = new THREE.Mesh(chestGeo, matOrange);
+      chestGroup.add(chestMesh);
+
+      // Subtle raised rounded-rectangle chest plate on the front
+      const plateShape = createRoundedRectShape(0.42, 0.30, 0.10);
+      const plateGeo = new THREE.ExtrudeGeometry(plateShape, {
+        depth: 0.04,
+        bevelEnabled: true,
+        bevelThickness: 0.025,
+        bevelSize: 0.025,
+        bevelSegments: 8,
+      });
+      plateGeo.center();
+      const chestPlate = new THREE.Mesh(plateGeo, matOrange);
+      chestPlate.position.set(0, 0.02, 0.345);
+      chestGroup.add(chestPlate);
+
+      // --- NECK & HEAD PIVOT ---
+      const neckMesh = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.18, 0.21, 0.22, 24),
+        matDark
+      );
+      neckMesh.position.y = 0.38;
+      chestGroup.add(neckMesh);
+
+      const headPivot = new THREE.Group();
+      headPivot.position.y = 0.48;
+      chestGroup.add(headPivot);
+
+      // Oversized rounded-box helmet head
+      const headW = 1.66;
+      const headH = 1.32;
+      const headD = 1.22;
+      const headR = 0.44;
+
+      const headCenterY = 0.64;
+      const headGroup = new THREE.Group();
+      headGroup.position.y = headCenterY;
+      headPivot.add(headGroup);
+
+      const helmetMesh = new THREE.Mesh(
+        createRoundedBoxGeometry(headW, headH, headD, headR, 18),
+        matOrange
+      );
+      headGroup.add(helmetMesh);
+
+      // Two parallel peach-cream stripes on top center of head
+      const stripeL = new THREE.Mesh(
+        createHelmetStripeGeometry(-0.115, 0.125, headW, headH, headD, headR, -0.45, 0.44, 36),
+        matStripe
+      );
+      const stripeR = new THREE.Mesh(
+        createHelmetStripeGeometry(0.115, 0.125, headW, headH, headD, headR, -0.45, 0.44, 36),
+        matStripe
+      );
+      headGroup.add(stripeL, stripeR);
+
+      // Front rounded-rectangle orange bezel framing the recessed screen
+      const bezelOuter = createRoundedRectShape(1.42, 1.06, 0.34);
+      const bezelHole = createRoundedRectPath(1.16, 0.82, 0.23);
+      bezelOuter.holes.push(bezelHole);
+
+      const bezelGeo = new THREE.ExtrudeGeometry(bezelOuter, {
+        depth: 0.14,
+        bevelEnabled: true,
+        bevelThickness: 0.045,
+        bevelSize: 0.04,
+        bevelSegments: 10,
+      });
+      bezelGeo.center();
+      const bezelMesh = new THREE.Mesh(bezelGeo, matOrange);
+      bezelMesh.position.set(0, -0.02, headD * 0.5 - 0.04);
+      headGroup.add(bezelMesh);
+
+      // Recessed dark brown rounded-rectangle face screen
+      const screenShape = createRoundedRectShape(1.22, 0.88, 0.25);
+      const screenGeo = new THREE.ExtrudeGeometry(screenShape, {
+        depth: 0.08,
+        bevelEnabled: true,
+        bevelThickness: 0.02,
+        bevelSize: 0.02,
+        bevelSegments: 6,
+      });
+      screenGeo.center();
+      const screenMesh = new THREE.Mesh(screenGeo, matScreen);
+      screenMesh.position.set(0, -0.02, headD * 0.5 - 0.02);
+      headGroup.add(screenMesh);
+
+      // Facial features (proud 3D rounded vinyl shapes on the screen)
+      const faceZ = headD * 0.5 + 0.05;
+
+      // Left & right happy closed-arc eyes (^ ^)
+      const eyeL = createRoundedArc(0.135, 0.034, Math.PI, matFaceCream);
+      eyeL.position.set(-0.27, 0.03, faceZ);
+      const eyeR = createRoundedArc(0.135, 0.034, Math.PI, matFaceCream);
+      eyeR.position.set(0.27, 0.03, faceZ);
+      headGroup.add(eyeL, eyeR);
+
+      // Small U-shaped smile
+      const smile = createRoundedArc(0.095, 0.031, Math.PI, matFaceCream);
+      smile.rotation.z = Math.PI;
+      smile.position.set(0, -0.09, faceZ);
+      headGroup.add(smile);
+
+      // Coral-pink diagonal blush dashes (//) under each eye
+      function addBlushPair(centerX, centerY) {
+        const pair = new THREE.Group();
+        const dash1 = createPillMesh(0.024, 0.11, matBlush);
+        const dash2 = createPillMesh(0.024, 0.11, matBlush);
+        dash1.position.set(-0.042, 0, 0);
+        dash2.position.set(0.042, 0, 0);
+        dash1.rotation.z = -0.45;
+        dash2.rotation.z = -0.45;
+        pair.add(dash1, dash2);
+        pair.position.set(centerX, centerY, faceZ);
+        headGroup.add(pair);
+      }
+      addBlushPair(-0.34, -0.14);
+      addBlushPair(0.34, -0.14);
+
+      // --- EAR CUPS & ANTENNA FINS ---
+      // Sleek tapered antenna fin shape
+      const finShape = new THREE.Shape();
+      finShape.moveTo(-0.04, 0.0);
+      finShape.lineTo(0.18, 0.04);
+      finShape.quadraticCurveTo(0.10, 0.45, -0.02, 0.88);
+      finShape.quadraticCurveTo(-0.07, 0.90, -0.09, 0.84);
+      finShape.quadraticCurveTo(-0.08, 0.40, -0.04, 0.0);
+
+      const finGeo = new THREE.ExtrudeGeometry(finShape, {
+        depth: 0.055,
+        bevelEnabled: true,
+        bevelThickness: 0.022,
+        bevelSize: 0.018,
+        bevelSegments: 6,
+      });
+      finGeo.translate(0, 0, -0.0275);
+
+      function buildEarAssembly(side) {
+        // side: -1 for left, +1 for right
+        const earGroup = new THREE.Group();
+        earGroup.position.set(side * (headW * 0.5 - 0.02), -0.05, 0.02);
+
+        // Dark brown rounded ear cup
+        const cupGeo = createVinylLimbGeometry(0.28, 0.25, 0.19, 0.08, 28);
+        const cupMesh = new THREE.Mesh(cupGeo, matDark);
+        cupMesh.rotation.z = -side * Math.PI * 0.5;
+        cupMesh.scale.set(1.0, 1.0, 1.15);
+        earGroup.add(cupMesh);
+
+        // Sleek orange antenna fin pointing upward and slightly backward
+        const finMesh = new THREE.Mesh(finGeo, matOrange);
+        finMesh.position.set(side * 0.04, 0.10, -0.06);
+        // Rotate so the fin sits parallel to the side of the head and angles slightly back
+        finMesh.rotation.y = side > 0 ? Math.PI * 0.5 : -Math.PI * 0.5;
+        finMesh.rotation.z = -side * 0.14;
+        finMesh.rotation.x = -0.16;
+        earGroup.add(finMesh);
+
+        return earGroup;
+      }
+
+      headGroup.add(buildEarAssembly(-1));
+      headGroup.add(buildEarAssembly(1));
+
+      // --- ARTICULATED ARMS ---
+      function buildArm(side) {
+        // side: -1 = robot's right arm (viewer's left), +1 = robot's left arm (viewer's right)
+        const shoulderPivot = new THREE.Group();
+        shoulderPivot.position.set(side * 0.53, 0.18, 0.0);
+        chestGroup.add(shoulderPivot);
+
+        // Dark brown shoulder ball joint
+        const shoulderBall = new THREE.Mesh(new THREE.SphereGeometry(0.155, 22, 18), matDark);
+        shoulderPivot.add(shoulderBall);
+
+        // Rounded orange upper arm
+        const upperArm = new THREE.Mesh(
+          createVinylLimbGeometry(0.165, 0.145, 0.38, 0.06, 24),
+          matOrange
+        );
+        upperArm.position.set(side * 0.07, -0.19, 0);
+        upperArm.rotation.z = side * 0.20;
+        shoulderPivot.add(upperArm);
+
+        // Elbow pivot
+        const elbowPivot = new THREE.Group();
+        elbowPivot.position.set(side * 0.12, -0.40, 0);
+        shoulderPivot.add(elbowPivot);
+
+        // Dark brown elbow joint
+        const elbowJoint = new THREE.Mesh(new THREE.SphereGeometry(0.125, 20, 16), matDark);
+        elbowPivot.add(elbowJoint);
+
+        // Slightly flared orange forearm
+        const forearm = new THREE.Mesh(
+          createVinylLimbGeometry(0.145, 0.185, 0.42, 0.055, 26),
+          matOrange
+        );
+        forearm.position.set(0, -0.22, 0);
+        elbowPivot.add(forearm);
+
+        // Chunky dark brown 4-fingered cartoon hand
+        const handGroup = new THREE.Group();
+        handGroup.position.set(0, -0.48, 0);
+        elbowPivot.add(handGroup);
+
+        // Rounded palm
+        const palm = new THREE.Mesh(new THREE.SphereGeometry(0.165, 20, 16), matDark);
+        palm.scale.set(0.92, 1.02, 0.80);
+        handGroup.add(palm);
+
+        // Thumb (pointing inward/forward)
+        const thumb = createPillMesh(0.052, 0.19, matDark);
+        thumb.position.set(side * 0.13, -0.06, 0.07);
+        thumb.rotation.z = side * 0.65;
+        thumb.rotation.x = 0.25;
+        handGroup.add(thumb);
+
+        // 3 chunky rounded fingers slightly curled
+        const fingerConfigs = [
+          { x: -0.07, y: -0.15, z: 0.04, rz: 0.14, rx: 0.22 },
+          { x: 0.02, y: -0.17, z: 0.02, rz: -0.02, rx: 0.26 },
+          { x: 0.10, y: -0.14, z: -0.02, rz: -0.18, rx: 0.22 },
+        ];
+        fingerConfigs.forEach((f) => {
+          const finger = createPillMesh(0.048, 0.19, matDark);
+          finger.position.set(-side * f.x, f.y, f.z);
+          finger.rotation.z = -side * f.rz;
+          finger.rotation.x = f.rx;
+          handGroup.add(finger);
+        });
+
+        return { shoulderPivot, elbowPivot };
+      }
+
+      const rightArm = buildArm(-1); // Robot's right arm (viewer's left)
+      const leftArm = buildArm(1);   // Robot's left arm (viewer's right)
+
+      // --- ARTICULATED LEGS ---
+      function buildLeg(side) {
+        // side: -1 = robot's right leg (viewer's left), +1 = robot's left leg (viewer's right)
+        const hipPivot = new THREE.Group();
+        hipPivot.position.set(side * 0.24, -0.14, 0);
+        pelvisPivot.add(hipPivot);
+
+        // Dark brown hip joint ball
+        const hipBall = new THREE.Mesh(new THREE.SphereGeometry(0.155, 22, 18), matDark);
+        hipPivot.add(hipBall);
+
+        // Rounded orange thigh
+        const thigh = new THREE.Mesh(
+          createVinylLimbGeometry(0.20, 0.175, 0.56, 0.08, 28),
+          matOrange
+        );
+        thigh.position.y = -0.28;
+        hipPivot.add(thigh);
+
+        // Knee pivot
+        const kneePivot = new THREE.Group();
+        kneePivot.position.y = -0.58;
+        hipPivot.add(kneePivot);
+
+        // Dark brown knee joint
+        const kneeJoint = new THREE.Mesh(new THREE.SphereGeometry(0.145, 20, 16), matDark);
+        kneePivot.add(kneeJoint);
+
+        // Distinct rounded orange kneecap dome on the front of the knee
+        const kneecap = new THREE.Mesh(new THREE.SphereGeometry(0.13, 20, 16), matOrange);
+        kneecap.scale.set(1.0, 0.95, 0.72);
+        kneecap.position.set(0, 0.01, 0.115);
+        kneePivot.add(kneecap);
+
+        // Chunky slightly flared orange lower leg / boot
+        const lowerLeg = new THREE.Mesh(
+          createVinylLimbGeometry(0.185, 0.235, 0.60, 0.07, 28),
+          matOrange
+        );
+        lowerLeg.position.y = -0.32;
+        kneePivot.add(lowerLeg);
+
+        // Ankle / Foot pivot
+        const anklePivot = new THREE.Group();
+        anklePivot.position.y = -0.62;
+        kneePivot.add(anklePivot);
+
+        // Rounded dark brown foot (sculpted flat-bottom dome + toe)
+        const footGroup = new THREE.Group();
+        footGroup.position.set(0, -0.10, 0.07);
+        anklePivot.add(footGroup);
+
+        const footMain = new THREE.Mesh(
+          createRoundedBoxGeometry(0.42, 0.24, 0.56, 0.11, 14),
+          matDark
+        );
+        footGroup.add(footMain);
+
+        // Invisible sole contact marker used to keep the lowest foot cleanly grounded on y = 0
+        const soleMarker = new THREE.Object3D();
+        soleMarker.position.set(0, -0.12, 0.0);
+        footGroup.add(soleMarker);
+
+        return { hipPivot, kneePivot, anklePivot, soleMarker };
+      }
+
+      const rightLeg = buildLeg(-1); // Robot's right leg
+      const leftLeg = buildLeg(1);   // Robot's left leg
+
+      enableShadows(root);
+
+      return {
+        root,
+        pelvisPivot,
+        torsoPivot,
+        headPivot,
+        rightArm,
+        leftArm,
+        rightLeg,
+        leftLeg,
+      };
+    }
+        function computeWalkPose(t) {
+          const s = Math.sin(t);
+          const c = Math.cos(t);
+
+          // Hip swing: negative X rotation swings the leg forward (+Z)
+          const strideAmp = 0.56;
+          const rHipX = -s * strideAmp;
+          const lHipX = s * strideAmp;
+
+          // Knee bend: knees only bend backward (+X rotation).
+          // Trailing/swinging leg bends smoothly as it lifts through.
+          const rKneeX = Math.max(0.05, (c * 0.50) + 0.24);
+          const lKneeX = Math.max(0.05, (-c * 0.50) + 0.24);
+
+          // Ankle pitch: heel-strike tilts toes slightly up (-X), toe-off points down (+X)
+          const rAnkleX = (s * 0.20) - (rKneeX * 0.22);
+          const lAnkleX = (-s * 0.20) - (lKneeX * 0.22);
+
+          // Opposite arm swing (right leg forward => left arm forward)
+          const armAmp = 0.52;
+          const rArmX = s * armAmp;
+          const lArmX = -s * armAmp;
+
+          // Natural slight elbow bend (flexes forward more as the arm swings forward)
+          const rElbowX = -0.26 - Math.max(0, -s) * 0.30;
+          const lElbowX = -0.26 - Math.max(0, s) * 0.30;
+
+          // Gentle double-frequency body bounce
+          const bounce = Math.abs(c) * 0.085;
+
+          return {
+            rHipX,
+            rKneeX,
+            rAnkleX,
+            lHipX,
+            lKneeX,
+            lAnkleX,
+            rArmX,
+            rArmZ: -0.16,
+            rElbowX,
+            lArmX,
+            lArmZ: 0.16,
+            lElbowX,
+            pelvisY: 1.56 + bounce,
+            pelvisRotY: s * 0.14,          // Hips twist gently toward forward leg
+            pelvisRotZ: -s * 0.045,        // Subtle weight shift
+            torsoRotY: -s * 0.16,          // Chest counter-twists toward forward arm
+            torsoRotX: 0.06 + Math.abs(s) * 0.02, // Slight eager forward lean
+            headRotX: Math.sin(t * 2.0) * 0.035 - 0.02,
+            headRotY: s * 0.05,
+            headRotZ: -s * 0.055,          // Playful head tilt
+          };
+        }
+
+        /**
+         * Computes a relaxed, lively idle pose.
+         */
+        function computeIdlePose(t) {
+          const breathe = Math.sin(t * 1.8);
+          const sway = Math.sin(t * 0.9);
+          return {
+            rHipX: -0.04,
+            rKneeX: 0.08,
+            rAnkleX: -0.04,
+            lHipX: 0.04,
+            lKneeX: 0.08,
+            lAnkleX: -0.04,
+            rArmX: 0.05 + sway * 0.04,
+            rArmZ: -0.18 - breathe * 0.025,
+            rElbowX: -0.20,
+            lArmX: -0.05 - sway * 0.04,
+            lArmZ: 0.18 + breathe * 0.025,
+            lElbowX: -0.20,
+            pelvisY: 1.60 + breathe * 0.025,
+            pelvisRotY: sway * 0.04,
+            pelvisRotZ: sway * 0.02,
+            torsoRotY: -sway * 0.03,
+            torsoRotX: 0.02 + breathe * 0.015,
+            headRotX: breathe * 0.03,
+            headRotY: Math.sin(t * 0.65) * 0.10,
+            headRotZ: Math.sin(t * 0.9) * 0.05,
+          };
+        }
+
+  // shared pose applier for any robot instance
+  const _tA=new THREE.Vector3(), _tB=new THREE.Vector3();
+  function poseRobot(R,p,parent){
+    R.rightLeg.hipPivot.rotation.x=p.rHipX; R.rightLeg.kneePivot.rotation.x=p.rKneeX; R.rightLeg.anklePivot.rotation.x=p.rAnkleX;
+    R.leftLeg.hipPivot.rotation.x=p.lHipX; R.leftLeg.kneePivot.rotation.x=p.lKneeX; R.leftLeg.anklePivot.rotation.x=p.lAnkleX;
+    R.rightArm.shoulderPivot.rotation.x=p.rArmX; R.rightArm.shoulderPivot.rotation.z=p.rArmZ; R.rightArm.elbowPivot.rotation.x=p.rElbowX;
+    R.leftArm.shoulderPivot.rotation.x=p.lArmX; R.leftArm.shoulderPivot.rotation.z=p.lArmZ; R.leftArm.elbowPivot.rotation.x=p.lElbowX;
+    R.pelvisPivot.position.y=p.pelvisY; R.pelvisPivot.rotation.y=p.pelvisRotY; R.pelvisPivot.rotation.z=p.pelvisRotZ;
+    R.torsoPivot.rotation.y=p.torsoRotY; R.torsoPivot.rotation.x=p.torsoRotX;
+    R.headPivot.rotation.x=p.headRotX; R.headPivot.rotation.y=p.headRotY; R.headPivot.rotation.z=p.headRotZ;
+    R.root.position.y=0; R.root.updateMatrixWorld(true);
+    R.rightLeg.soleMarker.getWorldPosition(_tA); R.leftLeg.soleMarker.getWorldPosition(_tB);
+    parent.worldToLocal(_tA); parent.worldToLocal(_tB);
+    R.root.position.y-=Math.min(_tA.y,_tB.y);
+  }
+  function wavePose(target,t,start,arm='l'){ // arm up, out to the side and forward, so the wave is in front of the head
+    const w=Math.min(1,(t-start)*3), sgn=arm==='l'?1:-1;
+    target[arm+'ArmZ']=THREE.MathUtils.lerp(target[arm+'ArmZ'],sgn*(1.85+Math.sin(t*9)*.28),w);
+    target[arm+'ArmX']=THREE.MathUtils.lerp(target[arm+'ArmX'],-0.55,w);
+    target[arm+'ElbowX']=THREE.MathUtils.lerp(target[arm+'ElbowX'],-0.7,w);
+    return target;
+  }
+window.__robotLib={buildOrangeRobot,computeWalkPose,computeIdlePose,poseRobot,wavePose};
+}
+
+/* =========================================================
+   3D CIRCUIT BOARD — "AA-26" = Alaa Aldybous, class of '26 tech
+   Each part on the board is a stop in the journey.
+   ========================================================= */
+const canvas = document.getElementById('pcb');
+const stage  = document.getElementById('stage');
+try {
+  if(typeof THREE==='undefined') throw new Error('three.js failed to load');
+  const {buildOrangeRobot,computeWalkPose,computeIdlePose,poseRobot,wavePose}=window.__robotLib;
+  const isPhone = matchMedia('(max-width:700px)').matches;
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,isPhone?1.5:2));
+  renderer.shadowMap.enabled = !isPhone;
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(38,1,0.1,100);
+  const HOME_CAM = new THREE.Vector3(0,7.5,9.5);
+  camera.position.copy(HOME_CAM); camera.lookAt(0,0,0);
+
+  scene.add(new THREE.HemisphereLight(0xfff1e0,0x5a2a1a,1.05));
+  const key = new THREE.DirectionalLight(0xffe2c0,1.7); key.position.set(5,9,4);
+  key.castShadow = true; key.shadow.mapSize.set(1024,1024);
+  Object.assign(key.shadow.camera,{left:-6,right:6,top:6,bottom:-6}); scene.add(key);
+  const rim = new THREE.PointLight(0x7a9e7e,30,20); rim.position.set(-4,3,-3); scene.add(rim);
+
+  const board = new THREE.Group(); scene.add(board);
+  const W = 8, D = 5.4, TOP = .09;
+
+  /* ---------- silkscreen: drawn on a canvas, laid on the board ---------- */
+  const sc = document.createElement('canvas'); sc.width = isPhone?1024:2048; sc.height = isPhone?691:1382;
+  const g = sc.getContext('2d');
+  const toPx = (x,z)=>[(x/W+.5)*sc.width,(z/D+.5)*sc.height];
+  g.fillStyle = '#2f5d50'; g.fillRect(0,0,sc.width,sc.height);
+  // subtle copper pour texture
+  for(let i=0;i<2600;i++){g.fillStyle=`rgba(167,196,160,${Math.random()*.06})`;g.fillRect(Math.random()*sc.width,Math.random()*sc.height,3,3);}
+  // vias
+  for(let i=0;i<160;i++){const x=Math.random()*sc.width,y=Math.random()*sc.height;g.fillStyle='#d9b77a';g.beginPath();g.arc(x,y,5,0,7);g.fill();g.fillStyle='#1b2e28';g.beginPath();g.arc(x,y,2,0,7);g.fill();}
+  g.strokeStyle='rgba(253,235,216,.85)'; g.fillStyle='rgba(253,235,216,.9)'; g.lineWidth=3;
+  g.font='bold 34px "Space Mono", monospace';
+  const silk=(t,x,z,size=34,align='center')=>{const [px,py]=toPx(x,z);g.font=`bold ${size}px "Space Mono", monospace`;g.textAlign=align;g.fillText(t,px,py);};
+  const outline=(x,z,w,d)=>{const [px,py]=toPx(x-w/2,z-d/2);g.strokeRect(px,py,w/W*sc.width,d/D*sc.height);};
+  silk('ALAA ALDYBOUS · ECE · EFFAT',-3.75,-2.45,40,'left');
+  silk('REV 2026 · MADE WITH CURIOSITY',3.75,2.55,28,'right');
+  // mounting holes
+  [[-3.6,-2.3],[3.6,-2.3],[-3.6,2.3],[3.6,2.3]].forEach(([x,z])=>{const [px,py]=toPx(x,z);g.strokeStyle='#e0a458';g.lineWidth=10;g.beginPath();g.arc(px,py,26,0,7);g.stroke();g.fillStyle='#fce1c5';g.beginPath();g.arc(px,py,14,0,7);g.fill();});
+  g.strokeStyle='rgba(253,235,216,.85)'; g.lineWidth=3; g.fillStyle='rgba(253,235,216,.9)';
+  const silkTex = new THREE.CanvasTexture(sc); silkTex.anisotropy = 8; silkTex.colorSpace = THREE.SRGBColorSpace;
+
+  const pcbSide = new THREE.MeshStandardMaterial({color:0x24483e,roughness:.6});
+  const pcbTop  = new THREE.MeshStandardMaterial({map:silkTex,roughness:.55,metalness:.08});
+  const pcb = new THREE.Mesh(new THREE.BoxGeometry(W,.18,D),[pcbSide,pcbSide,pcbTop,pcbSide,pcbSide,pcbSide]);
+  pcb.receiveShadow = true; board.add(pcb);
+  const edge = new THREE.Mesh(new THREE.BoxGeometry(W+.04,.04,D+.04),new THREE.MeshStandardMaterial({color:0xe0a458,metalness:.8,roughness:.3}));
+  edge.position.y=-.1; board.add(edge);
+
+  /* ---------- helpers ---------- */
+  const M = (c,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.45},o));
+  const gold = M(0xd9c08a,{metalness:.9,roughness:.25});
+  const silver = M(0xcfd3d6,{metalness:.9,roughness:.22});
+  const blackIC = M(0x1b0a10,{roughness:.35,metalness:.35});
+  function add(mesh,x,y,z){mesh.position.set(x,y,z);mesh.castShadow=true;board.add(mesh);return mesh;}
+  function box(w,h,d,mat,x,z,y){return add(new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat),x,y??TOP+h/2,z);}
+  function labelTex(lines,color='#fce1c5',bg=null){const c=document.createElement('canvas');c.width=512;c.height=256;const x=c.getContext('2d');
+    if(bg){x.fillStyle=bg;x.fillRect(0,0,512,256);}x.textAlign='center';x.fillStyle=color;
+    lines.forEach(([t,s,col],i)=>{x.font=`bold ${s}px "Space Mono", monospace`;x.fillStyle=col||color;x.fillText(t,256,110+i*70);});
+    const tx=new THREE.CanvasTexture(c);tx.colorSpace=THREE.SRGBColorSpace;return tx;}
+  function topLabel(lines,w,d,x,z,y,color){const m=new THREE.Mesh(new THREE.PlaneGeometry(w,d),new THREE.MeshBasicMaterial({map:labelTex(lines,color),transparent:true}));
+    m.rotation.x=-Math.PI/2;m.position.set(x,y,z);board.add(m);return m;}
+  function qfp(x,z,size,h,pinsPerSide,lines){
+    const chip=box(size,h,size,blackIC,x,z);
+    const pg=new THREE.BoxGeometry(.06,.05,.18); const step=size*.8/(pinsPerSide-1);
+    for(let i=0;i<pinsPerSide;i++){const o=-size*.4+i*step,e=size/2+.06;
+      [[x+o,z+e,0],[x+o,z-e,0],[x+e,z+o,1],[x-e,z+o,1]].forEach(([px,pz,r])=>{const p=add(new THREE.Mesh(pg,gold),px,TOP+.03,pz);if(r)p.rotation.y=Math.PI/2;});}
+    topLabel(lines,size*.9,size*.45,x,z,TOP+h+.002);
+    const dot=add(new THREE.Mesh(new THREE.CircleGeometry(size*.05,16),new THREE.MeshBasicMaterial({color:0xfce1c5})),x-size*.36,TOP+h+.003,z-size*.36);dot.rotation.x=-Math.PI/2;
+    return chip;}
+
+  /* ---------- the parts (each one = a chapter) ---------- */
+  // U1 main processor — AA-26
+  const u1 = qfp(0,0,1.6,.28,9,[['AA-26',62],['EDGE · AI',30,'#a7c4a0']]); outline(0,0,2.2,2.2); silk('U1',-1.25,-1.15,30);
+  // USB-C — power in (2022, the start)
+  const usb = box(.55,.26,.85,silver,-3.78,0); const usbHole=box(.02,.12,.6,M(0x111111),-4.06,0,TOP+.13); silk('J1 PWR',-3.3,.75,26);
+  // crystal oscillator — Dean's List, keeping time every year
+  const xtal = add(new THREE.Mesh(new THREE.CapsuleGeometry(.16,.5,6,16),silver),-2.4,TOP+.16,-1.55); xtal.rotation.z=Math.PI/2; silk('Y1 16MHz',-2.4,-1.15,24);
+  // U2 small QFN — first paper (L&T 2024)
+  const u2 = qfp(-2.5,1.3,.8,.16,5,[['L&T',70],['2024',40,'#a7c4a0']]); silk('U2',-2.5,1.95,26);
+  // header pins — robotics (RAS)
+  const hdr=[]; for(let i=0;i<10;i++){hdr.push(box(.14,.08,.14,M(0x222222),-1.35+i*.28,2.25)); box(.04,.42,.04,gold,-1.35+i*.28,2.25,TOP+.29);} outline(-.09,2.25,3,.36); silk('J2 · RAS',-.09,1.85,26);
+  // ESP32-style module with shield + antenna — AgriBird
+  const esp = box(1.35,.2,1.05,silver,2.55,1.45); topLabel([['AGRIBIRD',44],['GOLD · GENEVA',26,'#7a4a55']],1.2,.55,2.55,1.45,TOP+.201,'#450920');
+  box(1.4,.04,1.3,M(0x1f3d35),2.55,1.32,TOP+.02);
+  // CERN BGA chip
+  const cern = qfp(2.45,-1.3,1.15,.22,6,[['CERN',60],['HGCAL',30,'#a7c4a0']]); silk('U3',2.45,-2.05,26);
+  // inductor — BNZ / sustainability energy
+  const ind = box(.6,.36,.6,M(0x3a3a3a,{roughness:.7}),.15,-2.0); const coil=add(new THREE.Mesh(new THREE.TorusGeometry(.2,.05,10,24),gold),.15,TOP+.38,-2.0);coil.rotation.x=Math.PI/2; silk('L1 BNZ',.15,-1.55,24);
+  // SMA coax connector — SST TDR (signal reflected down a coax!)
+  const sma = add(new THREE.Mesh(new THREE.CylinderGeometry(.17,.17,.7,24),gold),3.7,TOP+.22,-.05); sma.rotation.z=Math.PI/2;
+  add(new THREE.Mesh(new THREE.CylinderGeometry(.24,.24,.12,6),gold),3.42,TOP+.22,-.05).rotation.z=Math.PI/2; silk('J3 TDR',3.3,.5,24);
+  // filler parts for richness
+  [[-3.1,-2.0],[-2.7,-2.0],[1.1,-.9],[1.1,-.55],[-1.1,.95],[-.75,.95],[3.15,.45],[1.4,2.2]].forEach(([x,z])=>box(.32,.1,.16,M(0xc9a27a),x,z));
+  [[-1.55,-1.0],[-1.55,-.55],[1.55,.95],[-.3,-1.45]].forEach(([x,z])=>box(.2,.12,.12,M(0x8a6a4a),x,z));
+  [[-3.15,1.95],[3.2,2.2],[-1.6,-2.15]].forEach(([x,z])=>add(new THREE.Mesh(new THREE.CylinderGeometry(.22,.22,.55,24),M(0x450920,{roughness:.35})),x,TOP+.275,z));
+  const leds=[[-1.2,-1.9,0xa7c4a0],[-.85,-1.9,0xe0a458],[1.85,-.15,0xa7c4a0]].map(([x,z,c])=>add(new THREE.Mesh(new THREE.SphereGeometry(.11,18,18),M(c,{emissive:c,emissiveIntensity:2})),x,TOP+.11,z));
+  // antenna zigzag
+  const ant=[];for(let i=0;i<7;i++)ant.push([3.35+(i%2?.18:0),.75+i*.12]);
+
+  /* ---------- copper traces with travelling pulses ---------- */
+  const traceMat = M(0xe0a458,{metalness:.7,roughness:.35});
+  const pulses=[]; const pulseGeo=new THREE.SphereGeometry(.05,10,10); const pc=[0xa7c4a0,0xfce1c5,0xe0a458];
+  function trace(pts2,withPulse=true){
+    const pts=pts2.map(([x,z])=>new THREE.Vector3(x,TOP+.012,z));
+    for(let i=0;i<pts.length-1;i++){const a=pts[i],b=pts[i+1],len=a.distanceTo(b);
+      const s=new THREE.Mesh(new THREE.BoxGeometry(len+.05,.02,.05),traceMat);s.position.copy(a).add(b).multiplyScalar(.5);s.rotation.y=-Math.atan2(b.z-a.z,b.x-a.x);board.add(s);}
+    if(withPulse){const m=new THREE.Mesh(pulseGeo,new THREE.MeshBasicMaterial({color:pc[pulses.length%3]}));board.add(m);
+      pulses.push({m,curve:new THREE.CatmullRomCurve3(pts,false,'catmullrom',0),t:Math.random(),s:.12+Math.random()*.18});}
+  }
+  [
+    [[-3.5,0],[-2,0],[-.9,-.2]],                   // power in
+    [[-2.1,-1.55],[-1.3,-1.55],[-.75,-.95]],         // crystal
+    [[-2.1,1.3],[-1.4,1.3],[-.9,.6]],                // L&T
+    [[-.6,.9],[-.6,1.6],[-.4,2.05]],[[ .5,.9],[.5,1.6],[.6,2.05]],
+    [[.9,.5],[1.5,.5],[1.85,1.2]],                   // to AgriBird
+    [[.9,-.4],[1.4,-.4],[1.85,-1.0]],                // to CERN
+    [[.15,-.9],[.15,-1.7]],                          // to inductor
+    [[3.05,-1.3],[3.3,-.6],[3.35,-.05]],             // CERN -> TDR
+    [[-3.3,-.8],[-3,-2.05]],[[2,2.25],[3.2,2.25]],
+  ].forEach(p=>trace(p));
+  trace(ant,false);
+
+  /* ---------- floating particles ---------- */
+  const pg=new THREE.BufferGeometry(),N=180,pos=new Float32Array(N*3);
+  for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*14;pos[i*3+1]=Math.random()*5;pos[i*3+2]=(Math.random()-.5)*9;}
+  pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  const parts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x7a9e7e,size:.05,transparent:true,opacity:.7})); scene.add(parts);
+
+  /* ---------- JOURNEY: stations ---------- */
+  const STOPS = [
+    {at:[-3.78,0],   obj:usb,  icon:'🔌', year:'2022', part:'USB-C power port', why:'Power enters the board here, so this is where it all begins.',
+     title:'Effat University', text:'In 2022 I started Electrical & Computer Engineering at Effat University in Jeddah.'},
+    {at:[-2.4,-1.55],obj:xtal, icon:'⏱️', year:'Every year', part:'Crystal oscillator', why:'It keeps the whole board ticking at a steady, reliable rhythm.',
+     title:'Consistent, every semester', text:"Dean's List every year since my first, and the President's List in 2025–2026."},
+    {at:[-2.5,1.3],  obj:u2,   icon:'📄', year:'2024', part:'Memory chip', why:'It stores what the board has learned.',
+     title:'My first published research', text:'"Fiction to Function" at IEEE L&T 2024, about MATLAB and ChatGPT-driven renewable-energy education. Four more papers followed in IEEE and Springer.'},
+    {at:[-.09,2.25], obj:hdr[5],icon:'🤖', year:'2025 — now', part:'Header pins', why:'They connect the board to the outside world.',
+     title:'Chair, IEEE Robotics & Automation Society', text:'I connect students to hands-on engineering: robotics booths for 500+ people at IEEE Day, build workshops like Pixel Pal, industry visits and guest talks.'},
+    {at:[2.55,1.45], obj:esp,  icon:'🥇', year:'2025 — 2026', part:'Wireless edge-AI module', why:'This is where a board senses and thinks for itself.',
+     title:'AgriBird', text:'Our edge-AI plant-health system placed 3rd in Saudi Arabia in the first round of the 9th IET Robotics Challenge, then won 1st place at the GCC final. It also won a Gold Medal at the Geneva International Exhibition of Inventions and became a SAIF 2026 finalist.'},
+    {at:[2.45,-1.3], obj:cern, icon:'⚛️', year:'Summer 2026', part:'Co-processor', why:'It takes on the heavy, high-precision work.',
+     title:'CERN · CMS HGCAL', text:'I tested how stable detector readout phases stay across resets and temperature changes, and built the hardware catalogue the team now uses.'},
+    {at:[.15,-2.0],  obj:ind,  icon:'🌱', year:'Fall 2026', part:'Inductor', why:'It stores and smooths energy so nothing goes to waste.',
+     title:'BNZ Consulting Engineers', text:'Sustainability internship: waste segregation, recycling and food-surplus partnerships, and circular-economy outreach.'},
+    {at:[3.7,-.05],  obj:sma,  icon:'📡', year:'Now', part:'Coax connector', why:'It sends a signal down a cable and listens for what comes back. That is exactly what TDR does.',
+     title:'Saudi Sustainability Technologies', text:'I am designing a time-domain reflectometry system that finds liquid leaks along a coaxial sensing cable.'},
+    {at:[0,0],       obj:u1,   icon:'✨', year:'The core', part:'Main processor · AA-26', why:'Every trace on the board leads back here.',
+     title:'Thanks for walking the board!', text:"That's my story so far. If you're working on something in embedded systems, edge AI or hardware, I'd love to hear about it."},
+  ];
+  // glowing ring markers
+  const rings = STOPS.map(s=>{const r=new THREE.Mesh(new THREE.RingGeometry(.28,.36,40),new THREE.MeshBasicMaterial({color:0xa7c4a0,transparent:true,opacity:0,side:THREE.DoubleSide}));
+    r.rotation.x=-Math.PI/2;r.position.set(s.at[0],TOP+.02,s.at[1]);board.add(r);return r;});
+  // the traveller: a bright signal pulse
+  const traveller=new THREE.Group();
+  const robot=buildOrangeRobot();
+  robot.root.scale.setScalar(.27); traveller.add(robot.root);
+  robot.root.traverse(o=>{if(o.isMesh){o.castShadow=!isPhone;}});
+  const pose={}; let walkPhase=0, idlePhase=0, waveStart=0, wasWalking=false;
+  const tA=new THREE.Vector3(), tB=new THREE.Vector3();
+  function applyPose(p){
+    robot.rightLeg.hipPivot.rotation.x=p.rHipX; robot.rightLeg.kneePivot.rotation.x=p.rKneeX; robot.rightLeg.anklePivot.rotation.x=p.rAnkleX;
+    robot.leftLeg.hipPivot.rotation.x=p.lHipX; robot.leftLeg.kneePivot.rotation.x=p.lKneeX; robot.leftLeg.anklePivot.rotation.x=p.lAnkleX;
+    robot.rightArm.shoulderPivot.rotation.x=p.rArmX; robot.rightArm.shoulderPivot.rotation.z=p.rArmZ; robot.rightArm.elbowPivot.rotation.x=p.rElbowX;
+    robot.leftArm.shoulderPivot.rotation.x=p.lArmX; robot.leftArm.shoulderPivot.rotation.z=p.lArmZ; robot.leftArm.elbowPivot.rotation.x=p.lElbowX;
+    robot.pelvisPivot.position.y=p.pelvisY; robot.pelvisPivot.rotation.y=p.pelvisRotY; robot.pelvisPivot.rotation.z=p.pelvisRotZ;
+    robot.torsoPivot.rotation.y=p.torsoRotY; robot.torsoPivot.rotation.x=p.torsoRotX;
+    robot.headPivot.rotation.x=p.headRotX; robot.headPivot.rotation.y=p.headRotY; robot.headPivot.rotation.z=p.headRotZ;
+    // keep the lowest foot on the board
+    robot.root.position.y=0; robot.root.updateMatrixWorld(true);
+    robot.rightLeg.soleMarker.getWorldPosition(tA); robot.leftLeg.soleMarker.getWorldPosition(tB);
+    traveller.worldToLocal(tA); traveller.worldToLocal(tB);
+    robot.root.position.y=-Math.min(tA.y,tB.y);
+  }
+  Object.assign(pose,computeIdlePose(0)); applyPose(pose);
+  const halo=new THREE.Mesh(new THREE.CircleGeometry(.3,32),new THREE.MeshBasicMaterial({color:0xa7c4a0,transparent:true,opacity:.45}));
+  halo.rotation.x=-Math.PI/2; halo.position.y=.005; traveller.add(halo);
+  traveller.visible=false; board.add(traveller);
+  const tLight=new THREE.PointLight(0xa7c4a0,6,3); traveller.add(tLight);
+
+  let arrivedAt=-1;
+  let journey=false, step=0, fromPt=new THREE.Vector3(), toPt=new THREE.Vector3(), travelT=1;
+  const camTarget=new THREE.Vector3(), lookTarget=new THREE.Vector3(), lookNow=new THREE.Vector3();
+  let orbit=0, orbitTarget=0;
+  const ui={step:jStep,dots:jDots,year:jYear,title:jTitle,text:jText,prev:jPrev,next:jNext,bag:jBag};
+  ui.dots.innerHTML=STOPS.map(()=>'<i></i>').join('');
+  const collected=new Set();
+
+  function stopPos(i){const [x,z]=STOPS[i].at;const off=STOPS[i].off||.7;return new THREE.Vector3(x,TOP+.02,Math.min(z+off,2.5));}
+  function goto(i){
+    arrivedAt=-1;
+    i=Math.max(0,Math.min(STOPS.length-1,i));
+    fromPt.copy(traveller.visible?traveller.position:stopPos(i)); toPt.copy(stopPos(i)); travelT=0; traveller.visible=true;
+    step=i; const s=STOPS[i];
+    ui.step.textContent=String(i+1).padStart(2,'0')+' / '+String(STOPS.length).padStart(2,'0');
+    [...ui.dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+    ui.year.textContent=s.year; jPart.textContent='⚙ '+s.part; jWhy.textContent=s.why; ui.title.textContent=s.title; ui.text.textContent=s.text;
+    ui.prev.disabled=i===0; ui.next.textContent=i===STOPS.length-1?'Say hi →':'Next →';
+    const card=document.querySelector('.j-card'); card.style.animation='none'; card.offsetHeight; card.style.animation='';
+    if(!collected.has(i)){collected.add(i);const b=document.createElement('b');b.textContent=s.icon;b.title=s.title;ui.bag.appendChild(b);}
+    orbitTarget=0;
+  }
+  function start(at=0){journey=true;document.body.classList.add('journey');collected.clear();ui.bag.innerHTML='';traveller.visible=false;resize();for(let k=0;k<at;k++){collected.add(k);const b=document.createElement('b');b.textContent=STOPS[k].icon;ui.bag.appendChild(b);}goto(at);}
+  function stop(){journey=false;document.body.classList.remove('journey');traveller.visible=false;rings.forEach(r=>r.material.opacity=0);resize();}
+  startJourney.addEventListener('click',()=>start(0));
+  window.openJourney=i=>{scrollTo({top:0});start(i);};
+  document.querySelectorAll('.onboard').forEach(b=>b.addEventListener('click',()=>start(+b.dataset.stop)));
+  jExit.addEventListener('click',stop);
+  ui.prev.addEventListener('click',()=>goto(step-1));
+  ui.next.addEventListener('click',()=>{if(step===STOPS.length-1){stop();document.getElementById('contact').scrollIntoView();}else goto(step+1);});
+  addEventListener('keydown',e=>{if(!journey)return;if(e.key==='ArrowRight')goto(step+1);if(e.key==='ArrowLeft')goto(step-1);if(e.key==='Escape')stop();});
+  // click a glowing part to jump there
+  const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
+  canvas.addEventListener('click',e=>{if(!journey||moved>6)return;const r=canvas.getBoundingClientRect();ndc.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
+    ray.setFromCamera(ndc,camera);const hits=ray.intersectObjects(STOPS.map(s=>s.obj),false);if(hits.length){const k=STOPS.findIndex(s=>s.obj===hits[0].object);if(k>=0)goto(k);}});
+
+  /* ---------- interaction ---------- */
+  let tx=0,ty=-.5,dragging=false,lx0=0,ly0=0,auto=true,moved=0;
+  canvas.addEventListener('pointerdown',e=>{dragging=true;moved=0;auto=false;lx0=e.clientX;ly0=e.clientY;canvas.setPointerCapture(e.pointerId);});
+  canvas.addEventListener('pointerup',()=>{dragging=false;setTimeout(()=>auto=true,2500);});
+  canvas.addEventListener('pointermove',e=>{if(!dragging)return;const dx=e.clientX-lx0,dy=e.clientY-ly0;moved+=Math.abs(dx)+Math.abs(dy);
+    if(journey){orbitTarget+=dx*.006;}else{ty+=dx*.008;tx=Math.max(-.5,Math.min(.6,tx+dy*.005));}lx0=e.clientX;ly0=e.clientY;});
+  let mx=0,my=0; addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;});
+
+  function resize(){const r=canvas.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();}
+  addEventListener('resize',resize); resize();
+
+  board.scale.setScalar(.78); board.rotation.set(0,-.5,0);
+  const clock=new THREE.Clock();
+  (function loop(){
+    const dt=Math.min(clock.getDelta(),.05), t=clock.elapsedTime;
+    if(journey){
+      // board settles flat; camera flies to each stop
+      board.rotation.x+=(0-board.rotation.x)*.08; board.rotation.y+=(0-board.rotation.y)*.08; board.position.y+=(0-board.position.y)*.08;
+      const s=board.scale.x+(1-board.scale.x)*.08; board.scale.setScalar(s);
+      travelT=Math.min(1,travelT+dt*(.9/Math.max(1,fromPt.distanceTo(toPt)))); const e=1-Math.pow(1-travelT,3);
+      traveller.position.lerpVectors(fromPt,toPt,travelT<1?travelT:1);
+      const walking=travelT<1; traveller.position.y=TOP+.02;
+      if(walking){walkPhase+=dt*7;}else{idlePhase+=dt*1.4; if(arrivedAt!==step){waveStart=t;arrivedAt=step;}}
+      wasWalking=walking;
+      const target=walking?computeWalkPose(walkPhase):computeIdlePose(idlePhase);
+      if(!walking) wavePose(target,t,waveStart,'l');
+      const showHi=step===0&&!walking&&(t-waveStart)<3; jBubble.classList.toggle('on',showHi&&journey);
+      if(showHi){const hp=new THREE.Vector3(0,1.35,0);traveller.localToWorld(hp);hp.project(camera);const r=canvas.getBoundingClientRect();jBubble.style.left=((hp.x+1)/2*r.width)+'px';jBubble.style.top=((1-hp.y)/2*r.height)+'px';}
+      const bl=1-Math.exp(-12*dt); for(const k in target){pose[k]=THREE.MathUtils.lerp(pose[k]??target[k],target[k],bl);}
+      applyPose(pose);
+      // face the walking direction, then turn toward the visitor
+      const dir=new THREE.Vector3().subVectors(toPt,fromPt);
+      const camLocal=board.worldToLocal(camera.position.clone());
+      const faceY=walking&&dir.lengthSq()>.001?Math.atan2(dir.x,dir.z):Math.atan2(camLocal.x-traveller.position.x,camLocal.z-traveller.position.z);
+      let dr=faceY-robot.root.rotation.y; dr=Math.atan2(Math.sin(dr),Math.cos(dr)); robot.root.rotation.y+=dr*.12;
+      halo.scale.setScalar(1+Math.sin(t*5)*.12);
+      orbit+=(orbitTarget-orbit)*.08;
+      const p=traveller.position, narrow=camera.aspect<.9;
+      const dist=narrow?4.6:3.4;
+      camTarget.set(p.x+Math.sin(orbit)*dist*.6, 2.6+(narrow?1:0), p.z+Math.cos(orbit)*dist);
+      camera.position.lerp(camTarget,.06); lookTarget.set(p.x,0,p.z-.35); lookNow.lerp(lookTarget,.08); camera.lookAt(lookNow);
+      rings.forEach((r,k)=>{r.material.opacity=k===step?.9:.35;r.scale.setScalar(k===step?1+Math.sin(t*4)*.12:1);r.material.color.set(collected.has(k)?0xe0a458:0xa7c4a0);});
+    } else {
+      if(auto) ty+=dt*.18;
+      const scr=Math.min(scrollY/innerHeight,1);
+      board.rotation.y+=(ty+mx*.4-board.rotation.y)*.06;
+      board.rotation.x+=(tx+my*.25+scr*.5-board.rotation.x)*.06;
+      board.position.y=Math.sin(t*1.2)*.12-scr*1.5;
+      const s=board.scale.x+(.78-board.scale.x)*.08; board.scale.setScalar(s);
+      camera.position.lerp(HOME_CAM,.08); lookNow.lerp(new THREE.Vector3(0,0,0),.08); camera.lookAt(lookNow);
+    }
+    pulses.forEach(p=>{p.t=(p.t+dt*p.s)%1;p.m.position.copy(p.curve.getPointAt(p.t));p.m.position.y=TOP+.05;});
+    leds.forEach((l,k)=>l.material.emissiveIntensity=1.2+Math.sin(t*3+k*2)*.9);
+    parts.rotation.y=t*.03;
+    renderer.render(scene,camera);
+    requestAnimationFrame(loop);
+  })();
+} catch(err){ canvas.style.display='none'; document.getElementById('startJourney').style.display='none'; console.warn('WebGL unavailable',err); stage.classList.add('no3d'); }
+})();
+</script>
+
+<script>
+/* typed focus line */
+(()=>{const words=['embedded systems','edge AI','signal processing','power electronics','robotics'];let w=0,i=0,del=false;const el=document.getElementById('typed');
+ (function tick(){const s=words[w];el.textContent=s.slice(0,i);if(!del&&i<s.length)i++;else if(del&&i>0)i--;else if(!del){del=true;return setTimeout(tick,1400);}else{del=false;w=(w+1)%words.length;}setTimeout(tick,del?40:80);})();})();
+
+/* reveal on scroll + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('[data-count]').forEach(countUp);io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,k)=>{el.style.transitionDelay=(k%4)*70+'ms';io.observe(el);});
+function countUp(el){const end=+el.dataset.count,suf=el.dataset.suffix||'';let n=0;const step=Math.max(1,Math.ceil(end/40));const t=setInterval(()=>{n=Math.min(end,n+step);el.textContent=n+suf;if(n>=end)clearInterval(t);},30);}
+
+/* 3D tilt cards */
+document.querySelectorAll('.card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+    c.style.transform=`rotateY(${(x-.5)*14}deg) rotateX(${(.5-y)*12}deg) translateY(-6px)`;c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');});
+  c.addEventListener('mouseleave',()=>{c.style.transform='';});
+});
+
+/* project filters */
+document.getElementById('filters').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));
+  const f=b.dataset.f;document.querySelectorAll('#grid .card').forEach(c=>c.classList.toggle('hide',f!=='all'&&!c.dataset.cat.split(' ').includes(f)));});
+
+/* skill chips + sphere words: show matching projects */
+const ALIAS={'jetson':'jetson|edge ai|agribird','nvidia jetson':'jetson|edge ai|agribird','dsp':'signal|ecg|dsp','ml':'machine learning|model|classif|ml','embedded':'embedded|esp32|arduino|pico','power':'power|energy|solar|wind','biomedical signals':'ecg','tdr':'tdr','raspberry pi pico':'pico'};
+function showSkill(w){const k=w.toLowerCase().trim(),re=new RegExp(ALIAS[k]||k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i');
+  const cards=[...document.querySelectorAll('#grid .card')],hit=cards.filter(c=>re.test(c.textContent));
+  if(!hit.length){const t=[...document.querySelectorAll('.tl-item')].find(x=>re.test(x.textContent));(t||document.getElementById('experience')).scrollIntoView({behavior:'smooth',block:'center'});return;}
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('on'));
+  cards.forEach(c=>c.classList.toggle('hide',!hit.includes(c)));
+  let tag=document.getElementById('skillTag');if(!tag){tag=document.createElement('button');tag.id='skillTag';tag.className='on';document.getElementById('filters').appendChild(tag);}
+  tag.textContent=w+' ✕';tag.dataset.f='all';document.getElementById('projects').scrollIntoView({behavior:'smooth'});}
+document.getElementById('filters').addEventListener('click',e=>{if(e.target.closest('button')&&e.target.id!=='skillTag'){const t=document.getElementById('skillTag');t&&t.remove();}else if(e.target.id==='skillTag'){e.target.remove();document.querySelector('#filters [data-f=all]').click();}});
+document.querySelectorAll('.chip').forEach(c=>{c.tabIndex=0;c.setAttribute('role','button');c.style.cursor='pointer';c.title='See related work';c.addEventListener('click',()=>showSkill(c.textContent));c.addEventListener('keydown',e=>{if(e.key==='Enter')showSkill(c.textContent);});});
+document.getElementById('skillCloud').addEventListener('click',e=>{if(e.target.tagName==='SPAN')showSkill(e.target.textContent);});
+
+/* 3D rotating skill sphere */
+(()=>{const words=['MATLAB','Python','C++','Edge AI','Jetson','ESP32','Arduino','LTspice','Multisim','DSP','ML','Linux','SSH','Simulink','Plotly','Embedded','Power','PCB','TDR','Robotics','Git','Flask'];
+ const box=document.getElementById('skillCloud');const R=Math.min(box.clientWidth,box.clientHeight)/2.4||160;const pts=words.map((w,i)=>{const phi=Math.acos(-1+2*(i+.5)/words.length),th=Math.sqrt(words.length*Math.PI)*phi;const s=document.createElement('span');s.textContent=w;box.appendChild(s);return{s,x:R*Math.cos(th)*Math.sin(phi),y:R*Math.sin(th)*Math.sin(phi),z:R*Math.cos(phi)};});
+ let ax=.004,ay=.006;box.addEventListener('mousemove',e=>{const r=box.getBoundingClientRect();ay=((e.clientX-r.left)/r.width-.5)*.03;ax=-((e.clientY-r.top)/r.height-.5)*.03;});
+ const cols=['#450920','#2f5d50','#7a9e7e','#6b1a35'];
+ (function spin(){const cx=Math.cos(ax),sx=Math.sin(ax),cy=Math.cos(ay),sy=Math.sin(ay);
+  pts.forEach((p,i)=>{let y=p.y*cx-p.z*sx,z=p.y*sx+p.z*cx;p.y=y;p.z=z;let x=p.x*cy+p.z*sy;z=-p.x*sy+p.z*cy;p.x=x;p.z=z;
+   const sc=(z+R*2)/(R*3);p.s.style.transform=`translate(-50%,-50%) translate(${p.x}px,${p.y}px) scale(${sc})`;p.s.style.opacity=.25+sc*.75;p.s.style.zIndex=Math.round(sc*100);p.s.style.fontSize='17px';p.s.style.color=cols[i%4];});
+  requestAnimationFrame(spin);})();})();
+
+/* cursor glow + active nav */
+const g=document.getElementById('glow');addEventListener('mousemove',e=>{g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';});
+const links=[...document.querySelectorAll('.nav a')];const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+addEventListener('scroll',()=>{let cur=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i;});links.forEach((a,i)=>a.classList.toggle('active',i===cur));},{passive:true});
+</script>
+<script>
+/* Everything clickable: data-go = href:URL | scroll:#id | stop:N (journey) | modal:key */
+(function(){
+  const M={
+    wpt:{tag:'Springer LNEE · in press',title:'Wireless Power Transfer: Class-E Rectifiers',text:'I compared PMOS-based Class-E rectifiers with conventional bridge rectifiers for high-frequency wireless power delivery to IoT devices in smart cities, simulated in Multisim. Class-E gave higher efficiency and lower output ripple. The paper was presented at ICECE 2025 in Xi\'an and will appear in Springer\'s Lecture Notes in Electrical Engineering, vol. 1669 (Feb 2027).'},
+    sca:{tag:'Springer · SCA\'26',title:'DC-DC Converters for Edge-AI Robots',text:'Edge-AI inference draws sharp current spikes, and the converter topology decides whether a robot\'s compute stays stable. We evaluated DC-DC converter topologies under these transient loads for autonomous agricultural robots, and presented the work as a poster at the 11th International Conference on Smart Cities & Applications in Karabük, Türkiye.'},
+    lnee:{tag:'Springer LNEE · in press',title:'Rectifier Designs for Wireless Power Transfer',text:'ICECE 2025, Xi\'an. The paper appears in Lecture Notes in Electrical Engineering vol. 1669, expected February 2027.'},
+    ml:{tag:'Python · 2025',title:'Machine Learning Coursework',text:'Two applied machine-learning projects from my coursework.',links:[['Weather condition prediction (ensembles) →','weather_classification.html'],['Household power forecasting (regression) →','house_power_consuption.html']]},
+    kacst:{tag:'KACST · 2026',title:'KACST Chipathon',text:'I completed Stage 1 of the SRAM Design Challenge in the King Abdulaziz City for Science and Technology (KACST) Chipathon.'}
+  };
+  const modal=document.getElementById('modal');
+  function openModal(k){const d=M[k];if(!d)return;mTag.textContent=d.tag;mTitle.textContent=d.title;mText.textContent=d.text;mLinks.innerHTML=(d.links||[]).map(([t,h])=>`<a class="btn ghost" href="${h}">${t}</a>`).join('');modal.hidden=false;mClose.focus();}
+  function close(){modal.hidden=true;}
+  mClose.addEventListener('click',close);modal.addEventListener('click',e=>{if(e.target===modal)close();});addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  function go(el){const [kind,...rest]=el.dataset.go.split(':');const v=rest.join(':');
+    if(kind==='href'){ if(/^https?:/.test(v)) window.open(v,'_blank','noopener'); else location.href=v; }
+    else if(kind==='scroll'){document.querySelector(v)?.scrollIntoView({behavior:'smooth'});}
+    else if(kind==='stop'){ if(window.openJourney) window.openJourney(+v); }
+    else if(kind==='modal'){openModal(v);}
+  }
+  document.querySelectorAll('[data-go]').forEach(el=>{
+    el.addEventListener('click',e=>{ if(e.target.closest('a,button')) return; go(el); });
+    el.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();go(el);} });
+  });
+})();
+</script>
 </body>
 </html>
-

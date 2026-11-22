@@ -1,0 +1,77 @@
+/* Project detail pages — matches the 3D portfolio homepage (warm peach + maroon + sage/forest) */
+:root{
+  --bg:#fce1c5; --bg-2:#f8d6b3; --card:#fdebd8;
+  --maroon:#450920; --maroon-2:#6b1a35; --sage:#7a9e7e; --forest:#2f5d50; --leaf:#a7c4a0; --gold:#e0a458;
+  --ink:#450920; --muted:#7a4a55; --line:rgba(69,9,32,.14);
+  --radius:22px; --shadow:0 18px 40px -18px rgba(69,9,32,.35);
+  --heading:"Homemade Apple",cursive; --body:"Hind Vadodara",system-ui,sans-serif; --mono:"Space Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(900px 600px at 85% -10%,rgba(122,158,126,.28),transparent 60%),radial-gradient(700px 500px at -10% 40%,rgba(224,164,88,.22),transparent 60%)}
+a{color:var(--forest)}
+img{max-width:100%;display:block}
+.container{max-width:920px;margin:0 auto;padding:0 24px}
+
+/* nav: floating pill like the homepage */
+.site-header{position:sticky;top:14px;z-index:50;display:flex;justify-content:center;padding:0 12px}
+.main-nav{display:flex;justify-content:center;max-width:none;padding:0}
+.main-nav-links ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:6px;border-radius:999px;
+  background:rgba(253,235,216,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:var(--shadow)}
+.main-nav-links a{display:block;font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;padding:7px 13px;border-radius:999px;transition:.25s}
+.main-nav-links a:hover{background:var(--maroon);color:var(--bg)}
+.mobile-menu-button{display:none;background:rgba(253,235,216,.85);border:1px solid var(--line);border-radius:12px;padding:8px;color:var(--maroon);cursor:pointer}
+@media(max-width:760px){
+  .site-header{justify-content:flex-end}
+  .mobile-menu-button{display:block}
+  .main-nav-links{display:none;position:absolute;top:52px;right:12px}
+  .main-nav-links.is-open{display:block}
+  .main-nav-links ul{flex-direction:column;border-radius:18px;align-items:stretch}
+}
+
+/* back link */
+.back-link{display:inline-flex;align-items:center;gap:6px;margin:34px 0 0;font-weight:600;font-size:15px;color:var(--forest);text-decoration:none;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);transition:.25s}
+.back-link:hover{background:var(--forest);color:#fff;border-color:var(--forest)}
+
+/* header */
+.project-detail{padding:24px 0 80px}
+.project-detail-header{text-align:left;margin-top:18px}
+.section-title{font-family:var(--heading);font-weight:400;color:var(--maroon);font-size:clamp(28px,4.4vw,44px);line-height:1.4;margin:10px 0 14px}
+.project-card-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.tag{font-family:var(--mono);font-size:12px;padding:4px 11px;border-radius:999px;background:rgba(122,158,126,.18);color:var(--forest);font-weight:700}
+.tag-maroon{background:var(--maroon);color:var(--bg)}
+.tag-dark-pink{background:rgba(122,158,126,.2);color:var(--forest)}
+.tag-light-pink{background:rgba(69,9,32,.08);color:var(--maroon)}
+
+/* images */
+.project-detail-main-image{width:100%;max-height:520px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow);background:var(--card)}
+.project-detail-sub-image{max-width:100%;height:auto!important;max-height:460px;width:auto!important;margin:16px auto 26px;border-radius:16px;border:1px solid var(--line);box-shadow:0 12px 28px -16px rgba(69,9,32,.35);background:#fff}
+.project-detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:16px 0}
+.project-detail-grid img{margin:0;max-height:none}
+
+/* report / download buttons (override old inline pink styles) */
+a[href*="report files"],a[href$=".pdf"]{background:var(--maroon)!important;color:var(--bg)!important;border-radius:999px!important;
+  padding:10px 20px!important;width:auto!important;font-family:var(--body);font-weight:600!important;box-shadow:0 10px 24px -10px rgba(69,9,32,.6)!important;transition:transform .25s!important}
+a[href*="report files"]:hover,a[href$=".pdf"]:hover{transform:translateY(-3px)}
+
+/* content blocks */
+.project-detail-content{margin-top:34px;display:grid;gap:18px}
+.project-detail-block{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow)}
+.project-detail-block h2{font-size:22px;color:var(--maroon);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.project-detail-block h2::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 4px rgba(122,158,126,.25);flex:none}
+.project-detail-block h3{font-size:17px;color:var(--forest);margin:22px 0 6px}
+.project-detail-block p{margin-bottom:10px}
+.project-detail-block ul,.project-detail-block ol{padding-left:4px;list-style:none}
+.project-detail-block li{position:relative;padding-left:20px;margin:6px 0}
+.project-detail-block li::before{content:"▹";position:absolute;left:0;color:var(--sage)}
+.project-detail-block strong{color:var(--maroon-2)}
+code{font-family:var(--mono);font-size:.9em;background:rgba(47,93,80,.1);padding:1px 6px;border-radius:6px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:15px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--forest);font-family:var(--mono);font-size:13px}
+
+.site-footer{text-align:center;padding:30px 0 40px;font-size:13px;color:var(--muted)}
+.site-footer p{margin:2px 0}
+@media(max-width:600px){body{font-size:16px}.project-detail-block{padding:20px}}

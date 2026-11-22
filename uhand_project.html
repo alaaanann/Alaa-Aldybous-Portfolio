@@ -15,7 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="project.css">
 </head>
 <body>
 
@@ -42,6 +43,7 @@
     <main>
         <section class="project-detail site-section">
 
+            <div class="container"><a class="back-link" href="index.html#projects">← Back to projects</a></div>
             <div class="container project-detail-header">
                 <h1 class="section-title">'Uhand': Bionic Hand Control System Integration</h1>
                 <div class="project-card-tags">
@@ -54,7 +56,7 @@
             </div>
 
             <div class="container">
-                 <img src="images/uhand.png" alt="Uhand Bionic Hand Prototype" class="project-detail-main-image">
+                 <img src="images/uhand.webp" alt="Uhand Bionic Hand Prototype" class="project-detail-main-image">
             </div>
 
             <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
@@ -87,15 +89,15 @@
                     
                     <h3>1. 6-Channel Digital Servo Telemetry</h3>
                      <p>We utilized an FS-iA6B receiver to translate stick movements into independent finger controls. For example, right and left movements on specific channels were mapped directly to the individual servo motors controlling the digits.</p>
-                     <img src="images/uhand_rc_mapping.png" alt="RC Controller Channel Mapping" class="project-detail-sub-image">
+                     <img src="images/uhand_rc_mapping.webp" alt="RC Controller Channel Mapping" class="project-detail-sub-image">
 
                     <h3>2. Code Logic & Signal Processing</h3>
                      <p>Developed software algorithms using the `<Servo.h>` library to ingest signal pulses and write the exact required angles to the servos, ensuring power efficiency and zero-blocking jitter during operation.</p>
-                     <img src="images/uhand_code_snippet.png" style="width: auto; height: 30rem; display: flex; justify-content: center; align-items: center;" alt="Arduino Code Mapping Logic" class="project-detail-sub-image">
+                     <img src="images/uhand_code_snippet.webp" style="width: auto; height: 30rem; display: flex; justify-content: center; align-items: center;" alt="Arduino Code Mapping Logic" class="project-detail-sub-image">
                      
                      <h3>3. Mobile Application Control Interface</h3>
                      <p>Configured Bluetooth data transfer to allow manual slider manipulation for each finger, alongside custom programmed action-group triggering.</p>
-                     <img src="images/uhand_app.png" alt="Mobile App Bluetooth Interface" class="project-detail-sub-image">
+                     <img src="images/uhand_app.webp" alt="Mobile App Bluetooth Interface" class="project-detail-sub-image">
                 </div>
 
                 <div class="project-detail-block">
